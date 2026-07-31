@@ -303,6 +303,46 @@
       addProviderBindingButton: document.querySelector("#addProviderBindingButton"),
       newTaskButton: document.querySelector("#newTaskButton"),
       imageInput: document.querySelector("#imageInput"),
+      maskBlock: document.querySelector("#maskBlock"),
+      maskInput: document.querySelector("#maskInput"),
+      maskDrawButton: document.querySelector("#maskDrawButton"),
+      maskEmpty: document.querySelector("#maskEmpty"),
+      maskPreviewCard: document.querySelector("#maskPreviewCard"),
+      maskPreview: document.querySelector("#maskPreview"),
+      maskName: document.querySelector("#maskName"),
+      maskMeta: document.querySelector("#maskMeta"),
+      maskReplaceButton: document.querySelector("#maskReplaceButton"),
+      maskClearButton: document.querySelector("#maskClearButton"),
+      maskFocusedControls: document.querySelector("#maskFocusedControls"),
+      maskFocusedEnabled: document.querySelector("#maskFocusedEnabled"),
+      maskContext: document.querySelector("#maskContext"),
+      maskContextValue: document.querySelector("#maskContextValue"),
+      maskFeather: document.querySelector("#maskFeather"),
+      maskFeatherValue: document.querySelector("#maskFeatherValue"),
+      maskFocusRectStatus: document.querySelector("#maskFocusRectStatus"),
+      maskFocusEditButton: document.querySelector("#maskFocusEditButton"),
+      maskEditorModal: document.querySelector("#maskEditorModal"),
+      maskEditorTitle: document.querySelector("#maskEditorTitle"),
+      maskEditorClose: document.querySelector("#maskEditorClose"),
+      maskEditorCanvasWrap: document.querySelector("#maskEditorCanvasWrap"),
+      maskEditorCanvasStack: document.querySelector("#maskEditorCanvasStack"),
+      maskEditorCanvas: document.querySelector("#maskEditorCanvas"),
+      maskEditorOverlay: document.querySelector("#maskEditorOverlay"),
+      maskEditorBrushSize: document.querySelector("#maskEditorBrushSize"),
+      maskEditorBrushValue: document.querySelector("#maskEditorBrushValue"),
+      maskEditorUndo: document.querySelector("#maskEditorUndo"),
+      maskEditorRedo: document.querySelector("#maskEditorRedo"),
+      maskEditorClear: document.querySelector("#maskEditorClear"),
+      maskEditorInvert: document.querySelector("#maskEditorInvert"),
+      maskEditorShow: document.querySelector("#maskEditorShow"),
+      maskEditorZoomOut: document.querySelector("#maskEditorZoomOut"),
+      maskEditorZoomIn: document.querySelector("#maskEditorZoomIn"),
+      maskEditorZoom: document.querySelector("#maskEditorZoom"),
+      maskEditorFocusStatus: document.querySelector("#maskEditorFocusStatus"),
+      maskEditorAutoFocus: document.querySelector("#maskEditorAutoFocus"),
+      maskEditorStatus: document.querySelector("#maskEditorStatus"),
+      maskEditorCancel: document.querySelector("#maskEditorCancel"),
+      maskEditorSave: document.querySelector("#maskEditorSave"),
       referenceFileSelection: document.querySelector("#referenceFileSelection"),
       imageEditorModal: document.querySelector("#imageEditorModal"),
       imageEditorClose: document.querySelector("#imageEditorClose"),
@@ -1489,6 +1529,51 @@
     "imageEditor.emptyInsertList": "No other input images",
     "imageEditor.selectLayerFirst": "Select a layer first",
     "imageEditor.baseLayer": "Base image",
+    "inpainting.title": "Inpainting Mask",
+    "inpainting.compactTitle": "Local Repair",
+    "inpainting.notSet": "No mask set",
+    "inpainting.start": "Start Painting",
+    "inpainting.continue": "Continue Editing",
+    "inpainting.more": "More",
+    "inpainting.moreTools": "More Tools",
+    "inpainting.advanced": "Advanced Settings",
+    "inpainting.subtitle": "Transparent areas are regenerated while the rest stays unchanged",
+    "inpainting.upload": "Upload Mask",
+    "inpainting.draw": "Draw Mask",
+    "inpainting.empty": "Upload a transparent PNG matching the first image, or paint the area in the browser",
+    "inpainting.preview": "Mask preview",
+    "inpainting.replace": "Replace",
+    "inpainting.focused": "Focused Inpainting",
+    "inpainting.focusedHint": "Crop and enlarge a small area, then feather it back into the full image",
+    "inpainting.context": "Context",
+    "inpainting.feather": "Feather",
+    "inpainting.editFocus": "Edit Focus",
+    "inpainting.editorTitle": "Draw Inpainting Mask",
+    "inpainting.editorHint": "Blue areas are regenerated; the yellow dashed box controls focused enlargement",
+    "inpainting.brush": "Mask Brush",
+    "inpainting.eraser": "Mask Eraser",
+    "inpainting.focusTool": "Focus Box",
+    "inpainting.invert": "Invert",
+    "inpainting.hideMask": "Hide Mask",
+    "inpainting.showMask": "Show Mask",
+    "inpainting.autoFocus": "Use Automatic Focus",
+    "inpainting.focusAuto": "Automatic from mask",
+    "inpainting.focusManual": "Manual focus box",
+    "inpainting.saveMask": "Save Mask",
+    "inpainting.baseRequired": "Edit mode requires at least one base image",
+    "inpainting.baseLoadFailed": "Could not load the first base image",
+    "inpainting.maskDecodeFailed": "Could not decode the mask image",
+    "inpainting.canvasFailed": "Could not create the mask canvas",
+    "inpainting.maskSaveFailed": "Failed to save the mask",
+    "inpainting.maskPngRequired": "The mask must be a PNG image",
+    "inpainting.maskSizeMismatch": "Mask dimensions must exactly match the first base image",
+    "inpainting.maskTransparencyRequired": "The mask must contain transparent pixels to edit",
+    "inpainting.maskReady": "Inpainting mask is ready",
+    "inpainting.maskCleared": "Inpainting mask cleared",
+    "inpainting.drawn": "Browser drawing",
+    "inpainting.uploaded": "Uploaded file",
+    "inpainting.paintRequired": "Paint at least one area to regenerate",
+    "inpainting.focusRequiresMask": "Focused inpainting requires a valid mask",
     "gallery.title": "Gallery",
     "gallery.subtitle": "Choose reference images for the current task",
     "gallery.manageCategories": "Manage categories",
@@ -12368,8 +12453,53 @@
     "imageEditor.layerDown": "Di chuy\u1EC3n xu\u1ED1ng",
     "imageEditor.emptyInsertList": "Kh\xF4ng c\xF3 h\xECnh \u1EA3nh \u0111\u1EA7u v\xE0o kh\xE1c",
     "imageEditor.selectLayerFirst": "Ch\u1ECDn m\u1ED9t l\u1EDBp tr\u01B0\u1EDBc",
-    "imageEditor.baseLayer": "H\xECnh \u1EA3nh c\u01A1 s\u1EDF",
-    "gallery.title": "Th\u01B0 vi\u1EC7n \u1EA3nh",
+    "imageEditor.baseLayer": "\u1EA2nh g\u1ED1c",
+    "inpainting.title": "M\u1EB7t n\u1EA1 ch\u1EC9nh s\u1EEDa c\u1EE5c b\u1ED9",
+    "inpainting.compactTitle": "Ch\u1EC9nh s\u1EEDa c\u1EE5c b\u1ED9",
+    "inpainting.notSet": "Ch\u01B0a \u0111\u1EB7t m\u1EB7t n\u1EA1",
+    "inpainting.start": "B\u1EAFt \u0111\u1EA7u t\xF4",
+    "inpainting.continue": "Ti\u1EBFp t\u1EE5c ch\u1EC9nh s\u1EEDa",
+    "inpainting.more": "Th\xEAm",
+    "inpainting.moreTools": "Th\xEAm c\xF4ng c\u1EE5",
+    "inpainting.advanced": "C\xE0i \u0111\u1EB7t n\xE2ng cao",
+    "inpainting.subtitle": "V\xF9ng trong su\u1ED1t s\u1EBD \u0111\u01B0\u1EE3c t\u1EA1o l\u1EA1i, ph\u1EA7n ngo\xE0i m\u1EB7t n\u1EA1 gi\u1EEF nguy\xEAn",
+    "inpainting.upload": "T\u1EA3i m\u1EB7t n\u1EA1 l\xEAn",
+    "inpainting.draw": "V\u1EBD m\u1EB7t n\u1EA1",
+    "inpainting.empty": "T\u1EA3i PNG trong su\u1ED1t c\xF9ng k\xEDch th\u01B0\u1EDBc v\u1EDBi \u1EA3nh \u0111\u1EA7u ti\xEAn ho\u1EB7c t\xF4 v\xF9ng tr\u1EF1c ti\u1EBFp tr\xEAn web",
+    "inpainting.preview": "Xem tr\u01B0\u1EDBc m\u1EB7t n\u1EA1",
+    "inpainting.replace": "Thay th\u1EBF",
+    "inpainting.focused": "Ch\u1EC9nh s\u1EEDa t\u1EADp trung",
+    "inpainting.focusedHint": "C\u1EAFt v\xE0 ph\xF3ng to v\xF9ng nh\u1ECF r\u1ED3i gh\xE9p m\u1EC1m tr\u1EDF l\u1EA1i \u1EA3nh \u0111\u1EA7y \u0111\u1EE7",
+    "inpainting.context": "Ng\u1EEF c\u1EA3nh",
+    "inpainting.feather": "L\xE0m m\u1EC1m",
+    "inpainting.editFocus": "S\u1EEDa v\xF9ng t\u1EADp trung",
+    "inpainting.editorTitle": "V\u1EBD m\u1EB7t n\u1EA1 ch\u1EC9nh s\u1EEDa",
+    "inpainting.editorHint": "V\xF9ng m\xE0u xanh s\u1EBD \u0111\u01B0\u1EE3c t\u1EA1o l\u1EA1i; khung n\xE9t \u0111\u1EE9t m\xE0u v\xE0ng \u0111i\u1EC1u khi\u1EC3n v\xF9ng ph\xF3ng to",
+    "inpainting.brush": "C\u1ECD m\u1EB7t n\u1EA1",
+    "inpainting.eraser": "T\u1EA9y m\u1EB7t n\u1EA1",
+    "inpainting.focusTool": "Khung t\u1EADp trung",
+    "inpainting.invert": "\u0110\u1EA3o ng\u01B0\u1EE3c",
+    "inpainting.hideMask": "\u1EA8n m\u1EB7t n\u1EA1",
+    "inpainting.showMask": "Hi\u1EC7n m\u1EB7t n\u1EA1",
+    "inpainting.autoFocus": "D\xF9ng v\xF9ng t\u1EF1 \u0111\u1ED9ng",
+    "inpainting.focusAuto": "T\u1EF1 \u0111\u1ED9ng theo m\u1EB7t n\u1EA1",
+    "inpainting.focusManual": "Khung t\u1EADp trung th\u1EE7 c\xF4ng",
+    "inpainting.saveMask": "L\u01B0u m\u1EB7t n\u1EA1",
+    "inpainting.baseRequired": "Ch\u1EBF \u0111\u1ED9 ch\u1EC9nh s\u1EEDa c\u1EA7n \xEDt nh\u1EA5t m\u1ED9t \u1EA3nh g\u1ED1c",
+    "inpainting.baseLoadFailed": "Kh\xF4ng th\u1EC3 t\u1EA3i \u1EA3nh g\u1ED1c \u0111\u1EA7u ti\xEAn",
+    "inpainting.maskDecodeFailed": "Kh\xF4ng th\u1EC3 gi\u1EA3i m\xE3 \u1EA3nh m\u1EB7t n\u1EA1",
+    "inpainting.canvasFailed": "Kh\xF4ng th\u1EC3 t\u1EA1o canvas m\u1EB7t n\u1EA1",
+    "inpainting.maskSaveFailed": "L\u01B0u m\u1EB7t n\u1EA1 th\u1EA5t b\u1EA1i",
+    "inpainting.maskPngRequired": "M\u1EB7t n\u1EA1 ph\u1EA3i l\xE0 \u1EA3nh PNG",
+    "inpainting.maskSizeMismatch": "K\xEDch th\u01B0\u1EDBc m\u1EB7t n\u1EA1 ph\u1EA3i kh\u1EDBp ho\xE0n to\xE0n v\u1EDBi \u1EA3nh g\u1ED1c \u0111\u1EA7u ti\xEAn",
+    "inpainting.maskTransparencyRequired": "M\u1EB7t n\u1EA1 ph\u1EA3i c\xF3 \u0111i\u1EC3m \u1EA3nh trong su\u1ED1t c\u1EA7n ch\u1EC9nh s\u1EEDa",
+    "inpainting.maskReady": "M\u1EB7t n\u1EA1 ch\u1EC9nh s\u1EEDa \u0111\xE3 s\u1EB5n s\xE0ng",
+    "inpainting.maskCleared": "\u0110\xE3 x\xF3a m\u1EB7t n\u1EA1 ch\u1EC9nh s\u1EEDa",
+    "inpainting.drawn": "V\u1EBD tr\xEAn tr\xECnh duy\u1EC7t",
+    "inpainting.uploaded": "T\u1EC7p \u0111\xE3 t\u1EA3i l\xEAn",
+    "inpainting.paintRequired": "H\xE3y t\xF4 \xEDt nh\u1EA5t m\u1ED9t v\xF9ng c\u1EA7n t\u1EA1o l\u1EA1i",
+    "inpainting.focusRequiresMask": "Ch\u1EC9nh s\u1EEDa t\u1EADp trung c\u1EA7n m\u1EB7t n\u1EA1 h\u1EE3p l\u1EC7",
+    "gallery.title": "Th\u01B0 vi\u1EC7n",
     "gallery.subtitle": "Ch\u1ECDn h\xECnh \u1EA3nh tham kh\u1EA3o cho t\xE1c v\u1EE5 hi\u1EC7n t\u1EA1i",
     "gallery.manageCategories": "Qu\u1EA3n l\xFD danh m\u1EE5c",
     "gallery.categoryManager": "Qu\u1EA3n l\xFD danh m\u1EE5c th\u01B0 vi\u1EC7n",
@@ -13466,6 +13596,51 @@
     "imageEditor.emptyInsertList": "\u6682\u65E0\u5176\u4ED6\u8F93\u5165\u56FE",
     "imageEditor.selectLayerFirst": "\u8BF7\u5148\u9009\u62E9\u56FE\u5C42",
     "imageEditor.baseLayer": "\u539F\u56FE",
+    "inpainting.title": "\u5C40\u90E8\u4FEE\u590D\u8499\u7248",
+    "inpainting.compactTitle": "\u5C40\u90E8\u4FEE\u590D",
+    "inpainting.notSet": "\u672A\u8BBE\u7F6E\u8499\u7248",
+    "inpainting.start": "\u5F00\u59CB\u7ED8\u5236",
+    "inpainting.continue": "\u7EE7\u7EED\u7F16\u8F91",
+    "inpainting.more": "\u66F4\u591A",
+    "inpainting.moreTools": "\u66F4\u591A\u5DE5\u5177",
+    "inpainting.advanced": "\u9AD8\u7EA7\u8BBE\u7F6E",
+    "inpainting.subtitle": "\u900F\u660E\u533A\u57DF\u4F1A\u88AB\u91CD\u7ED8\uFF0C\u8499\u7248\u5916\u4FDD\u6301\u539F\u56FE",
+    "inpainting.upload": "\u4E0A\u4F20\u8499\u7248",
+    "inpainting.draw": "\u7ED8\u5236\u8499\u7248",
+    "inpainting.empty": "\u53EF\u4E0A\u4F20\u4E0E\u9996\u56FE\u540C\u5C3A\u5BF8\u7684\u900F\u660E PNG\uFF0C\u6216\u76F4\u63A5\u5728\u7F51\u9875\u4E2D\u6D82\u9009\u533A\u57DF",
+    "inpainting.preview": "\u8499\u7248\u9884\u89C8",
+    "inpainting.replace": "\u66FF\u6362",
+    "inpainting.focused": "\u805A\u7126\u4FEE\u590D",
+    "inpainting.focusedHint": "\u88C1\u5207\u5E76\u653E\u5927\u5C0F\u533A\u57DF\uFF0C\u751F\u6210\u540E\u81EA\u52A8\u67D4\u8FB9\u56DE\u8D34\u539F\u56FE",
+    "inpainting.context": "\u4E0A\u4E0B\u6587",
+    "inpainting.feather": "\u7FBD\u5316",
+    "inpainting.editFocus": "\u7F16\u8F91\u9009\u533A",
+    "inpainting.editorTitle": "\u7ED8\u5236\u5C40\u90E8\u4FEE\u590D\u8499\u7248",
+    "inpainting.editorHint": "\u84DD\u8272\u533A\u57DF\u5C06\u88AB\u91CD\u7ED8\uFF1B\u9EC4\u8272\u865A\u7EBF\u6846\u7528\u4E8E\u805A\u7126\u653E\u5927",
+    "inpainting.brush": "\u8499\u7248\u753B\u7B14",
+    "inpainting.eraser": "\u8499\u7248\u6A61\u76AE",
+    "inpainting.focusTool": "\u805A\u7126\u6846",
+    "inpainting.invert": "\u53CD\u8F6C",
+    "inpainting.hideMask": "\u9690\u85CF\u8499\u7248",
+    "inpainting.showMask": "\u663E\u793A\u8499\u7248",
+    "inpainting.autoFocus": "\u6062\u590D\u81EA\u52A8\u9009\u533A",
+    "inpainting.focusAuto": "\u81EA\u52A8\u6309\u8499\u7248",
+    "inpainting.focusManual": "\u624B\u52A8\u805A\u7126\u6846",
+    "inpainting.saveMask": "\u4FDD\u5B58\u8499\u7248",
+    "inpainting.baseRequired": "\u7F16\u8F91\u6A21\u5F0F\u81F3\u5C11\u9700\u8981\u4E00\u5F20\u5E95\u56FE",
+    "inpainting.baseLoadFailed": "\u65E0\u6CD5\u8F7D\u5165\u9996\u5F20\u5E95\u56FE",
+    "inpainting.maskDecodeFailed": "\u65E0\u6CD5\u89E3\u7801\u8499\u7248\u56FE\u7247",
+    "inpainting.canvasFailed": "\u65E0\u6CD5\u521B\u5EFA\u8499\u7248\u753B\u5E03",
+    "inpainting.maskSaveFailed": "\u8499\u7248\u4FDD\u5B58\u5931\u8D25",
+    "inpainting.maskPngRequired": "\u8499\u7248\u5FC5\u987B\u662F PNG \u56FE\u7247",
+    "inpainting.maskSizeMismatch": "\u8499\u7248\u5C3A\u5BF8\u5FC5\u987B\u4E0E\u9996\u5F20\u5E95\u56FE\u5B8C\u5168\u4E00\u81F4",
+    "inpainting.maskTransparencyRequired": "\u8499\u7248\u5FC5\u987B\u5305\u542B\u900F\u660E\u7684\u5F85\u7F16\u8F91\u533A\u57DF",
+    "inpainting.maskReady": "\u5C40\u90E8\u4FEE\u590D\u8499\u7248\u5DF2\u5C31\u7EEA",
+    "inpainting.maskCleared": "\u5DF2\u6E05\u9664\u5C40\u90E8\u4FEE\u590D\u8499\u7248",
+    "inpainting.drawn": "\u7F51\u9875\u7ED8\u5236",
+    "inpainting.uploaded": "\u6587\u4EF6\u4E0A\u4F20",
+    "inpainting.paintRequired": "\u8BF7\u5148\u6D82\u9009\u81F3\u5C11\u4E00\u4E2A\u9700\u8981\u91CD\u7ED8\u7684\u533A\u57DF",
+    "inpainting.focusRequiresMask": "\u805A\u7126\u4FEE\u590D\u9700\u8981\u6709\u6548\u8499\u7248",
     "gallery.title": "\u516C\u7528\u56FE\u5E93",
     "gallery.subtitle": "\u9009\u62E9\u53C2\u8003\u56FE\u52A0\u5165\u5F53\u524D\u4EFB\u52A1",
     "gallery.manageCategories": "\u7BA1\u7406\u5206\u7C7B",
@@ -16578,6 +16753,7 @@
     return {
       mode: "generate",
       images: [],
+      editMask: null,
       referenceFiles: [],
       tasks: [],
       taskSidebarGroupCounts: {},
@@ -29498,9 +29674,9 @@ js: import "konva/skia-backend";
     return getLegacyBridge().methods[name]?.(...args);
   }
   function editedUploadFilename(name) {
-    const sourceName3 = String(name || "input.png");
-    const dotIndex = sourceName3.lastIndexOf(".");
-    const base = dotIndex > 0 ? sourceName3.slice(0, dotIndex) : sourceName3;
+    const sourceName4 = String(name || "input.png");
+    const dotIndex = sourceName4.lastIndexOf(".");
+    const base = dotIndex > 0 ? sourceName4.slice(0, dotIndex) : sourceName4;
     return `${base}-edited.png`;
   }
   function isEditableImageSource(source) {
@@ -31059,24 +31235,671 @@ ${hint}` : hint;
     });
   }
 
-  // codex_image/webui/frontend/src/image-strip.ts
-  var imageStripFeatureInitialized = false;
+  // codex_image/webui/frontend/src/inpainting-mask.ts
+  var editor = {
+    open: false,
+    session: 0,
+    baseSource: null,
+    baseImage: null,
+    selection: null,
+    tool: "brush",
+    brushSize: 48,
+    zoom: 1,
+    showMask: true,
+    focusedEnabled: false,
+    context: 0.35,
+    feather: 12,
+    drawing: null,
+    rect: null,
+    history: [],
+    historyIndex: -1
+  };
+  var initialized2 = false;
   function legacyMethod5(name, ...args) {
     return getLegacyBridge().methods[name]?.(...args);
   }
+  function maskState() {
+    return getState().editMask || null;
+  }
+  function setMaskState(value) {
+    const state32 = getState();
+    const previous = state32.editMask;
+    if (previous?.previewUrl && previous.previewUrl !== value?.previewUrl) URL.revokeObjectURL(previous.previewUrl);
+    state32.editMask = value;
+  }
+  function currentBaseSource() {
+    return getState().images?.[0] || null;
+  }
+  function sourceUrl(source) {
+    return String(legacyMethod5("sourcePreviewUrl", source) || "");
+  }
+  function sourceName2(source) {
+    return String(legacyMethod5("sourceName", source) || "input.png");
+  }
+  async function fileBitmap(file) {
+    try {
+      return await createImageBitmap(file);
+    } catch {
+      throw new Error(translate("inpainting.maskDecodeFailed"));
+    }
+  }
+  async function sourceBitmap(source) {
+    if (!source) throw new Error(translate("inpainting.baseRequired"));
+    const url = sourceUrl(source);
+    if (!url) throw new Error(translate("inpainting.baseLoadFailed"));
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(translate("inpainting.baseLoadFailed"));
+    return fileBitmap(await response.blob());
+  }
+  function canvas2d(canvas, read = false) {
+    const context = canvas?.getContext("2d", read ? { willReadFrequently: true } : void 0);
+    if (!context) throw new Error(translate("inpainting.canvasFailed"));
+    return context;
+  }
+  function fileFromCanvas(canvas, name) {
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          reject(new Error(translate("inpainting.maskSaveFailed")));
+          return;
+        }
+        resolve(new File([blob], name, { type: "image/png", lastModified: Date.now() }));
+      }, "image/png");
+    });
+  }
+  function selectionHasPixels(canvas) {
+    const pixels = canvas2d(canvas, true).getImageData(0, 0, canvas.width, canvas.height).data;
+    for (let offset = 3; offset < pixels.length; offset += 4) {
+      if (pixels[offset] > 0) return true;
+    }
+    return false;
+  }
+  async function validateUploadedMask(file, source = currentBaseSource()) {
+    if (!source) throw new Error(translate("inpainting.baseRequired"));
+    if (file.type !== "image/png" && !file.name.toLowerCase().endsWith(".png")) {
+      throw new Error(translate("inpainting.maskPngRequired"));
+    }
+    const [base, mask] = await Promise.all([sourceBitmap(source), fileBitmap(file)]);
+    try {
+      if (base.width !== mask.width || base.height !== mask.height) {
+        throw new Error(translate("inpainting.maskSizeMismatch"));
+      }
+      const check = document.createElement("canvas");
+      check.width = mask.width;
+      check.height = mask.height;
+      const context = canvas2d(check, true);
+      context.drawImage(mask, 0, 0);
+      const pixels = context.getImageData(0, 0, check.width, check.height).data;
+      let transparent = false;
+      for (let offset = 3; offset < pixels.length; offset += 4) {
+        if (pixels[offset] < 255) {
+          transparent = true;
+          break;
+        }
+      }
+      if (!transparent) throw new Error(translate("inpainting.maskTransparencyRequired"));
+      return { width: mask.width, height: mask.height };
+    } finally {
+      base.close();
+      mask.close();
+    }
+  }
+  function defaultFocused(existing) {
+    return {
+      enabled: Boolean(existing?.focused.enabled),
+      rect: existing?.focused.rect || null,
+      context: Number(existing?.focused.context ?? 0.35),
+      feather: Number(existing?.focused.feather ?? 12),
+      target_size: 1024
+    };
+  }
+  function restoredFocused(value, existing) {
+    const fallback = defaultFocused(existing);
+    if (value === void 0) return fallback;
+    if (!value?.enabled) return { ...fallback, enabled: false, rect: null };
+    return {
+      enabled: true,
+      rect: value.rect || null,
+      context: Number(value.context ?? fallback.context),
+      feather: Number(value.feather ?? fallback.feather),
+      target_size: 1024
+    };
+  }
+  async function setUploadedMask(file, options = {}) {
+    const baseSource = currentBaseSource();
+    const dimensions2 = await validateUploadedMask(file, baseSource);
+    const previous = maskState();
+    setMaskState({
+      file,
+      previewUrl: URL.createObjectURL(file),
+      baseSource,
+      width: dimensions2.width,
+      height: dimensions2.height,
+      source: "upload",
+      focused: restoredFocused(options.focused, previous)
+    });
+    const moreMenu = document.querySelector("#maskMoreMenu");
+    if (moreMenu) moreMenu.open = false;
+    renderInpaintingControls();
+    legacyMethod5("updateRequestPreview");
+    if (!options.silent) legacyMethod5("setStatus", translate("inpainting.maskReady"), "ok");
+  }
+  function clearEditMask(options = {}) {
+    setMaskState(null);
+    const els43 = getEls();
+    if (els43.maskInput) els43.maskInput.value = "";
+    const moreMenu = document.querySelector("#maskMoreMenu");
+    if (moreMenu) moreMenu.open = false;
+    renderInpaintingControls();
+    legacyMethod5("updateRequestPreview");
+    if (!options.silent) legacyMethod5("setStatus", translate("inpainting.maskCleared"), "ok");
+  }
+  function focusedPayload() {
+    const mask = maskState();
+    if (!mask?.focused.enabled) return null;
+    return {
+      enabled: true,
+      rect: mask.focused.rect,
+      context: mask.focused.context,
+      feather: mask.focused.feather,
+      target_size: 1024
+    };
+  }
+  function maskForSubmit() {
+    const mask = maskState();
+    if (!mask || mask.baseSource !== currentBaseSource()) return null;
+    return mask.file;
+  }
+  function renderInpaintingControls() {
+    const els43 = getEls();
+    const state32 = getState();
+    const base = currentBaseSource();
+    const visible = state32.mode === "edit" && Boolean(base);
+    els43.maskBlock?.classList.toggle("hidden", !visible);
+    if (!visible) return;
+    let mask = maskState();
+    if (mask && mask.baseSource !== base) {
+      clearEditMask({ silent: true });
+      mask = null;
+    }
+    els43.maskEmpty?.classList.toggle("hidden", Boolean(mask));
+    els43.maskPreviewCard?.classList.toggle("hidden", !mask);
+    els43.maskClearButton?.classList.toggle("hidden", !mask);
+    els43.maskFocusedControls?.classList.remove("hidden");
+    if (els43.maskPreview && mask) els43.maskPreview.src = mask.previewUrl;
+    if (els43.maskName) els43.maskName.textContent = mask?.file.name || "";
+    if (els43.maskMeta) {
+      const focusedSuffix = mask?.focused.enabled ? ` \xB7 ${translate("inpainting.focused")}` : "";
+      els43.maskMeta.textContent = mask ? `${mask.width}\xD7${mask.height} \xB7 ${mask.source === "drawn" ? translate("inpainting.drawn") : translate("inpainting.uploaded")}${focusedSuffix}` : "";
+    }
+    if (els43.maskDrawButton) {
+      els43.maskDrawButton.textContent = translate(mask ? "inpainting.continue" : "inpainting.start");
+    }
+    const focusedEnabled = editor.open ? editor.focusedEnabled : Boolean(mask?.focused.enabled);
+    const focusedContext = editor.open ? editor.context : Number(mask?.focused.context ?? 0.35);
+    const focusedFeather = editor.open ? editor.feather : Number(mask?.focused.feather ?? 12);
+    const focusedRect = editor.open ? editor.rect : mask?.focused.rect;
+    if (els43.maskFocusedEnabled) els43.maskFocusedEnabled.checked = focusedEnabled;
+    if (els43.maskContext) els43.maskContext.value = String(focusedContext);
+    if (els43.maskContextValue) els43.maskContextValue.textContent = `${Math.round(Number(els43.maskContext?.value || 0.35) * 100)}%`;
+    if (els43.maskFeather) els43.maskFeather.value = String(focusedFeather);
+    if (els43.maskFeatherValue) els43.maskFeatherValue.textContent = `${Number(els43.maskFeather?.value || 12)}px`;
+    if (els43.maskFocusRectStatus) {
+      els43.maskFocusRectStatus.textContent = focusedRect ? translate("inpainting.focusManual") : translate("inpainting.focusAuto");
+    }
+  }
+  function editorSelectionCanvas(width, height) {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+  async function selectionFromMask(file, width, height) {
+    const bitmap = await fileBitmap(file);
+    try {
+      const source = document.createElement("canvas");
+      source.width = width;
+      source.height = height;
+      const sourceContext = canvas2d(source, true);
+      sourceContext.drawImage(bitmap, 0, 0, width, height);
+      const pixels = sourceContext.getImageData(0, 0, width, height);
+      for (let offset = 0; offset < pixels.data.length; offset += 4) {
+        const selected = 255 - pixels.data[offset + 3];
+        pixels.data[offset] = 47;
+        pixels.data[offset + 1] = 111;
+        pixels.data[offset + 2] = 228;
+        pixels.data[offset + 3] = selected;
+      }
+      const selection = editorSelectionCanvas(width, height);
+      canvas2d(selection, true).putImageData(pixels, 0, 0);
+      return selection;
+    } finally {
+      bitmap.close();
+    }
+  }
+  function snapshotEditor() {
+    if (!editor.selection) return null;
+    const pixels = canvas2d(editor.selection, true).getImageData(0, 0, editor.selection.width, editor.selection.height).data;
+    const alpha = new Uint8ClampedArray(editor.selection.width * editor.selection.height);
+    for (let sourceOffset = 3, targetOffset = 0; sourceOffset < pixels.length; sourceOffset += 4, targetOffset += 1) {
+      alpha[targetOffset] = pixels[sourceOffset];
+    }
+    return {
+      alpha,
+      rect: editor.rect ? { ...editor.rect } : null
+    };
+  }
+  function pushHistory() {
+    const snapshot = snapshotEditor();
+    if (!snapshot) return;
+    editor.history = editor.history.slice(0, editor.historyIndex + 1);
+    editor.history.push(snapshot);
+    const pixelCount = editor.selection ? editor.selection.width * editor.selection.height : 0;
+    const historyLimit = pixelCount > 8e6 ? 4 : pixelCount > 2e6 ? 8 : 20;
+    if (editor.history.length > historyLimit) editor.history.shift();
+    editor.historyIndex = editor.history.length - 1;
+    updateEditorControls();
+  }
+  function restoreHistory(index) {
+    const snapshot = editor.history[index];
+    if (!snapshot || !editor.selection) return;
+    const context = canvas2d(editor.selection, true);
+    const pixels = context.createImageData(editor.selection.width, editor.selection.height);
+    for (let targetOffset = 0, sourceOffset = 0; targetOffset < pixels.data.length; targetOffset += 4, sourceOffset += 1) {
+      pixels.data[targetOffset] = 47;
+      pixels.data[targetOffset + 1] = 111;
+      pixels.data[targetOffset + 2] = 228;
+      pixels.data[targetOffset + 3] = snapshot.alpha[sourceOffset];
+    }
+    context.putImageData(pixels, 0, 0);
+    editor.rect = snapshot.rect ? { ...snapshot.rect } : null;
+    editor.historyIndex = index;
+    renderMaskEditor();
+    updateEditorControls();
+  }
+  function undoMask() {
+    if (editor.historyIndex > 0) restoreHistory(editor.historyIndex - 1);
+  }
+  function redoMask() {
+    if (editor.historyIndex < editor.history.length - 1) restoreHistory(editor.historyIndex + 1);
+  }
+  function editorPoint(event) {
+    const canvas = getEls().maskEditorCanvas;
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: Math.max(0, Math.min(canvas.width, (event.clientX - rect.left) * canvas.width / Math.max(1, rect.width))),
+      y: Math.max(0, Math.min(canvas.height, (event.clientY - rect.top) * canvas.height / Math.max(1, rect.height)))
+    };
+  }
+  function drawSelectionSegment(from, to) {
+    if (!editor.selection) return;
+    const context = canvas2d(editor.selection);
+    context.save();
+    context.globalCompositeOperation = editor.tool === "eraser" ? "destination-out" : "source-over";
+    context.strokeStyle = "#2f6fe4";
+    context.fillStyle = "#2f6fe4";
+    context.lineWidth = editor.brushSize;
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    if (Math.hypot(to.x - from.x, to.y - from.y) < 0.5) {
+      context.beginPath();
+      context.arc(from.x, from.y, editor.brushSize / 2, 0, Math.PI * 2);
+      context.fill();
+    } else {
+      context.beginPath();
+      context.moveTo(from.x, from.y);
+      context.lineTo(to.x, to.y);
+      context.stroke();
+    }
+    context.restore();
+  }
+  function normalizedRect2(from, to, width, height) {
+    const left = Math.min(from.x, to.x);
+    const top = Math.min(from.y, to.y);
+    const rectWidth = Math.abs(to.x - from.x);
+    const rectHeight = Math.abs(to.y - from.y);
+    if (rectWidth < 4 || rectHeight < 4) return null;
+    return { x: left / width, y: top / height, width: rectWidth / width, height: rectHeight / height };
+  }
+  function handlePointerDown(event) {
+    if (!editor.open || !editor.selection) return;
+    event.preventDefault();
+    const point = editorPoint(event);
+    if (event.isTrusted) {
+      try {
+        event.currentTarget?.setPointerCapture?.(event.pointerId);
+      } catch {
+      }
+    }
+    editor.drawing = { pointerId: event.pointerId, start: point, last: point };
+    if (editor.tool !== "focus") drawSelectionSegment(point, point);
+    renderMaskEditor();
+  }
+  function handlePointerMove(event) {
+    const drawing = editor.drawing;
+    if (!drawing || drawing.pointerId !== event.pointerId || !editor.selection) return;
+    event.preventDefault();
+    const point = editorPoint(event);
+    if (editor.tool === "focus") {
+      editor.rect = normalizedRect2(drawing.start, point, editor.selection.width, editor.selection.height);
+      editor.focusedEnabled = true;
+    } else {
+      drawSelectionSegment(drawing.last, point);
+    }
+    drawing.last = point;
+    renderMaskEditor();
+  }
+  function handlePointerUp(event) {
+    const drawing = editor.drawing;
+    if (!drawing || drawing.pointerId !== event.pointerId || !editor.selection) return;
+    event.preventDefault();
+    const point = editorPoint(event);
+    if (editor.tool === "focus") {
+      editor.rect = normalizedRect2(drawing.start, point, editor.selection.width, editor.selection.height);
+      editor.focusedEnabled = true;
+    } else {
+      drawSelectionSegment(drawing.last, point);
+    }
+    editor.drawing = null;
+    pushHistory();
+    renderMaskEditor();
+  }
+  function renderMaskEditor() {
+    const els43 = getEls();
+    const canvas = els43.maskEditorCanvas;
+    const overlay = els43.maskEditorOverlay;
+    const stack = els43.maskEditorCanvasStack;
+    if (!canvas || !overlay || !editor.baseImage || !editor.selection) return;
+    if (canvas.width !== editor.baseImage.width || canvas.height !== editor.baseImage.height) {
+      canvas.width = editor.baseImage.width;
+      canvas.height = editor.baseImage.height;
+    }
+    if (overlay.width !== canvas.width || overlay.height !== canvas.height) {
+      overlay.width = canvas.width;
+      overlay.height = canvas.height;
+    }
+    const context = canvas2d(canvas);
+    context.globalCompositeOperation = "source-over";
+    context.globalAlpha = 1;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(editor.baseImage, 0, 0);
+    const overlayContext = canvas2d(overlay);
+    overlayContext.globalCompositeOperation = "source-over";
+    overlayContext.globalAlpha = 1;
+    overlayContext.clearRect(0, 0, overlay.width, overlay.height);
+    if (editor.showMask) {
+      overlayContext.globalAlpha = 0.48;
+      overlayContext.drawImage(editor.selection, 0, 0);
+      overlayContext.globalAlpha = 1;
+    }
+    if (editor.rect) {
+      overlayContext.save();
+      overlayContext.strokeStyle = "#ffcc33";
+      overlayContext.lineWidth = Math.max(2, 4 / editor.zoom);
+      overlayContext.setLineDash([12 / editor.zoom, 8 / editor.zoom]);
+      overlayContext.strokeRect(
+        editor.rect.x * canvas.width,
+        editor.rect.y * canvas.height,
+        editor.rect.width * canvas.width,
+        editor.rect.height * canvas.height
+      );
+      overlayContext.restore();
+    }
+    const displayWidth = canvas.width * editor.zoom;
+    const displayHeight = canvas.height * editor.zoom;
+    canvas.style.width = `${displayWidth}px`;
+    canvas.style.height = `${displayHeight}px`;
+    overlay.style.width = `${displayWidth}px`;
+    overlay.style.height = `${displayHeight}px`;
+    if (stack) {
+      stack.style.width = `${displayWidth}px`;
+      stack.style.height = `${displayHeight}px`;
+    }
+    updateEditorControls();
+  }
+  function updateEditorControls() {
+    const els43 = getEls();
+    document.querySelectorAll("[data-mask-tool]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.maskTool === editor.tool);
+    });
+    if (els43.maskEditorUndo) els43.maskEditorUndo.disabled = editor.historyIndex <= 0;
+    if (els43.maskEditorRedo) els43.maskEditorRedo.disabled = editor.historyIndex >= editor.history.length - 1;
+    if (els43.maskEditorBrushSize) els43.maskEditorBrushSize.value = String(editor.brushSize);
+    if (els43.maskEditorBrushValue) els43.maskEditorBrushValue.textContent = `${editor.brushSize}px`;
+    if (els43.maskEditorShow) els43.maskEditorShow.textContent = editor.showMask ? translate("inpainting.hideMask") : translate("inpainting.showMask");
+    if (els43.maskEditorZoom) els43.maskEditorZoom.textContent = `${Math.round(editor.zoom * 100)}%`;
+    if (els43.maskEditorFocusStatus) els43.maskEditorFocusStatus.textContent = editor.rect ? translate("inpainting.focusManual") : translate("inpainting.focusAuto");
+    if (editor.open) renderInpaintingControls();
+  }
+  function closeMaskEditor() {
+    editor.session += 1;
+    editor.open = false;
+    editor.baseImage?.close();
+    editor.baseImage = null;
+    editor.selection = null;
+    editor.drawing = null;
+    editor.history = [];
+    editor.historyIndex = -1;
+    getEls().maskEditorModal?.classList.add("hidden");
+  }
+  async function openMaskEditor() {
+    const baseSource = currentBaseSource();
+    if (!baseSource || getState().mode !== "edit") {
+      legacyMethod5("setStatus", translate("inpainting.baseRequired"), "error");
+      return;
+    }
+    const session = ++editor.session;
+    getEls().maskEditorModal?.classList.remove("hidden");
+    try {
+      const base = await sourceBitmap(baseSource);
+      if (session !== editor.session) {
+        base.close();
+        return;
+      }
+      const current = maskState();
+      const selection = current && current.baseSource === baseSource ? await selectionFromMask(current.file, base.width, base.height) : editorSelectionCanvas(base.width, base.height);
+      if (session !== editor.session) {
+        base.close();
+        return;
+      }
+      editor.open = true;
+      editor.baseSource = baseSource;
+      editor.baseImage = base;
+      editor.selection = selection;
+      editor.rect = current?.focused.rect || null;
+      editor.focusedEnabled = Boolean(current?.focused.enabled);
+      editor.context = Number(current?.focused.context ?? 0.35);
+      editor.feather = Number(current?.focused.feather ?? 12);
+      editor.tool = "brush";
+      const canvasWrap = getEls().maskEditorCanvasWrap;
+      const availableWidth = Math.max(120, Number(canvasWrap?.clientWidth || 940) - 36);
+      const availableHeight = Math.max(120, Number(canvasWrap?.clientHeight || 700) - 36);
+      editor.zoom = Math.max(0.1, Math.min(1, availableWidth / base.width, availableHeight / base.height));
+      editor.showMask = true;
+      editor.history = [];
+      editor.historyIndex = -1;
+      pushHistory();
+      if (getEls().maskEditorTitle) getEls().maskEditorTitle.textContent = `${translate("inpainting.editorTitle")} \xB7 ${sourceName2(baseSource)}`;
+      const advanced = document.querySelector("#maskEditorAdvanced");
+      if (advanced) advanced.open = Boolean(current?.focused.enabled);
+      renderMaskEditor();
+    } catch (error) {
+      closeMaskEditor();
+      legacyMethod5("setStatus", error.message || translate("inpainting.baseLoadFailed"), "error");
+    }
+  }
+  function clearSelection() {
+    if (!editor.selection) return;
+    canvas2d(editor.selection).clearRect(0, 0, editor.selection.width, editor.selection.height);
+    pushHistory();
+    renderMaskEditor();
+  }
+  function invertSelection() {
+    if (!editor.selection) return;
+    const context = canvas2d(editor.selection, true);
+    const pixels = context.getImageData(0, 0, editor.selection.width, editor.selection.height);
+    for (let offset = 3; offset < pixels.data.length; offset += 4) pixels.data[offset] = 255 - pixels.data[offset];
+    context.putImageData(pixels, 0, 0);
+    pushHistory();
+    renderMaskEditor();
+  }
+  function autoFocusSelection() {
+    editor.rect = null;
+    editor.focusedEnabled = true;
+    pushHistory();
+    renderMaskEditor();
+  }
+  async function saveMaskEditor() {
+    if (!editor.selection || !editor.baseSource || !selectionHasPixels(editor.selection)) {
+      if (getEls().maskEditorStatus) getEls().maskEditorStatus.textContent = translate("inpainting.paintRequired");
+      return;
+    }
+    const output = document.createElement("canvas");
+    output.width = editor.selection.width;
+    output.height = editor.selection.height;
+    const selectionPixels = canvas2d(editor.selection, true).getImageData(0, 0, output.width, output.height);
+    const maskPixels = canvas2d(output, true).createImageData(output.width, output.height);
+    for (let offset = 0; offset < maskPixels.data.length; offset += 4) {
+      maskPixels.data[offset] = 0;
+      maskPixels.data[offset + 1] = 0;
+      maskPixels.data[offset + 2] = 0;
+      maskPixels.data[offset + 3] = 255 - selectionPixels.data[offset + 3];
+    }
+    canvas2d(output, true).putImageData(maskPixels, 0, 0);
+    const file = await fileFromCanvas(output, `${sourceName2(editor.baseSource).replace(/\.[^.]+$/, "")}-mask.png`);
+    const previous = maskState();
+    setMaskState({
+      file,
+      previewUrl: URL.createObjectURL(file),
+      baseSource: editor.baseSource,
+      width: output.width,
+      height: output.height,
+      source: "drawn",
+      focused: {
+        ...defaultFocused(previous),
+        enabled: editor.focusedEnabled,
+        rect: editor.rect,
+        context: editor.context,
+        feather: editor.feather
+      }
+    });
+    closeMaskEditor();
+    renderInpaintingControls();
+    legacyMethod5("updateRequestPreview");
+    legacyMethod5("setStatus", translate("inpainting.maskReady"), "ok");
+  }
+  function updateFocusedFromControls() {
+    const els43 = getEls();
+    const enabled = Boolean(els43.maskFocusedEnabled?.checked);
+    const context = Math.max(0, Math.min(1, Number(els43.maskContext?.value || 0.35)));
+    const feather = Math.max(0, Math.min(128, Number(els43.maskFeather?.value || 12)));
+    if (editor.open) {
+      editor.focusedEnabled = enabled;
+      editor.context = context;
+      editor.feather = feather;
+      renderInpaintingControls();
+      return;
+    }
+    const mask = maskState();
+    if (!mask) return;
+    mask.focused.enabled = enabled;
+    mask.focused.context = context;
+    mask.focused.feather = feather;
+    renderInpaintingControls();
+    legacyMethod5("updateRequestPreview");
+  }
+  function setTool(tool) {
+    editor.tool = tool;
+    updateEditorControls();
+  }
+  function changeZoom(delta) {
+    editor.zoom = Math.max(0.1, Math.min(4, editor.zoom + delta));
+    renderMaskEditor();
+  }
+  function bindEvents() {
+    const els43 = getEls();
+    els43.maskInput?.addEventListener("change", async () => {
+      const file = els43.maskInput.files?.[0];
+      if (!file) return;
+      try {
+        await setUploadedMask(file);
+      } catch (error) {
+        els43.maskInput.value = "";
+        legacyMethod5("setStatus", error.message || translate("inpainting.maskDecodeFailed"), "error");
+      }
+    });
+    els43.maskDrawButton?.addEventListener("click", openMaskEditor);
+    els43.maskReplaceButton?.addEventListener("click", () => els43.maskInput?.click());
+    els43.maskClearButton?.addEventListener("click", () => clearEditMask());
+    els43.maskFocusedEnabled?.addEventListener("change", updateFocusedFromControls);
+    els43.maskContext?.addEventListener("input", updateFocusedFromControls);
+    els43.maskFeather?.addEventListener("input", updateFocusedFromControls);
+    els43.maskFocusEditButton?.addEventListener("click", openMaskEditor);
+    els43.maskEditorClose?.addEventListener("click", closeMaskEditor);
+    els43.maskEditorCancel?.addEventListener("click", closeMaskEditor);
+    els43.maskEditorSave?.addEventListener("click", saveMaskEditor);
+    els43.maskEditorModal?.addEventListener("click", (event) => {
+      if (event.target === els43.maskEditorModal) closeMaskEditor();
+    });
+    document.querySelectorAll("[data-mask-tool]").forEach((button) => {
+      button.addEventListener("click", () => setTool(button.dataset.maskTool));
+    });
+    els43.maskEditorBrushSize?.addEventListener("input", () => {
+      editor.brushSize = Number(els43.maskEditorBrushSize.value || 48);
+      updateEditorControls();
+    });
+    els43.maskEditorUndo?.addEventListener("click", undoMask);
+    els43.maskEditorRedo?.addEventListener("click", redoMask);
+    els43.maskEditorClear?.addEventListener("click", clearSelection);
+    els43.maskEditorInvert?.addEventListener("click", invertSelection);
+    els43.maskEditorShow?.addEventListener("click", () => {
+      editor.showMask = !editor.showMask;
+      renderMaskEditor();
+    });
+    els43.maskEditorAutoFocus?.addEventListener("click", autoFocusSelection);
+    els43.maskEditorZoomIn?.addEventListener("click", () => changeZoom(0.15));
+    els43.maskEditorZoomOut?.addEventListener("click", () => changeZoom(-0.15));
+    const canvas = els43.maskEditorCanvas;
+    canvas?.addEventListener("pointerdown", handlePointerDown);
+    canvas?.addEventListener("pointermove", handlePointerMove);
+    canvas?.addEventListener("pointerup", handlePointerUp);
+    canvas?.addEventListener("pointercancel", handlePointerUp);
+  }
+  function initInpaintingMaskFeature() {
+    if (initialized2) return;
+    initialized2 = true;
+    if (getState().editMask === void 0) getState().editMask = null;
+    bindEvents();
+    Object.assign(getLegacyBridge().methods, {
+      clearEditMask,
+      currentEditMask: maskForSubmit,
+      currentFocusedInpainting: focusedPayload,
+      openMaskEditor,
+      renderInpaintingControls,
+      setUploadedMask
+    });
+    renderInpaintingControls();
+  }
+
+  // codex_image/webui/frontend/src/image-strip.ts
+  var imageStripFeatureInitialized = false;
+  function legacyMethod6(name, ...args) {
+    return getLegacyBridge().methods[name]?.(...args);
+  }
   function addImages(event) {
-    legacyMethod5("addMixedInputFiles", event.target.files || []);
+    legacyMethod6("addMixedInputFiles", event.target.files || []);
     event.target.value = "";
   }
   function clearImages() {
     const state32 = getState();
-    legacyMethod5("revokeUploadPreviewUrls", state32.images);
+    legacyMethod6("revokeUploadPreviewUrls", state32.images);
     state32.images = [];
-    legacyMethod5("clearReferenceFiles", { silent: true });
-    legacyMethod5("syncPromptGalleryMentionsFromInputs");
-    legacyMethod5("setMode", "generate");
+    legacyMethod6("clearEditMask", { silent: true });
+    legacyMethod6("clearReferenceFiles", { silent: true });
+    legacyMethod6("syncPromptGalleryMentionsFromInputs");
+    legacyMethod6("setMode", "generate");
     renderImageStrip();
-    legacyMethod5("updateRequestPreview");
+    legacyMethod6("updateRequestPreview");
   }
   function createThumbAddIcon() {
     const icon = document.createElement("span");
@@ -31145,7 +31968,8 @@ ${hint}` : hint;
     if (!thumbItems) return;
     if (!hasImages) {
       thumbItems.innerHTML = "";
-      legacyMethod5("updateCustomRatioReferenceButtonState");
+      legacyMethod6("updateCustomRatioReferenceButtonState");
+      legacyMethod6("renderInpaintingControls");
       return;
     }
     thumbItems.innerHTML = "";
@@ -31153,32 +31977,32 @@ ${hint}` : hint;
       const wrapper = document.createElement("div");
       wrapper.className = `thumb ${source.kind === "gallery" ? "gallery-thumb" : source.kind === "asset" ? "asset-thumb" : "upload-thumb"}${source.missing ? " missing-thumb" : ""}`;
       const image = document.createElement("img");
-      const previewUrl = legacyMethod5("sourcePreviewUrl", source);
+      const previewUrl = legacyMethod6("sourcePreviewUrl", source);
       if (previewUrl) {
         image.src = previewUrl;
       }
-      image.alt = legacyMethod5("sourceName", source);
-      wrapper.title = source.missing ? source.kind === "asset" ? translate("imageInput.deletedRecent") : translate("imageInput.deletedGallery") : legacyMethod5("sourceName", source);
-      if (legacyMethod5("isEditableImageSource", source)) {
+      image.alt = legacyMethod6("sourceName", source);
+      wrapper.title = source.missing ? source.kind === "asset" ? translate("imageInput.deletedRecent") : translate("imageInput.deletedGallery") : legacyMethod6("sourceName", source);
+      if (legacyMethod6("isEditableImageSource", source)) {
         wrapper.classList.add("editable-thumb");
         wrapper.tabIndex = 0;
         wrapper.setAttribute("role", "button");
-        wrapper.setAttribute("aria-label", formatTranslation("imageInput.editImage", { name: legacyMethod5("sourceName", source) }));
+        wrapper.setAttribute("aria-label", formatTranslation("imageInput.editImage", { name: legacyMethod6("sourceName", source) }));
         wrapper.addEventListener("click", (event) => {
           if (event.target.closest("button")) return;
-          legacyMethod5("openImageEditor", index);
+          legacyMethod6("openImageEditor", index);
         });
         wrapper.addEventListener("keydown", (event) => {
           if (event.target?.closest("button")) return;
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            legacyMethod5("openImageEditor", index);
+            legacyMethod6("openImageEditor", index);
           }
         });
       }
       const badge = document.createElement("span");
       badge.className = "thumb-badge";
-      badge.textContent = source.kind === "gallery" ? legacyMethod5("categoryLabel", source.category) : source.kind === "asset" ? translate("imageInput.recentBadge") : translate("imageInput.uploadBadge");
+      badge.textContent = source.kind === "gallery" ? legacyMethod6("categoryLabel", source.category) : source.kind === "asset" ? translate("imageInput.recentBadge") : translate("imageInput.uploadBadge");
       const remove = document.createElement("button");
       remove.type = "button";
       remove.className = "thumb-remove";
@@ -31188,17 +32012,17 @@ ${hint}` : hint;
       remove.addEventListener("click", (event) => {
         event.stopPropagation();
         const removedSource = state32.images[index];
-        legacyMethod5("revokeUploadPreviewUrl", removedSource, { ignoredCurrentSources: /* @__PURE__ */ new Set([removedSource]) });
+        legacyMethod6("revokeUploadPreviewUrl", removedSource, { ignoredCurrentSources: /* @__PURE__ */ new Set([removedSource]) });
         state32.images.splice(index, 1);
-        legacyMethod5("syncPromptGalleryMentionsFromInputs");
+        legacyMethod6("syncPromptGalleryMentionsFromInputs");
         if (!state32.images.length) {
-          legacyMethod5("setMode", "generate");
+          legacyMethod6("setMode", "generate");
         }
         renderImageStrip();
-        legacyMethod5("updateRequestPreview");
+        legacyMethod6("updateRequestPreview");
       });
       wrapper.append(image, badge, remove);
-      if (legacyMethod5("canAddSourceToGallery", source)) {
+      if (legacyMethod6("canAddSourceToGallery", source)) {
         const addToGallery = document.createElement("button");
         addToGallery.type = "button";
         addToGallery.className = "add-upload-to-gallery";
@@ -31207,7 +32031,7 @@ ${hint}` : hint;
         addToGallery.append(createThumbAddIcon(), document.createTextNode(translate("imageInput.addToGalleryShort")));
         addToGallery.addEventListener("click", (event) => {
           event.stopPropagation();
-          legacyMethod5("openAddToGallery", index);
+          legacyMethod6("openAddToGallery", index);
         });
         wrapper.append(addToGallery);
       }
@@ -31219,7 +32043,8 @@ ${hint}` : hint;
       }
       thumbItems.append(wrapper);
     });
-    legacyMethod5("updateCustomRatioReferenceButtonState");
+    legacyMethod6("updateCustomRatioReferenceButtonState");
+    legacyMethod6("renderInpaintingControls");
   }
   function bindImageStripEvents() {
     const els43 = getEls();
@@ -31346,7 +32171,7 @@ ${hint}` : hint;
   var galleryCategoryDropTargetId = null;
   var galleryCategoryDropPlacement = "after";
   var galleryCategoryOriginalOrder = [];
-  function legacyMethod6(name, ...args) {
+  function legacyMethod7(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -31354,34 +32179,34 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml3(value) {
-    return legacyMethod6("escapeHtml", value);
+    return legacyMethod7("escapeHtml", value);
   }
   function setStatus3(message, type) {
-    legacyMethod6("setStatus", message, type);
+    legacyMethod7("setStatus", message, type);
   }
   function openConfirmPopover(anchor, options) {
-    legacyMethod6("openConfirmPopover", anchor, options);
+    legacyMethod7("openConfirmPopover", anchor, options);
   }
   function closeConfirmPopover() {
-    legacyMethod6("closeConfirmPopover");
+    legacyMethod7("closeConfirmPopover");
   }
   function closeGalleryEditPopover() {
-    legacyMethod6("closeGalleryEditPopover");
+    legacyMethod7("closeGalleryEditPopover");
   }
   function renderQuickGalleryDock() {
-    legacyMethod6("renderQuickGalleryDock");
+    legacyMethod7("renderQuickGalleryDock");
   }
   function renderGalleryGrid(options) {
-    legacyMethod6("renderGalleryGrid", options);
+    legacyMethod7("renderGalleryGrid", options);
   }
   function renderImageStrip2() {
-    legacyMethod6("renderImageStrip");
+    legacyMethod7("renderImageStrip");
   }
   function updateRequestPreview() {
-    legacyMethod6("updateRequestPreview");
+    legacyMethod7("updateRequestPreview");
   }
   function refreshGallery() {
-    return legacyMethod6("refreshGallery");
+    return legacyMethod7("refreshGallery");
   }
   function cssEscape2(value) {
     const text = String(value || "");
@@ -31883,7 +32708,7 @@ ${hint}` : hint;
   var RECENT_ASSET_RENDER_BATCH_SIZE = 12;
   var RECENT_ASSET_LOAD_AHEAD_PX = 96;
   var recentAssetRenderLimit = RECENT_ASSET_RENDER_BATCH_SIZE;
-  function legacyMethod7(name, ...args) {
+  function legacyMethod8(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -31891,25 +32716,25 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml4(value) {
-    return legacyMethod7("escapeHtml", value);
+    return legacyMethod8("escapeHtml", value);
   }
   function setStatus4(message, type) {
-    legacyMethod7("setStatus", message, type);
+    legacyMethod8("setStatus", message, type);
   }
   function openConfirmPopover2(anchor, options) {
-    legacyMethod7("openConfirmPopover", anchor, options);
+    legacyMethod8("openConfirmPopover", anchor, options);
   }
   function setMode(mode) {
-    legacyMethod7("setMode", mode);
+    legacyMethod8("setMode", mode);
   }
   function addReferenceAssetInput2(item) {
-    legacyMethod7("addReferenceAssetInput", item);
+    legacyMethod8("addReferenceAssetInput", item);
   }
   function renderImageStrip3() {
-    legacyMethod7("renderImageStrip");
+    legacyMethod8("renderImageStrip");
   }
   function updateRequestPreview2() {
-    legacyMethod7("updateRequestPreview");
+    legacyMethod8("updateRequestPreview");
   }
   function recentAssetName(item) {
     return item?.filename || translate("recentAssets.defaultName");
@@ -32108,7 +32933,7 @@ ${hint}` : hint;
   var quickGalleryFeatureInitialized = false;
   var quickGalleryFocusFrameId = null;
   var quickGalleryWheelLockTimerId = null;
-  function legacyMethod8(name, ...args) {
+  function legacyMethod9(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -32116,22 +32941,22 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml5(value) {
-    return legacyMethod8("escapeHtml", value);
+    return legacyMethod9("escapeHtml", value);
   }
   function addGalleryInput2(item, options) {
-    legacyMethod8("addGalleryInput", item, options);
+    legacyMethod9("addGalleryInput", item, options);
   }
   function filterGalleryItems(category) {
-    return legacyMethod8("filterGalleryItems", category);
+    return legacyMethod9("filterGalleryItems", category);
   }
   function findGalleryItem(itemId) {
-    return legacyMethod8("findGalleryItem", itemId);
+    return legacyMethod9("findGalleryItem", itemId);
   }
   function categoryLabel2(category) {
-    return legacyMethod8("categoryLabel", category);
+    return legacyMethod9("categoryLabel", category);
   }
   function renderGalleryCategoryControls2() {
-    legacyMethod8("renderGalleryCategoryControls");
+    legacyMethod9("renderGalleryCategoryControls");
   }
   function renderQuickGalleryDock2() {
     renderGalleryCategoryControls2();
@@ -32345,7 +33170,7 @@ ${hint}` : hint;
   var galleryGridDropTargetId = null;
   var galleryGridDropPlacement = "after";
   var galleryGridOriginalOrder = [];
-  function legacyMethod9(name, ...args) {
+  function legacyMethod10(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -32353,46 +33178,46 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml6(value) {
-    return legacyMethod9("escapeHtml", value);
+    return legacyMethod10("escapeHtml", value);
   }
   function ensureActiveGalleryCategory2() {
-    legacyMethod9("ensureActiveGalleryCategory");
+    legacyMethod10("ensureActiveGalleryCategory");
   }
   function categoryLabel3(category) {
-    return legacyMethod9("categoryLabel", category);
+    return legacyMethod10("categoryLabel", category);
   }
   function findGalleryItem2(itemId) {
-    return legacyMethod9("findGalleryItem", itemId);
+    return legacyMethod10("findGalleryItem", itemId);
   }
   function filterGalleryItems2(category) {
-    return legacyMethod9("filterGalleryItems", category);
+    return legacyMethod10("filterGalleryItems", category);
   }
   function addGalleryInput3(item, options) {
-    legacyMethod9("addGalleryInput", item, options);
+    legacyMethod10("addGalleryInput", item, options);
   }
   function closeGallery() {
-    legacyMethod9("closeGallery");
+    legacyMethod10("closeGallery");
   }
   function renameGalleryItem(button, itemId) {
-    legacyMethod9("renameGalleryItem", button, itemId);
+    legacyMethod10("renameGalleryItem", button, itemId);
   }
   function replaceGalleryItemImage(itemId) {
-    return legacyMethod9("replaceGalleryItemImage", itemId);
+    return legacyMethod10("replaceGalleryItemImage", itemId);
   }
   function moveGalleryItem(button, itemId) {
-    legacyMethod9("moveGalleryItem", button, itemId);
+    legacyMethod10("moveGalleryItem", button, itemId);
   }
   function editGalleryPromptNote(button, itemId) {
-    legacyMethod9("editGalleryPromptNote", button, itemId);
+    legacyMethod10("editGalleryPromptNote", button, itemId);
   }
   function deleteGalleryItem(button, itemId) {
-    legacyMethod9("deleteGalleryItem", button, itemId);
+    legacyMethod10("deleteGalleryItem", button, itemId);
   }
   function applyGalleryItemOrder(category, itemIds) {
-    legacyMethod9("applyGalleryItemOrder", category, itemIds);
+    legacyMethod10("applyGalleryItemOrder", category, itemIds);
   }
   function persistGalleryItemOrder(category, itemIds) {
-    return legacyMethod9("persistGalleryItemOrder", category, itemIds);
+    return legacyMethod10("persistGalleryItemOrder", category, itemIds);
   }
   function cssEscape3(value) {
     const text = String(value || "");
@@ -32747,7 +33572,7 @@ ${hint}` : hint;
     anchor: null,
     onSave: null
   };
-  function legacyMethod10(name, ...args) {
+  function legacyMethod11(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -32755,64 +33580,64 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml7(value) {
-    return legacyMethod10("escapeHtml", value);
+    return legacyMethod11("escapeHtml", value);
   }
   function setStatus5(message, type) {
-    legacyMethod10("setStatus", message, type);
+    legacyMethod11("setStatus", message, type);
   }
   function openConfirmPopover3(anchor, options) {
-    legacyMethod10("openConfirmPopover", anchor, options);
+    legacyMethod11("openConfirmPopover", anchor, options);
   }
   function closeConfirmPopover2() {
-    legacyMethod10("closeConfirmPopover");
+    legacyMethod11("closeConfirmPopover");
   }
   function closePromptPopover() {
-    legacyMethod10("closePromptPopover");
+    legacyMethod11("closePromptPopover");
   }
   function setMode2(mode) {
-    legacyMethod10("setMode", mode);
+    legacyMethod11("setMode", mode);
   }
   function sourcePreviewUrl2(source) {
-    return legacyMethod10("sourcePreviewUrl", source);
+    return legacyMethod11("sourcePreviewUrl", source);
   }
-  function sourceName2(source) {
-    return legacyMethod10("sourceName", source);
+  function sourceName3(source) {
+    return legacyMethod11("sourceName", source);
   }
   function gallerySource2(item) {
-    return legacyMethod10("gallerySource", item);
+    return legacyMethod11("gallerySource", item);
   }
   function revokeUploadPreviewUrl2(source, options) {
-    legacyMethod10("revokeUploadPreviewUrl", source, options);
+    legacyMethod11("revokeUploadPreviewUrl", source, options);
   }
   function renderImageStrip4() {
-    legacyMethod10("renderImageStrip");
+    legacyMethod11("renderImageStrip");
   }
   function updateRequestPreview3() {
-    legacyMethod10("updateRequestPreview");
+    legacyMethod11("updateRequestPreview");
   }
   function refreshGallery2() {
-    return legacyMethod10("refreshGallery");
+    return legacyMethod11("refreshGallery");
   }
   function renderQuickGalleryDock3() {
-    legacyMethod10("renderQuickGalleryDock");
+    legacyMethod11("renderQuickGalleryDock");
   }
   function renderGalleryGrid3(options) {
-    legacyMethod10("renderGalleryGrid", options);
+    legacyMethod11("renderGalleryGrid", options);
   }
   function renderGalleryCategoryControls3() {
-    legacyMethod10("renderGalleryCategoryControls");
+    legacyMethod11("renderGalleryCategoryControls");
   }
   function findGalleryItem3(itemId) {
-    return legacyMethod10("findGalleryItem", itemId);
+    return legacyMethod11("findGalleryItem", itemId);
   }
   function findGalleryCategory2(categoryId) {
-    return legacyMethod10("findGalleryCategory", categoryId);
+    return legacyMethod11("findGalleryCategory", categoryId);
   }
   function normalizeGalleryCategories2(categories) {
-    return legacyMethod10("normalizeGalleryCategories", categories);
+    return legacyMethod11("normalizeGalleryCategories", categories);
   }
   function categoryLabel4(category) {
-    return legacyMethod10("categoryLabel", category);
+    return legacyMethod11("categoryLabel", category);
   }
   function clampPopoverPosition(value, min, max) {
     if (max < min) return min;
@@ -32824,7 +33649,7 @@ ${hint}` : hint;
     const response = await fetch(imageUrl);
     if (!response.ok) throw new Error(translate("gallery.imageLoadFailed"));
     const blob = await response.blob();
-    return new File([blob], sourceName2(source), {
+    return new File([blob], sourceName3(source), {
       type: blob.type || source.mime_type || "image/png",
       lastModified: Date.now()
     });
@@ -32837,7 +33662,7 @@ ${hint}` : hint;
       els6.addToGalleryPreview.src = sourcePreviewUrl2(source);
     }
     if (els6.galleryNameInput) {
-      els6.galleryNameInput.value = sourceName2(source).replace(/\.[^.]+$/, "");
+      els6.galleryNameInput.value = sourceName3(source).replace(/\.[^.]+$/, "");
     }
     if (els6.galleryCategoryInput) {
       renderGalleryCategoryControls3();
@@ -33179,7 +34004,7 @@ ${hint}` : hint;
   var galleryFeatureInitialized = false;
   var galleryFeatureEventsBound = false;
   var lastGalleryTrigger = null;
-  function legacyMethod11(name, ...args) {
+  function legacyMethod12(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -33187,31 +34012,31 @@ ${hint}` : hint;
     return method(...args);
   }
   function setStatus6(message, type) {
-    legacyMethod11("setStatus", message, type);
+    legacyMethod12("setStatus", message, type);
   }
   function closeConfirmPopover3() {
-    legacyMethod11("closeConfirmPopover");
+    legacyMethod12("closeConfirmPopover");
   }
-  var defaultGalleryCategories3 = () => legacyMethod11("defaultGalleryCategories");
-  var normalizeGalleryCategories3 = (categories) => legacyMethod11("normalizeGalleryCategories", categories);
+  var defaultGalleryCategories3 = () => legacyMethod12("defaultGalleryCategories");
+  var normalizeGalleryCategories3 = (categories) => legacyMethod12("normalizeGalleryCategories", categories);
   var ensureActiveGalleryCategory3 = () => {
-    legacyMethod11("ensureActiveGalleryCategory");
+    legacyMethod12("ensureActiveGalleryCategory");
   };
   var renderGalleryCategoryControls4 = () => {
-    legacyMethod11("renderGalleryCategoryControls");
+    legacyMethod12("renderGalleryCategoryControls");
   };
-  var findGalleryCategory3 = (categoryId) => legacyMethod11("findGalleryCategory", categoryId);
+  var findGalleryCategory3 = (categoryId) => legacyMethod12("findGalleryCategory", categoryId);
   var renderQuickGalleryDock4 = () => {
-    legacyMethod11("renderQuickGalleryDock");
+    legacyMethod12("renderQuickGalleryDock");
   };
   var renderGalleryGrid4 = (options) => {
-    legacyMethod11("renderGalleryGrid", options);
+    legacyMethod12("renderGalleryGrid", options);
   };
   var resetGalleryGridTransition2 = (invalidate) => {
-    legacyMethod11("resetGalleryGridTransition", invalidate);
+    legacyMethod12("resetGalleryGridTransition", invalidate);
   };
   var closeGalleryEditPopover3 = () => {
-    legacyMethod11("closeGalleryEditPopover");
+    legacyMethod12("closeGalleryEditPopover");
   };
   function sortGalleryItems(items) {
     const categories = normalizeGalleryCategories3(state7.galleryCategories);
@@ -33262,7 +34087,7 @@ ${hint}` : hint;
     }
   }
   async function openGallery(category) {
-    legacyMethod11("closePromptTemplateDrawer", { restoreFocus: false });
+    legacyMethod12("closePromptTemplateDrawer", { restoreFocus: false });
     lastGalleryTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : els7.galleryManageButton;
     state7.activeGalleryCategory = findGalleryCategory3(category) ? category : state7.galleryCategories[0]?.id || "portrait";
     await refreshGallery3();
@@ -33547,7 +34372,7 @@ ${hint}` : hint;
   // codex_image/webui/frontend/src/api-mode-settings.ts
   var bridge7 = getLegacyBridge();
   var els8 = bridge7.els;
-  function legacyMethod12(name, ...args) {
+  function legacyMethod13(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -33555,13 +34380,13 @@ ${hint}` : hint;
     return method(...args);
   }
   function currentAuthSource() {
-    return legacyMethod12("currentAuthSource");
+    return legacyMethod13("currentAuthSource");
   }
   function currentApiMode() {
-    return legacyMethod12("currentApiMode");
+    return legacyMethod13("currentApiMode");
   }
   function currentCodexMode() {
-    return legacyMethod12("currentCodexMode");
+    return legacyMethod13("currentCodexMode");
   }
   function setModeSpecificElementVisibility(element2, visible) {
     if (!element2) return;
@@ -33621,7 +34446,7 @@ ${hint}` : hint;
       legacyDirectApi: isDirectApi
     }));
     updateWebSearchAvailability(authSource);
-    legacyMethod12("syncReferenceFileAvailability");
+    legacyMethod13("syncReferenceFileAvailability");
     const refreshOutputSettingsLock2 = getLegacyBridge().methods.refreshOutputSettingsLock;
     if (typeof refreshOutputSettingsLock2 === "function") refreshOutputSettingsLock2();
   }
@@ -33630,7 +34455,7 @@ ${hint}` : hint;
   var bridge8 = getLegacyBridge();
   var state8 = bridge8.state;
   var els9 = bridge8.els;
-  function legacyMethod13(name, ...args) {
+  function legacyMethod14(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -33638,25 +34463,25 @@ ${hint}` : hint;
     return method(...args);
   }
   function setStatus7(message, type) {
-    legacyMethod13("setStatus", message, type);
+    legacyMethod14("setStatus", message, type);
   }
   function updateRequestPreview4() {
-    legacyMethod13("updateRequestPreview");
+    legacyMethod14("updateRequestPreview");
   }
   function currentApiMode2() {
-    return legacyMethod13("currentApiMode");
+    return legacyMethod14("currentApiMode");
   }
   function currentCodexMode2() {
-    return legacyMethod13("currentCodexMode");
+    return legacyMethod14("currentCodexMode");
   }
   function currentApiProviderLabel() {
-    return legacyMethod13("currentApiProviderLabel");
+    return legacyMethod14("currentApiProviderLabel");
   }
   function apiModeLabel(mode) {
-    return legacyMethod13("apiModeLabel", mode);
+    return legacyMethod14("apiModeLabel", mode);
   }
   function codexModeLabel(mode) {
-    return legacyMethod13("codexModeLabel", mode);
+    return legacyMethod14("codexModeLabel", mode);
   }
   async function refreshHealth() {
     try {
@@ -35793,7 +36618,7 @@ ${hint}` : hint;
   var state9 = bridge9.state;
   var els10 = bridge9.els;
   var apiSettingsAutosaveTimerId = null;
-  function legacyMethod14(name, ...args) {
+  function legacyMethod15(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -35801,16 +36626,16 @@ ${hint}` : hint;
     return method(...args);
   }
   function setStatus8(message, type) {
-    legacyMethod14("setStatus", message, type);
+    legacyMethod15("setStatus", message, type);
   }
   function updateRequestPreview5() {
-    legacyMethod14("updateRequestPreview");
+    legacyMethod15("updateRequestPreview");
   }
   function closePromptPopover2() {
-    legacyMethod14("closePromptPopover");
+    legacyMethod15("closePromptPopover");
   }
   function openConfirmPopover4(...args) {
-    legacyMethod14("openConfirmPopover", ...args);
+    legacyMethod15("openConfirmPopover", ...args);
   }
   function normalizeApiProvider(provider = {}, index = 0) {
     const fallbackId = index === 0 ? "default" : `provider-${index + 1}`;
@@ -35919,8 +36744,8 @@ ${hint}` : hint;
     return `provider-${Date.now()}`;
   }
   function copiedProviderName(provider) {
-    const sourceName3 = String(provider?.name || provider?.id || translate("apiSettings.newProvider")).trim();
-    const rootName = formatTranslation("apiSettings.copyProviderName", { name: sourceName3 });
+    const sourceName4 = String(provider?.name || provider?.id || translate("apiSettings.newProvider")).trim();
+    const rootName = formatTranslation("apiSettings.copyProviderName", { name: sourceName4 });
     const existing = new Set((state9.apiSettings.providers || []).map((item) => String(item.name || "").trim()));
     if (!existing.has(rootName)) return rootName;
     for (let index = 2; index < 1e3; index += 1) {
@@ -36407,7 +37232,7 @@ ${hint}` : hint;
       populateApiSettingsForm();
       scrollActiveApiProviderCardIntoView(provider.id, "nearest");
       persistApiSettings();
-      legacyMethod14("selectGenerationProvider", provider.id);
+      legacyMethod15("selectGenerationProvider", provider.id);
       renderAuthSourceAfterProviderChange();
       queueApiSettingsAutosave();
     };
@@ -36623,8 +37448,8 @@ ${hint}` : hint;
     updateApiRequestEndpointPreview();
   }
   function renderAuthSourceAfterProviderChange() {
-    legacyMethod14("renderAuthSource", state9.authStatus);
-    legacyMethod14("renderProviderSelection");
+    legacyMethod15("renderAuthSource", state9.authStatus);
+    legacyMethod15("renderProviderSelection");
     updateModeSpecificSettings();
     updateRequestPreview5();
   }
@@ -36674,9 +37499,9 @@ ${hint}` : hint;
     const normalized = normalizeCodexMode(mode);
     void anchor;
     state9.apiSettings = normalizeApiSettings({ ...state9.apiSettings, codex_mode: normalized });
-    legacyMethod14("syncCodexCatalogMode", normalized);
-    legacyMethod14("selectGenerationProvider", providerBindingSelectionKey("codex", `codex-gpt-image-2-${normalized}`));
-    legacyMethod14("renderProviderSelection");
+    legacyMethod15("syncCodexCatalogMode", normalized);
+    legacyMethod15("selectGenerationProvider", providerBindingSelectionKey("codex", `codex-gpt-image-2-${normalized}`));
+    legacyMethod15("renderProviderSelection");
     updateModeSpecificSettings();
     updateRequestPreview5();
     persistApiSettings();
@@ -36940,7 +37765,7 @@ ${hint}` : hint;
   var bridge10 = getLegacyBridge();
   var els11 = bridge10.els;
   var storageSettingsFeatureInitialized = false;
-  function legacyMethod15(name, ...args) {
+  function legacyMethod16(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -36948,10 +37773,10 @@ ${hint}` : hint;
     return method(...args);
   }
   function setStatus9(message, type) {
-    legacyMethod15("setStatus", message, type);
+    legacyMethod16("setStatus", message, type);
   }
   function closePromptPopover3() {
-    legacyMethod15("closePromptPopover");
+    legacyMethod16("closePromptPopover");
   }
   async function refreshSettings() {
     if (!els11.settingsInputRoot) return;
@@ -37216,7 +38041,7 @@ ${hint}` : hint;
   var state10 = bridge11.state;
   var els12 = bridge11.els;
   var colorPaletteInitialized = false;
-  function legacyMethod16(name, ...args) {
+  function legacyMethod17(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -37224,13 +38049,13 @@ ${hint}` : hint;
     return method(...args);
   }
   function setStatus10(message, type) {
-    legacyMethod16("setStatus", message, type);
+    legacyMethod17("setStatus", message, type);
   }
   function renderColorSuggest(...args) {
-    return legacyMethod16("renderColorSuggest", ...args);
+    return legacyMethod17("renderColorSuggest", ...args);
   }
   function updateColorSuggest(...args) {
-    return legacyMethod16("updateColorSuggest", ...args);
+    return legacyMethod17("updateColorSuggest", ...args);
   }
   function defaultColorPalette() {
     return {
@@ -37460,7 +38285,7 @@ ${hint}` : hint;
   var bridge12 = getLegacyBridge();
   var state11 = bridge12.state;
   var els13 = bridge12.els;
-  function legacyMethod17(name, ...args) {
+  function legacyMethod18(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -37468,61 +38293,61 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml8(value) {
-    return legacyMethod17("escapeHtml", value);
+    return legacyMethod18("escapeHtml", value);
   }
   function setStatus11(message, type) {
-    legacyMethod17("setStatus", message, type);
+    legacyMethod18("setStatus", message, type);
   }
   function normalizeHexColor2(value) {
-    return legacyMethod17("normalizeHexColor", value);
+    return legacyMethod18("normalizeHexColor", value);
   }
   function favoriteColorsForDisplay2() {
-    return legacyMethod17("favoriteColorsForDisplay");
+    return legacyMethod18("favoriteColorsForDisplay");
   }
   function recentColorsForDisplay2() {
-    return legacyMethod17("recentColorsForDisplay");
+    return legacyMethod18("recentColorsForDisplay");
   }
   function saveFavoriteColor2() {
-    return legacyMethod17("saveFavoriteColor");
+    return legacyMethod18("saveFavoriteColor");
   }
   function toggleColorPaletteManageMode2() {
-    legacyMethod17("toggleColorPaletteManageMode");
+    legacyMethod18("toggleColorPaletteManageMode");
   }
   function importColorPalette2(file) {
-    return legacyMethod17("importColorPalette", file);
+    return legacyMethod18("importColorPalette", file);
   }
   function removeFavoriteColor2(colorCode) {
-    return legacyMethod17("removeFavoriteColor", colorCode);
+    return legacyMethod18("removeFavoriteColor", colorCode);
   }
   function rememberRecentColor2(colorCode) {
-    legacyMethod17("rememberRecentColor", colorCode);
+    legacyMethod18("rememberRecentColor", colorCode);
   }
   function getPromptText2() {
-    return legacyMethod17("getPromptText");
+    return legacyMethod18("getPromptText");
   }
   function appendPromptText(text) {
-    legacyMethod17("appendPromptText", text);
+    legacyMethod18("appendPromptText", text);
   }
   function syncPromptFromEditor() {
-    legacyMethod17("syncPromptFromEditor");
+    legacyMethod18("syncPromptFromEditor");
   }
   function updatePromptCount2() {
-    legacyMethod17("updatePromptCount");
+    legacyMethod18("updatePromptCount");
   }
   function updateRequestPreview6() {
-    legacyMethod17("updateRequestPreview");
+    legacyMethod18("updateRequestPreview");
   }
   function mentionRangeRect(range) {
-    return legacyMethod17("mentionRangeRect", range);
+    return legacyMethod18("mentionRangeRect", range);
   }
   function syncPromptAfterChipMutation() {
-    legacyMethod17("syncPromptAfterChipMutation");
+    legacyMethod18("syncPromptAfterChipMutation");
   }
   function setCaretAfterNode(node) {
-    legacyMethod17("setCaretAfterNode", node);
+    legacyMethod18("setCaretAfterNode", node);
   }
   function removePromptGalleryChip(chip) {
-    legacyMethod17("removePromptGalleryChip", chip);
+    legacyMethod18("removePromptGalleryChip", chip);
   }
   function updateColorSuggest2() {
     if (!els13.colorSuggest || !els13.promptEditor) return;
@@ -37950,7 +38775,7 @@ ${hint}` : hint;
     chip: null,
     snippetId: null
   };
-  function legacyMethod18(name, ...args) {
+  function legacyMethod19(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -37958,34 +38783,34 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml9(value) {
-    return legacyMethod18("escapeHtml", value);
+    return legacyMethod19("escapeHtml", value);
   }
   function setStatus12(message, type) {
-    legacyMethod18("setStatus", message, type);
+    legacyMethod19("setStatus", message, type);
   }
   function getPromptText3() {
-    return legacyMethod18("getPromptText");
+    return legacyMethod19("getPromptText");
   }
   function promptTextFromRange(range) {
-    return legacyMethod18("promptTextFromRange", range);
+    return legacyMethod19("promptTextFromRange", range);
   }
   function rangeIntersectsNode(range, node) {
-    return legacyMethod18("rangeIntersectsNode", range, node);
+    return legacyMethod19("rangeIntersectsNode", range, node);
   }
   function appendPromptText2(text) {
-    legacyMethod18("appendPromptText", text);
+    legacyMethod19("appendPromptText", text);
   }
   function mentionRangeRect2(range) {
-    return legacyMethod18("mentionRangeRect", range);
+    return legacyMethod19("mentionRangeRect", range);
   }
   function removePromptGalleryChip2(chip) {
-    legacyMethod18("removePromptGalleryChip", chip);
+    legacyMethod19("removePromptGalleryChip", chip);
   }
   function syncPromptAfterChipMutation2() {
-    legacyMethod18("syncPromptAfterChipMutation");
+    legacyMethod19("syncPromptAfterChipMutation");
   }
   function setCaretAfterNode2(node) {
-    legacyMethod18("setCaretAfterNode", node);
+    legacyMethod19("setCaretAfterNode", node);
   }
   function normalizePromptSnippet(value) {
     if (!value || typeof value !== "object") return null;
@@ -38660,7 +39485,7 @@ ${hint}` : hint;
   var els15 = bridge14.els;
   var promptTemplateSearchAcceptManualInput = false;
   var lastPromptTemplateTrigger = null;
-  function legacyMethod19(name, ...args) {
+  function legacyMethod20(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -38668,28 +39493,28 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml10(value) {
-    return legacyMethod19("escapeHtml", value);
+    return legacyMethod20("escapeHtml", value);
   }
   function setStatus13(message, type) {
-    legacyMethod19("setStatus", message, type);
+    legacyMethod20("setStatus", message, type);
   }
   function getPromptText4() {
-    return legacyMethod19("getPromptText");
+    return legacyMethod20("getPromptText");
   }
   function appendPromptText3(text) {
-    legacyMethod19("appendPromptText", text);
+    legacyMethod20("appendPromptText", text);
   }
   function setPromptText(text) {
-    legacyMethod19("setPromptText", text);
+    legacyMethod20("setPromptText", text);
   }
   function syncPromptFromEditor2() {
-    legacyMethod19("syncPromptFromEditor");
+    legacyMethod20("syncPromptFromEditor");
   }
   function updatePromptCount3() {
-    legacyMethod19("updatePromptCount");
+    legacyMethod20("updatePromptCount");
   }
   function updateRequestPreview7() {
-    legacyMethod19("updateRequestPreview");
+    legacyMethod20("updateRequestPreview");
   }
   function normalizePromptTemplate(value) {
     if (!value || typeof value !== "object") return null;
@@ -38826,7 +39651,7 @@ ${hint}` : hint;
     });
   }
   function openPromptTemplateDrawer() {
-    legacyMethod19("closeGallery", { restoreFocus: false });
+    legacyMethod20("closeGallery", { restoreFocus: false });
     lastPromptTemplateTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : els15.promptTemplateButton;
     els15.promptTemplateDrawer?.classList.add("open");
     els15.promptTemplateDrawer?.setAttribute("aria-hidden", "false");
@@ -39545,7 +40370,7 @@ ${hint}` : hint;
   // codex_image/webui/frontend/src/prompt-serialization.ts
   var bridge15 = getLegacyBridge();
   var els16 = bridge15.els;
-  function legacyMethod20(name, ...args) {
+  function legacyMethod21(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -39553,43 +40378,43 @@ ${hint}` : hint;
     return method(...args);
   }
   function createGalleryChip(item) {
-    return legacyMethod20("createGalleryChip", item);
+    return legacyMethod21("createGalleryChip", item);
   }
   function createColorChip2(colorCode) {
-    return legacyMethod20("createColorChip", colorCode);
+    return legacyMethod21("createColorChip", colorCode);
   }
   function normalizeHexColor3(value) {
-    return legacyMethod20("normalizeHexColor", value);
+    return legacyMethod21("normalizeHexColor", value);
   }
   function findPromptSnippetRefAt2(promptText, cursor) {
-    return legacyMethod20("findPromptSnippetRefAt", promptText, cursor);
+    return legacyMethod21("findPromptSnippetRefAt", promptText, cursor);
   }
   function createPromptSnippetChip2(snippet) {
-    return legacyMethod20("createPromptSnippetChip", snippet);
+    return legacyMethod21("createPromptSnippetChip", snippet);
   }
   function updatePromptChipSelectionState() {
-    legacyMethod20("updatePromptChipSelectionState");
+    legacyMethod21("updatePromptChipSelectionState");
   }
   function galleryRefsByMentionLength(refs) {
-    return legacyMethod20("galleryRefsByMentionLength", refs);
+    return legacyMethod21("galleryRefsByMentionLength", refs);
   }
   function findGalleryRefMentionAt(promptText, cursor, refs) {
-    return legacyMethod20("findGalleryRefMentionAt", promptText, cursor, refs);
+    return legacyMethod21("findGalleryRefMentionAt", promptText, cursor, refs);
   }
   function hideMentionSuggest() {
-    legacyMethod20("hideMentionSuggest");
+    legacyMethod21("hideMentionSuggest");
   }
   function hideColorSuggest2() {
-    legacyMethod20("hideColorSuggest");
+    legacyMethod21("hideColorSuggest");
   }
   function hidePromptSnippetSuggest2() {
-    legacyMethod20("hidePromptSnippetSuggest");
+    legacyMethod21("hidePromptSnippetSuggest");
   }
   function hidePromptSnippetSelectionButton2() {
-    legacyMethod20("hidePromptSnippetSelectionButton");
+    legacyMethod21("hidePromptSnippetSelectionButton");
   }
   function closePromptSnippetPopover2() {
-    legacyMethod20("closePromptSnippetPopover");
+    legacyMethod21("closePromptSnippetPopover");
   }
   function getPromptText5() {
     if (!els16.promptEditor) return els16.prompt.value;
@@ -39774,7 +40599,7 @@ ${hint}` : hint;
   var bridge16 = getLegacyBridge();
   var state14 = bridge16.state;
   var els17 = bridge16.els;
-  function legacyMethod21(name, ...args) {
+  function legacyMethod22(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -39782,58 +40607,58 @@ ${hint}` : hint;
     return method(...args);
   }
   function escapeHtml11(value) {
-    return legacyMethod21("escapeHtml", value);
+    return legacyMethod22("escapeHtml", value);
   }
   function categoryLabel5(category) {
-    return legacyMethod21("categoryLabel", category);
+    return legacyMethod22("categoryLabel", category);
   }
   function categoryPromptRole2(category) {
-    return legacyMethod21("categoryPromptRole", category);
+    return legacyMethod22("categoryPromptRole", category);
   }
   function findGalleryItem5(itemId) {
-    return legacyMethod21("findGalleryItem", itemId);
+    return legacyMethod22("findGalleryItem", itemId);
   }
   function addGalleryInput4(item, options) {
-    legacyMethod21("addGalleryInput", item, options);
+    legacyMethod22("addGalleryInput", item, options);
   }
   function gallerySource3(item) {
-    return legacyMethod21("gallerySource", item);
+    return legacyMethod22("gallerySource", item);
   }
   function galleryInputs2() {
-    return legacyMethod21("galleryInputs");
+    return legacyMethod22("galleryInputs");
   }
   function renderImageStrip5() {
-    legacyMethod21("renderImageStrip");
+    legacyMethod22("renderImageStrip");
   }
   function setMode3(mode) {
-    legacyMethod21("setMode", mode);
+    legacyMethod22("setMode", mode);
   }
   function updatePromptCount4() {
-    legacyMethod21("updatePromptCount");
+    legacyMethod22("updatePromptCount");
   }
   function updateRequestPreview8() {
-    legacyMethod21("updateRequestPreview");
+    legacyMethod22("updateRequestPreview");
   }
   function getPromptText6() {
-    return legacyMethod21("getPromptText");
+    return legacyMethod22("getPromptText");
   }
   function appendPromptText5(text) {
-    legacyMethod21("appendPromptText", text);
+    legacyMethod22("appendPromptText", text);
   }
   function syncPromptFromEditor4() {
-    legacyMethod21("syncPromptFromEditor");
+    legacyMethod22("syncPromptFromEditor");
   }
   function clearPromptEditorIfEmpty2() {
-    legacyMethod21("clearPromptEditorIfEmpty");
+    legacyMethod22("clearPromptEditorIfEmpty");
   }
   function hideColorSuggest3() {
-    legacyMethod21("hideColorSuggest");
+    legacyMethod22("hideColorSuggest");
   }
   function setCaretAfterNode3(node) {
-    legacyMethod21("setCaretAfterNode", node);
+    legacyMethod22("setCaretAfterNode", node);
   }
   function mentionRangeRect3(range) {
-    return legacyMethod21("mentionRangeRect", range);
+    return legacyMethod22("mentionRangeRect", range);
   }
   function galleryRefsByMentionLength2(refs) {
     return (Array.isArray(refs) ? refs : []).filter((ref) => ref?.name && !ref.missing && ref.image_url).slice().sort((left, right) => String(right.name || "").length - String(left.name || "").length);
@@ -40086,7 +40911,7 @@ ${hint}` : hint;
     els17.mentionSuggest.style.removeProperty("--prompt-popover-max-height");
   }
   function setCaretToEnd(element2) {
-    legacyMethod21("setCaretToEnd", element2);
+    legacyMethod22("setCaretToEnd", element2);
   }
   function initPromptGalleryChipsFeature() {
     Object.assign(getLegacyBridge().methods, {
@@ -40110,7 +40935,7 @@ ${hint}` : hint;
   // codex_image/webui/frontend/src/prompt-editor-paste.ts
   var bridge17 = getLegacyBridge();
   var els18 = bridge17.els;
-  function legacyMethod22(name, ...args) {
+  function legacyMethod23(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -40118,25 +40943,25 @@ ${hint}` : hint;
     return method(...args);
   }
   function rangeIntersectsNode3(range, node) {
-    return legacyMethod22("rangeIntersectsNode", range, node);
+    return legacyMethod23("rangeIntersectsNode", range, node);
   }
   function createPromptTextFragment2(text) {
-    return legacyMethod22("createPromptTextFragment", text);
+    return legacyMethod23("createPromptTextFragment", text);
   }
   function setCaretAfterNode4(node) {
-    legacyMethod22("setCaretAfterNode", node);
+    legacyMethod23("setCaretAfterNode", node);
   }
   function syncPromptAfterChipMutation3() {
-    legacyMethod22("syncPromptAfterChipMutation");
+    legacyMethod23("syncPromptAfterChipMutation");
   }
   function updateMentionSuggest2() {
-    legacyMethod22("updateMentionSuggest");
+    legacyMethod23("updateMentionSuggest");
   }
   function updateColorSuggest3() {
-    legacyMethod22("updateColorSuggest");
+    legacyMethod23("updateColorSuggest");
   }
   function updatePromptSnippetSuggest2() {
-    legacyMethod22("updatePromptSnippetSuggest");
+    legacyMethod23("updatePromptSnippetSuggest");
   }
   function clipboardHasImageFile(data) {
     return Array.from(data.items || []).some((item) => item.kind === "file" && item.type?.startsWith("image/"));
@@ -40215,7 +41040,7 @@ ${hint}` : hint;
   var bridge18 = getLegacyBridge();
   var state15 = bridge18.state;
   var els19 = bridge18.els;
-  function legacyMethod23(name, ...args) {
+  function legacyMethod24(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -40223,82 +41048,82 @@ ${hint}` : hint;
     return method(...args);
   }
   function getPromptText7() {
-    return legacyMethod23("getPromptText");
+    return legacyMethod24("getPromptText");
   }
   function promptTextFromNode2(node) {
-    return legacyMethod23("promptTextFromNode", node);
+    return legacyMethod24("promptTextFromNode", node);
   }
   function promptSelectionText2() {
-    return legacyMethod23("promptSelectionText");
+    return legacyMethod24("promptSelectionText");
   }
   function rangeIntersectsNode4(range, node) {
-    return legacyMethod23("rangeIntersectsNode", range, node);
+    return legacyMethod24("rangeIntersectsNode", range, node);
   }
   function selectPromptEditorContents2() {
-    legacyMethod23("selectPromptEditorContents");
+    legacyMethod24("selectPromptEditorContents");
   }
   function syncGalleryInputsFromPrompt2() {
-    return legacyMethod23("syncGalleryInputsFromPrompt");
+    return legacyMethod24("syncGalleryInputsFromPrompt");
   }
   function updateMentionSuggest3() {
-    legacyMethod23("updateMentionSuggest");
+    legacyMethod24("updateMentionSuggest");
   }
   function hideMentionSuggest3() {
-    legacyMethod23("hideMentionSuggest");
+    legacyMethod24("hideMentionSuggest");
   }
   function hideColorSuggest4() {
-    legacyMethod23("hideColorSuggest");
+    legacyMethod24("hideColorSuggest");
   }
   function updateColorSuggest4() {
-    legacyMethod23("updateColorSuggest");
+    legacyMethod24("updateColorSuggest");
   }
   function insertColorCode2(colorCode) {
-    legacyMethod23("insertColorCode", colorCode);
+    legacyMethod24("insertColorCode", colorCode);
   }
   function openColorChipEditor2(chip) {
-    legacyMethod23("openColorChipEditor", chip);
+    legacyMethod24("openColorChipEditor", chip);
   }
   function hidePromptSnippetSuggest3() {
-    legacyMethod23("hidePromptSnippetSuggest");
+    legacyMethod24("hidePromptSnippetSuggest");
   }
   function hidePromptSnippetSelectionButton3() {
-    legacyMethod23("hidePromptSnippetSelectionButton");
+    legacyMethod24("hidePromptSnippetSelectionButton");
   }
   function closePromptSnippetPopover3() {
-    legacyMethod23("closePromptSnippetPopover");
+    legacyMethod24("closePromptSnippetPopover");
   }
   function promptSnippetSuggestElement2() {
-    return legacyMethod23("promptSnippetSuggestElement");
+    return legacyMethod24("promptSnippetSuggestElement");
   }
   function findPromptSnippetById2(id) {
-    return legacyMethod23("findPromptSnippetById", id);
+    return legacyMethod24("findPromptSnippetById", id);
   }
   function insertPromptSnippet2(snippet) {
-    legacyMethod23("insertPromptSnippet", snippet);
+    legacyMethod24("insertPromptSnippet", snippet);
   }
   function updatePromptSnippetSuggest3() {
-    legacyMethod23("updatePromptSnippetSuggest");
+    legacyMethod24("updatePromptSnippetSuggest");
   }
   function updatePromptSnippetSelectionButton2() {
-    legacyMethod23("updatePromptSnippetSelectionButton");
+    legacyMethod24("updatePromptSnippetSelectionButton");
   }
   function openPromptSnippetChipPopover2(chip) {
-    legacyMethod23("openPromptSnippetChipPopover", chip);
+    legacyMethod24("openPromptSnippetChipPopover", chip);
   }
   function updatePromptCount5() {
-    legacyMethod23("updatePromptCount");
+    legacyMethod24("updatePromptCount");
   }
   function updateRequestPreview9() {
-    legacyMethod23("updateRequestPreview");
+    legacyMethod24("updateRequestPreview");
   }
   function removePromptGalleryChip4(chip) {
-    legacyMethod23("removePromptGalleryChip", chip);
+    legacyMethod24("removePromptGalleryChip", chip);
   }
   function findGalleryItem6(itemId) {
-    return legacyMethod23("findGalleryItem", itemId);
+    return legacyMethod24("findGalleryItem", itemId);
   }
   function insertGalleryMention2(item) {
-    legacyMethod23("insertGalleryMention", item);
+    legacyMethod24("insertGalleryMention", item);
   }
   function handlePromptEditorCopy(event) {
     if (!event.clipboardData) return;
@@ -40681,7 +41506,7 @@ ${hint}` : hint;
   // codex_image/webui/frontend/src/prompt-model.ts
   var bridge19 = getLegacyBridge();
   var els20 = bridge19.els;
-  function legacyMethod24(name, ...args) {
+  function legacyMethod25(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -40689,22 +41514,22 @@ ${hint}` : hint;
     return method(...args);
   }
   function getPromptText8() {
-    return legacyMethod24("getPromptText");
+    return legacyMethod25("getPromptText");
   }
   function expandPromptSnippets2(prompt) {
-    return legacyMethod24("expandPromptSnippets", prompt);
+    return legacyMethod25("expandPromptSnippets", prompt);
   }
   function galleryInputs3() {
-    return legacyMethod24("galleryInputs");
+    return legacyMethod25("galleryInputs");
   }
   function uploadInputs2() {
-    return legacyMethod24("uploadInputs");
+    return legacyMethod25("uploadInputs");
   }
   function referenceAssetInputs2() {
-    return legacyMethod24("referenceAssetInputs");
+    return legacyMethod25("referenceAssetInputs");
   }
   function categoryPromptRole3(category) {
-    return legacyMethod24("categoryPromptRole", category);
+    return legacyMethod25("categoryPromptRole", category);
   }
   function promptTokenReplacement(prompt) {
     return expandPromptSnippets2(prompt);
@@ -40764,7 +41589,7 @@ ${galleryText}`;
   var bridge20 = getLegacyBridge();
   var els21 = bridge20.els;
   var promptFeatureInitialized = false;
-  function legacyMethod25(name, ...args) {
+  function legacyMethod26(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -40772,10 +41597,10 @@ ${galleryText}`;
     return method(...args);
   }
   function closePromptColorSuggest() {
-    legacyMethod25("hideColorSuggest");
+    legacyMethod26("hideColorSuggest");
   }
   function handlePromptSnippetDocumentClick2(target) {
-    legacyMethod25("handlePromptSnippetDocumentClick", target);
+    legacyMethod26("handlePromptSnippetDocumentClick", target);
   }
   function handlePromptDocumentClick(event) {
     const target = event.target;
@@ -40959,7 +41784,7 @@ ${galleryText}`;
   var PROMPT_FIND_TEXT_NODE = 3;
   var promptFindInitialized = false;
   var promptFindMatches = [];
-  function legacyMethod26(name, ...args) {
+  function legacyMethod27(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -40967,10 +41792,10 @@ ${galleryText}`;
     return method(...args);
   }
   function syncPromptAfterFindMutation() {
-    legacyMethod26("syncPromptFromEditor");
-    legacyMethod26("syncGalleryInputsFromPrompt");
-    legacyMethod26("updatePromptCount");
-    legacyMethod26("updateRequestPreview");
+    legacyMethod27("syncPromptFromEditor");
+    legacyMethod27("syncGalleryInputsFromPrompt");
+    legacyMethod27("updatePromptCount");
+    legacyMethod27("updateRequestPreview");
   }
   function promptFindCell() {
     return els22.promptFindPanel?.closest(".prompt-template-recent-cell") || null;
@@ -41132,7 +41957,7 @@ ${galleryText}`;
 
   // codex_image/webui/frontend/src/output-controls.ts
   var { els: els23 } = getLegacyBridge();
-  function legacyMethod27(name, ...args) {
+  function legacyMethod28(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -41140,7 +41965,7 @@ ${galleryText}`;
     return method(...args);
   }
   function buildPreviewRequest() {
-    return legacyMethod27("buildPreviewRequest");
+    return legacyMethod28("buildPreviewRequest");
   }
   function updateRangeProgress(input) {
     if (!input) return;
@@ -41216,7 +42041,7 @@ ${galleryText}`;
   var bridge22 = getLegacyBridge();
   var state16 = bridge22.state;
   var els24 = bridge22.els;
-  function legacyMethod28(name, ...args) {
+  function legacyMethod29(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -41224,7 +42049,7 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml12(value) {
-    return legacyMethod28("escapeHtml", value);
+    return legacyMethod29("escapeHtml", value);
   }
   function mainModelOptionsForQuery(query) {
     const normalized = String(query || "").trim().toLowerCase();
@@ -41427,7 +42252,7 @@ ${galleryText}`;
   var GPT_IMAGE_2_MAX_PIXELS = 8294400;
   var GPT_IMAGE_2_MAX_LONG_SHORT_RATIO = 3;
   var { els: els25 } = getLegacyBridge();
-  function legacyMethod29(name, ...args) {
+  function legacyMethod30(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -41435,7 +42260,7 @@ ${galleryText}`;
     return method(...args);
   }
   function currentPromptFidelity3() {
-    return legacyMethod29("currentPromptFidelity");
+    return legacyMethod30("currentPromptFidelity");
   }
   function currentCustomRatio() {
     const width = String(els25.customRatioWidth?.value || "").trim();
@@ -42125,6 +42950,7 @@ ${galleryText}`;
     bridge24.methods.renderProviderSelection?.();
     restoreCurrentModelParameterDraft();
     bridge24.methods.updateModeSpecificSettings?.();
+    bridge24.methods.renderInpaintingControls?.();
     bridge24.methods.updateRequestPreview?.();
   }
   function initFormControlsFeature() {
@@ -42174,12 +43000,12 @@ ${galleryText}`;
 
   // codex_image/webui/frontend/src/output-settings-lock.ts
   var STORAGE_KEY = "codex-image-output-settings-lock-v1";
-  var initialized2 = false;
+  var initialized3 = false;
   var locked = false;
   var lockedSnapshot = null;
   var taskSnapshot = null;
   var taskContext = null;
-  function legacyMethod30(name, ...args) {
+  function legacyMethod31(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error(`Legacy method ${name} is not initialized`);
@@ -42311,9 +43137,9 @@ ${galleryText}`;
     };
   }
   function currentSummaryContext() {
-    const authSource = String(legacyMethod30("currentAuthSource") || "codex");
-    const currentCodexMode5 = authSource === "codex" ? String(legacyMethod30("currentCodexMode") || "image") : "";
-    const currentApiMode4 = authSource === "api" ? String(legacyMethod30("currentApiMode") || "images") : "";
+    const authSource = String(legacyMethod31("currentAuthSource") || "codex");
+    const currentCodexMode5 = authSource === "codex" ? String(legacyMethod31("currentCodexMode") || "image") : "";
+    const currentApiMode4 = authSource === "api" ? String(legacyMethod31("currentApiMode") || "images") : "";
     const responses = authSource === "api" ? currentApiMode4 === "responses" : currentCodexMode5 === "responses";
     const callLabel = authSource === "api" ? "Images API" : "Codex Image";
     return { responses, task: false, callLabel };
@@ -42345,7 +43171,7 @@ ${galleryText}`;
   }
   function snapshotFromCurrentSelection() {
     const bridge39 = getLegacyBridge();
-    const legacy = legacyMethod30("currentTaskParams");
+    const legacy = legacyMethod31("currentTaskParams");
     const model = bridge39.state.generationCatalog?.models.find((item) => item.id === bridge39.state.selectedModelId);
     const parameters = model && model.id !== "gpt-image-2" && typeof bridge39.methods.activeParameterValues === "function" ? bridge39.methods.activeParameterValues(model) : typeof bridge39.methods.currentCanonicalParameters === "function" ? bridge39.methods.currentCanonicalParameters() : {};
     return normalizeOutputSettingsSnapshot({
@@ -42482,7 +43308,7 @@ ${galleryText}`;
     }
   }
   function applySnapshot(snapshot) {
-    legacyMethod30("applyTaskOutputParams", { params: snapshot });
+    legacyMethod31("applyTaskOutputParams", { params: snapshot });
   }
   function isOutputSettingsLocked() {
     return locked;
@@ -42517,7 +43343,7 @@ ${galleryText}`;
     if (!locked || !taskSnapshot) return;
     const state32 = getLegacyBridge().state;
     const task = state32.tasks.find((item) => String(item.task_id) === String(state32.selectedTaskId));
-    if (task) legacyMethod30("adoptTaskParameters", task);
+    if (task) legacyMethod31("adoptTaskParameters", task);
     applySnapshot(taskSnapshot);
     lockedSnapshot = snapshotFromCurrentSelection();
     taskSnapshot = null;
@@ -42566,8 +43392,8 @@ ${galleryText}`;
     updateLockButton();
   }
   function initOutputSettingsLockFeature() {
-    if (initialized2) return;
-    initialized2 = true;
+    if (initialized3) return;
+    initialized3 = true;
     Object.assign(getLegacyBridge().methods, {
       isOutputSettingsLocked,
       restoreOutputSettingsLock,
@@ -42866,7 +43692,7 @@ ${galleryText}`;
   var expandedTaskGroupRenderToken = 0;
   var queueTaskIdsCacheKey = "";
   var queueTaskIdsCache = null;
-  function legacyMethod31(name, ...args) {
+  function legacyMethod32(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -42874,81 +43700,81 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml13(...args) {
-    return legacyMethod31("escapeHtml", ...args);
+    return legacyMethod32("escapeHtml", ...args);
   }
   function updateDocumentTitle(...args) {
-    return legacyMethod31("updateDocumentTitle", ...args);
+    return legacyMethod32("updateDocumentTitle", ...args);
   }
   function isTaskArchived(...args) {
-    return legacyMethod31("isTaskArchived", ...args);
+    return legacyMethod32("isTaskArchived", ...args);
   }
   function taskArchived(...args) {
-    return legacyMethod31("taskArchived", ...args);
+    return legacyMethod32("taskArchived", ...args);
   }
   function renderBatchToolbar(...args) {
-    return legacyMethod31("renderBatchToolbar", ...args);
+    return legacyMethod32("renderBatchToolbar", ...args);
   }
   function updateTaskElapsedDisplays2(...args) {
-    return legacyMethod31("updateTaskElapsedDisplays", ...args);
+    return legacyMethod32("updateTaskElapsedDisplays", ...args);
   }
   function taskBackendLabel2(...args) {
-    return legacyMethod31("taskBackendLabel", ...args);
+    return legacyMethod32("taskBackendLabel", ...args);
   }
   function taskApiProviderId2(...args) {
-    return legacyMethod31("taskApiProviderId", ...args);
+    return legacyMethod32("taskApiProviderId", ...args);
   }
   function taskApiProviderLabel2(...args) {
-    return legacyMethod31("taskApiProviderLabel", ...args);
+    return legacyMethod32("taskApiProviderLabel", ...args);
   }
   function formatTaskCardStatus2(...args) {
-    return legacyMethod31("formatTaskCardStatus", ...args);
+    return legacyMethod32("formatTaskCardStatus", ...args);
   }
   function formatTaskStatus2(...args) {
-    return legacyMethod31("formatTaskStatus", ...args);
+    return legacyMethod32("formatTaskStatus", ...args);
   }
   function ensureExpandedTaskGroupKey(...args) {
-    return legacyMethod31("ensureExpandedTaskGroupKey", ...args);
+    return legacyMethod32("ensureExpandedTaskGroupKey", ...args);
   }
   function renderTaskHistoryAnchors(...args) {
-    return legacyMethod31("renderTaskHistoryAnchors", ...args);
+    return legacyMethod32("renderTaskHistoryAnchors", ...args);
   }
   function scrollExpandedTaskGroupToTop(...args) {
-    return legacyMethod31("scrollExpandedTaskGroupToTop", ...args);
+    return legacyMethod32("scrollExpandedTaskGroupToTop", ...args);
   }
   function captureTaskHistoryLayout(...args) {
-    return legacyMethod31("captureTaskHistoryLayout", ...args);
+    return legacyMethod32("captureTaskHistoryLayout", ...args);
   }
   function animateTaskHistoryLayout(...args) {
-    return legacyMethod31("animateTaskHistoryLayout", ...args);
+    return legacyMethod32("animateTaskHistoryLayout", ...args);
   }
   function scheduleLatestTaskNavigationRefresh(...args) {
-    return legacyMethod31("scheduleLatestTaskNavigationRefresh", ...args);
+    return legacyMethod32("scheduleLatestTaskNavigationRefresh", ...args);
   }
   function consumeLatestTaskNavigationScrollAnchor(...args) {
-    return legacyMethod31("consumeLatestTaskNavigationScrollAnchor", ...args);
+    return legacyMethod32("consumeLatestTaskNavigationScrollAnchor", ...args);
   }
   function rememberLatestTaskNavigationBeforeRender(...args) {
-    return legacyMethod31("rememberLatestTaskNavigationBeforeRender", ...args);
+    return legacyMethod32("rememberLatestTaskNavigationBeforeRender", ...args);
   }
-  var taskRatio = (...args) => legacyMethod31("taskRatio", ...args);
-  var taskOrientation = (...args) => legacyMethod31("taskOrientation", ...args);
-  var taskPromptFidelity = (...args) => legacyMethod31("taskPromptFidelity", ...args);
-  var taskResolution = (...args) => legacyMethod31("taskResolution", ...args);
-  var taskInputPreviewUrls = (...args) => legacyMethod31("taskInputPreviewUrls", ...args);
-  var taskThumbnailUrls = (...args) => legacyMethod31("taskThumbnailUrls", ...args);
-  var taskOutputUrls = (...args) => legacyMethod31("taskOutputUrls", ...args);
-  var taskImageBlockStates = (...args) => legacyMethod31("taskImageBlockStates", ...args);
-  var compressTaskImageBlockStates = (...args) => legacyMethod31("compressTaskImageBlockStates", ...args);
-  var taskImageStatusCounts = (...args) => legacyMethod31("taskImageStatusCounts", ...args);
-  var taskRetryStateText2 = (...args) => legacyMethod31("taskRetryStateText", ...args);
-  var taskCardRetryStateText = (...args) => legacyMethod31("taskCardRetryStateText", ...args);
-  var taskDurationText = (...args) => legacyMethod31("taskDurationText", ...args);
-  var taskRuntimeText = (...args) => legacyMethod31("taskRuntimeText", ...args);
-  var taskProgressStartValue2 = (...args) => legacyMethod31("taskProgressStartValue", ...args);
-  var elapsedTimerSpan = (...args) => legacyMethod31("elapsedTimerSpan", ...args);
-  var taskCompletionTimestampText = (...args) => legacyMethod31("taskCompletionTimestampText", ...args);
-  var taskCompletionTimestampTitle = (...args) => legacyMethod31("taskCompletionTimestampTitle", ...args);
-  var timestampMs2 = (...args) => legacyMethod31("timestampMs", ...args);
+  var taskRatio = (...args) => legacyMethod32("taskRatio", ...args);
+  var taskOrientation = (...args) => legacyMethod32("taskOrientation", ...args);
+  var taskPromptFidelity = (...args) => legacyMethod32("taskPromptFidelity", ...args);
+  var taskResolution = (...args) => legacyMethod32("taskResolution", ...args);
+  var taskInputPreviewUrls = (...args) => legacyMethod32("taskInputPreviewUrls", ...args);
+  var taskThumbnailUrls = (...args) => legacyMethod32("taskThumbnailUrls", ...args);
+  var taskOutputUrls = (...args) => legacyMethod32("taskOutputUrls", ...args);
+  var taskImageBlockStates = (...args) => legacyMethod32("taskImageBlockStates", ...args);
+  var compressTaskImageBlockStates = (...args) => legacyMethod32("compressTaskImageBlockStates", ...args);
+  var taskImageStatusCounts = (...args) => legacyMethod32("taskImageStatusCounts", ...args);
+  var taskRetryStateText2 = (...args) => legacyMethod32("taskRetryStateText", ...args);
+  var taskCardRetryStateText = (...args) => legacyMethod32("taskCardRetryStateText", ...args);
+  var taskDurationText = (...args) => legacyMethod32("taskDurationText", ...args);
+  var taskRuntimeText = (...args) => legacyMethod32("taskRuntimeText", ...args);
+  var taskProgressStartValue2 = (...args) => legacyMethod32("taskProgressStartValue", ...args);
+  var elapsedTimerSpan = (...args) => legacyMethod32("elapsedTimerSpan", ...args);
+  var taskCompletionTimestampText = (...args) => legacyMethod32("taskCompletionTimestampText", ...args);
+  var taskCompletionTimestampTitle = (...args) => legacyMethod32("taskCompletionTimestampTitle", ...args);
+  var timestampMs2 = (...args) => legacyMethod32("timestampMs", ...args);
   function renderTasks2(options = {}) {
     if (options.preserveScroll) rememberLatestTaskNavigationBeforeRender();
     const scrollAnchors = options.preserveScroll ? captureTaskListScrollAnchors() : [];
@@ -43295,7 +44121,7 @@ ${galleryText}`;
     }
     scrollExpandedTaskGroupToTop("smooth");
     if (clearedControls) {
-      legacyMethod31("setStatus", translate("status.shownActiveTasks"), "ok");
+      legacyMethod32("setStatus", translate("status.shownActiveTasks"), "ok");
     }
   }
   function renderExpandedTaskGroupShellHtml(group, options = {}) {
@@ -43386,7 +44212,7 @@ ${galleryText}`;
   function activeTaskGroupHtml(group) {
     const groupKey = escapeHtml13(group.key);
     const sections = activeTaskSections(group.tasks || []);
-    const dispatchPending = Boolean(legacyMethod31("isQueueDispatchPending"));
+    const dispatchPending = Boolean(legacyMethod32("isQueueDispatchPending"));
     const collapsed = Boolean(state19.activeTaskGroupCollapsed);
     const body = [
       activeTaskSectionHtml("running", translate("taskGroup.running"), sections.running),
@@ -44055,7 +44881,7 @@ ${galleryText}`;
   var TASK_HISTORY_LAYOUT_DURATION_MS = 180;
   var TASK_GROUP_ORDER = ["active", "today", "yesterday", "last7", "older", "search"];
   var TASK_HISTORY_ALL_COLLAPSED_SENTINEL = "__all_collapsed__";
-  function legacyMethod32(name, ...args) {
+  function legacyMethod33(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -44063,10 +44889,10 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml14(...args) {
-    return legacyMethod32("escapeHtml", ...args);
+    return legacyMethod33("escapeHtml", ...args);
   }
   function taskGroupCount2(...args) {
-    return legacyMethod32("taskGroupCount", ...args);
+    return legacyMethod33("taskGroupCount", ...args);
   }
   function element(node) {
     return node instanceof HTMLElement ? node : null;
@@ -44319,7 +45145,7 @@ ${galleryText}`;
     });
   }
   function notifyLatestTaskAvailable(task) {
-    const incomingGroupKey = String(legacyMethod32("taskDateBucket", task) || "");
+    const incomingGroupKey = String(legacyMethod33("taskDateBucket", task) || "");
     const viewModel = latestTaskNavigationCurrentViewModel();
     const atIncomingTask = Boolean(
       incomingGroupKey && viewModel.latestGroupKey === incomingGroupKey && viewModel.atLatest
@@ -44341,7 +45167,7 @@ ${galleryText}`;
     state20.latestTaskNoticeCount = 0;
     const changed = setExpandedTaskGroupKey(viewModel.latestGroupKey, { immediate: true });
     if (changed) {
-      legacyMethod32("renderTasks");
+      legacyMethod33("renderTasks");
     }
     requestAnimationFrame(() => {
       focusExpandedTaskGroupHeader();
@@ -44505,7 +45331,7 @@ ${galleryText}`;
   var bridge27 = getLegacyBridge();
   var state21 = bridge27.state;
   var els30 = bridge27.els;
-  function legacyMethod33(name, ...args) {
+  function legacyMethod34(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -44517,25 +45343,25 @@ ${galleryText}`;
     return error instanceof Error ? error.message || fallback : fallback;
   }
   function setStatus14(...args) {
-    return legacyMethod33("setStatus", ...args);
+    return legacyMethod34("setStatus", ...args);
   }
   function renderTasks3(...args) {
-    return legacyMethod33("renderTasks", ...args);
+    return legacyMethod34("renderTasks", ...args);
   }
   function closePromptPopover4(...args) {
-    return legacyMethod33("closePromptPopover", ...args);
+    return legacyMethod34("closePromptPopover", ...args);
   }
   function taskThumbHtml2(...args) {
-    return legacyMethod33("taskThumbHtml", ...args);
+    return legacyMethod34("taskThumbHtml", ...args);
   }
   function escapeHtml15(...args) {
-    return legacyMethod33("escapeHtml", ...args);
+    return legacyMethod34("escapeHtml", ...args);
   }
   function formatTaskStatus3(...args) {
-    return legacyMethod33("formatTaskStatus", ...args);
+    return legacyMethod34("formatTaskStatus", ...args);
   }
   function openTaskDeleteConfirm(...args) {
-    return legacyMethod33("openTaskDeleteConfirm", ...args);
+    return legacyMethod34("openTaskDeleteConfirm", ...args);
   }
   function taskArchived2(task) {
     return Boolean(task?.archived_at);
@@ -44645,7 +45471,7 @@ ${galleryText}`;
       const title = escapeHtml15(task.prompt || task.mode || "Untitled");
       const status = escapeHtml15(formatTaskStatus3(task));
       const size = escapeHtml15(task.output_size || task.params?.size || "");
-      const provider = escapeHtml15(legacyMethod33("taskCardProviderLabel", task) || "");
+      const provider = escapeHtml15(legacyMethod34("taskCardProviderLabel", task) || "");
       const meta = [status, size, provider].filter(Boolean).join(" \xB7 ");
       const taskId = escapeHtml15(task.task_id);
       return `
@@ -44664,7 +45490,7 @@ ${galleryText}`;
     }).join("");
     els30.archiveList.querySelectorAll("[data-archive-select-task-id]").forEach((card) => {
       card.addEventListener("click", () => {
-        legacyMethod33("selectTask", card.dataset.archiveSelectTaskId);
+        legacyMethod34("selectTask", card.dataset.archiveSelectTaskId);
         closeArchiveModal();
       });
     });
@@ -44708,7 +45534,7 @@ ${galleryText}`;
   var bridge28 = getLegacyBridge();
   var state22 = bridge28.state;
   var els31 = bridge28.els;
-  function legacyMethod34(name, ...args) {
+  function legacyMethod35(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -44720,43 +45546,43 @@ ${galleryText}`;
     return error instanceof Error ? error.message || fallback : fallback;
   }
   function setStatus15(...args) {
-    return legacyMethod34("setStatus", ...args);
+    return legacyMethod35("setStatus", ...args);
   }
   function isTaskArchived3(...args) {
-    return legacyMethod34("isTaskArchived", ...args);
+    return legacyMethod35("isTaskArchived", ...args);
   }
   function renderTasks4(...args) {
-    return legacyMethod34("renderTasks", ...args);
+    return legacyMethod35("renderTasks", ...args);
   }
   function setTaskArchiveState2(...args) {
-    return legacyMethod34("setTaskArchiveState", ...args);
+    return legacyMethod35("setTaskArchiveState", ...args);
   }
   function replaceTask2(...args) {
-    return legacyMethod34("replaceTask", ...args);
+    return legacyMethod35("replaceTask", ...args);
   }
   function firstVisibleTaskId2(...args) {
-    return legacyMethod34("firstVisibleTaskId", ...args);
+    return legacyMethod35("firstVisibleTaskId", ...args);
   }
   function renderArchiveButton2(...args) {
-    return legacyMethod34("renderArchiveButton", ...args);
+    return legacyMethod35("renderArchiveButton", ...args);
   }
   function renderArchiveModal2(...args) {
-    return legacyMethod34("renderArchiveModal", ...args);
+    return legacyMethod35("renderArchiveModal", ...args);
   }
   function renderPreview2(...args) {
-    return legacyMethod34("renderPreview", ...args);
+    return legacyMethod35("renderPreview", ...args);
   }
   function openConfirmPopover5(...args) {
-    return legacyMethod34("openConfirmPopover", ...args);
+    return legacyMethod35("openConfirmPopover", ...args);
   }
   function runTaskCardRemovalTransition(...args) {
-    return legacyMethod34("runTaskCardRemovalTransition", ...args);
+    return legacyMethod35("runTaskCardRemovalTransition", ...args);
   }
   function refreshTasksAfterDeletion(...args) {
-    return legacyMethod34("refreshTasksAfterDeletion", ...args);
+    return legacyMethod35("refreshTasksAfterDeletion", ...args);
   }
   function taskFilterValues2(...args) {
-    return legacyMethod34("taskFilterValues", ...args);
+    return legacyMethod35("taskFilterValues", ...args);
   }
   function activeTaskIds() {
     return [...state22.queue.running || [], ...state22.queue.waiting || []].map((task) => String(task?.task_id || "")).filter(Boolean);
@@ -44948,7 +45774,7 @@ ${galleryText}`;
       state22.batchSelectionIncludesUnloaded = false;
       state22.batchMode = false;
       await window.refreshQueue?.();
-      await legacyMethod34("refreshTasks");
+      await legacyMethod35("refreshTasks");
       renderPreview2();
       const summary = data.summary || {};
       const statusType = Number(summary.failed || 0) > 0 ? "error" : "ok";
@@ -45200,7 +46026,7 @@ ${galleryText}`;
   var TASK_CARD_REMOVAL_FALLBACK_MS = 240;
   var TASK_CARD_REFLOW_DURATION_MS = 180;
   var TASK_CARD_REFLOW_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
-  function legacyMethod35(name, ...args) {
+  function legacyMethod36(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -45222,61 +46048,61 @@ ${galleryText}`;
     return error instanceof TaskActionHttpError && error.status === 409;
   }
   function setStatus16(...args) {
-    return legacyMethod35("setStatus", ...args);
+    return legacyMethod36("setStatus", ...args);
   }
   function closePromptPopover5(...args) {
-    return legacyMethod35("closePromptPopover", ...args);
+    return legacyMethod36("closePromptPopover", ...args);
   }
   function setTaskArchiveState3(...args) {
-    return legacyMethod35("setTaskArchiveState", ...args);
+    return legacyMethod36("setTaskArchiveState", ...args);
   }
   function replaceTask3(...args) {
-    return legacyMethod35("replaceTask", ...args);
+    return legacyMethod36("replaceTask", ...args);
   }
   function removeBatchSelectedTaskId2(...args) {
-    return legacyMethod35("removeBatchSelectedTaskId", ...args);
+    return legacyMethod36("removeBatchSelectedTaskId", ...args);
   }
   function firstVisibleTaskId3(...args) {
-    return legacyMethod35("firstVisibleTaskId", ...args);
+    return legacyMethod36("firstVisibleTaskId", ...args);
   }
   function renderTasks5(...args) {
-    return legacyMethod35("renderTasks", ...args);
+    return legacyMethod36("renderTasks", ...args);
   }
   function updateTaskSelectionVisuals2(...args) {
-    return legacyMethod35("updateTaskSelectionVisuals", ...args);
+    return legacyMethod36("updateTaskSelectionVisuals", ...args);
   }
   function renderArchiveButton3(...args) {
-    return legacyMethod35("renderArchiveButton", ...args);
+    return legacyMethod36("renderArchiveButton", ...args);
   }
   function renderArchiveModal3(...args) {
-    return legacyMethod35("renderArchiveModal", ...args);
+    return legacyMethod36("renderArchiveModal", ...args);
   }
   function renderPreview3(...args) {
-    return legacyMethod35("renderPreview", ...args);
+    return legacyMethod36("renderPreview", ...args);
   }
   function openConfirmPopover6(...args) {
-    return legacyMethod35("openConfirmPopover", ...args);
+    return legacyMethod36("openConfirmPopover", ...args);
   }
   function canRetryFailedTask(...args) {
-    return legacyMethod35("canRetryFailedTask", ...args);
+    return legacyMethod36("canRetryFailedTask", ...args);
   }
   function canAcceptTaskSuccesses(...args) {
-    return legacyMethod35("canAcceptTaskSuccesses", ...args);
+    return legacyMethod36("canAcceptTaskSuccesses", ...args);
   }
   function currentApiProviderId2(...args) {
-    return legacyMethod35("currentApiProviderId", ...args);
+    return legacyMethod36("currentApiProviderId", ...args);
   }
   function updateTaskInState2(...args) {
-    return legacyMethod35("updateTaskInState", ...args);
+    return legacyMethod36("updateTaskInState", ...args);
   }
   function captureTaskHistoryLayout3(...args) {
-    return legacyMethod35("captureTaskHistoryLayout", ...args);
+    return legacyMethod36("captureTaskHistoryLayout", ...args);
   }
   function animateTaskHistoryLayout3(...args) {
-    return legacyMethod35("animateTaskHistoryLayout", ...args);
+    return legacyMethod36("animateTaskHistoryLayout", ...args);
   }
   function refreshTasksAfterDeletion2(...args) {
-    return legacyMethod35("refreshTasksAfterDeletion", ...args);
+    return legacyMethod36("refreshTasksAfterDeletion", ...args);
   }
   function taskCardElements() {
     return Array.from(document.querySelectorAll(".task-card[data-task-id]"));
@@ -45599,7 +46425,7 @@ ${galleryText}`;
   var bridge30 = getLegacyBridge();
   var state24 = bridge30.state;
   var els33 = bridge30.els;
-  function legacyMethod36(name, ...args) {
+  function legacyMethod37(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -45611,115 +46437,121 @@ ${galleryText}`;
     return error instanceof Error ? error.message || fallback : fallback;
   }
   function setStatus17(...args) {
-    return legacyMethod36("setStatus", ...args);
+    return legacyMethod37("setStatus", ...args);
   }
   function setMode5(...args) {
-    return legacyMethod36("setMode", ...args);
+    return legacyMethod37("setMode", ...args);
   }
   function setPromptWithGalleryRefs2(...args) {
-    return legacyMethod36("setPromptWithGalleryRefs", ...args);
+    return legacyMethod37("setPromptWithGalleryRefs", ...args);
   }
   function persistMainModel2(...args) {
-    return legacyMethod36("persistMainModel", ...args);
+    return legacyMethod37("persistMainModel", ...args);
   }
   function syncSizeControlsFromSize2(...args) {
-    return legacyMethod36("syncSizeControlsFromSize", ...args);
+    return legacyMethod37("syncSizeControlsFromSize", ...args);
   }
   function updatePromptCount6(...args) {
-    return legacyMethod36("updatePromptCount", ...args);
+    return legacyMethod37("updatePromptCount", ...args);
   }
   function updateQuantity2(...args) {
-    return legacyMethod36("updateQuantity", ...args);
+    return legacyMethod37("updateQuantity", ...args);
   }
   function syncRadioButtons2(...args) {
-    return legacyMethod36("syncRadioButtons", ...args);
+    return legacyMethod37("syncRadioButtons", ...args);
   }
   function updateCompression2(...args) {
-    return legacyMethod36("updateCompression", ...args);
+    return legacyMethod37("updateCompression", ...args);
   }
   function updateCustomSize2(...args) {
-    return legacyMethod36("updateCustomSize", ...args);
+    return legacyMethod37("updateCustomSize", ...args);
   }
   function updateRequestPreview11(...args) {
-    return legacyMethod36("updateRequestPreview", ...args);
+    return legacyMethod37("updateRequestPreview", ...args);
   }
   function currentTaskParams2(...args) {
-    return legacyMethod36("currentTaskParams", ...args);
+    return legacyMethod37("currentTaskParams", ...args);
   }
   function uploadInputs3(...args) {
-    return legacyMethod36("uploadInputs", ...args);
+    return legacyMethod37("uploadInputs", ...args);
   }
   function galleryInputs4(...args) {
-    return legacyMethod36("galleryInputs", ...args);
+    return legacyMethod37("galleryInputs", ...args);
   }
   function referenceAssetInputs3(...args) {
-    return legacyMethod36("referenceAssetInputs", ...args);
+    return legacyMethod37("referenceAssetInputs", ...args);
   }
   function currentCodexMode4(...args) {
-    return legacyMethod36("currentCodexMode", ...args);
+    return legacyMethod37("currentCodexMode", ...args);
   }
   function getPromptText9(...args) {
-    return legacyMethod36("getPromptText", ...args);
+    return legacyMethod37("getPromptText", ...args);
   }
   function currentPromptForModel2(...args) {
-    return legacyMethod36("currentPromptForModel", ...args);
+    return legacyMethod37("currentPromptForModel", ...args);
   }
   function currentPromptFidelity4(...args) {
-    return legacyMethod36("currentPromptFidelity", ...args);
+    return legacyMethod37("currentPromptFidelity", ...args);
   }
   function currentMainModel2(...args) {
-    return legacyMethod36("currentMainModel", ...args);
+    return legacyMethod37("currentMainModel", ...args);
   }
   function sourcePreviewUrl3(...args) {
-    return legacyMethod36("sourcePreviewUrl", ...args);
+    return legacyMethod37("sourcePreviewUrl", ...args);
   }
   function syncPromptFromEditor6(...args) {
-    return legacyMethod36("syncPromptFromEditor", ...args);
+    return legacyMethod37("syncPromptFromEditor", ...args);
   }
   function syncGalleryInputsFromPrompt3(...args) {
-    return legacyMethod36("syncGalleryInputsFromPrompt", ...args);
+    return legacyMethod37("syncGalleryInputsFromPrompt", ...args);
   }
   function missingGalleryInputs2(...args) {
-    return legacyMethod36("missingGalleryInputs", ...args);
+    return legacyMethod37("missingGalleryInputs", ...args);
   }
   function missingReferenceAssetInputs2(...args) {
-    return legacyMethod36("missingReferenceAssetInputs", ...args);
+    return legacyMethod37("missingReferenceAssetInputs", ...args);
   }
   function customSizeValidationMessage2(...args) {
-    return legacyMethod36("customSizeValidationMessage", ...args);
+    return legacyMethod37("customSizeValidationMessage", ...args);
   }
   function updatePixelPreview2(...args) {
-    return legacyMethod36("updatePixelPreview", ...args);
+    return legacyMethod37("updatePixelPreview", ...args);
   }
   function addPendingTask2(...args) {
-    return legacyMethod36("addPendingTask", ...args);
+    return legacyMethod37("addPendingTask", ...args);
   }
   function replacePendingTask2(...args) {
-    return legacyMethod36("replacePendingTask", ...args);
+    return legacyMethod37("replacePendingTask", ...args);
   }
   function startRunFeedback2(...args) {
-    return legacyMethod36("startRunFeedback", ...args);
+    return legacyMethod37("startRunFeedback", ...args);
   }
   function stopRunFeedback2(...args) {
-    return legacyMethod36("stopRunFeedback", ...args);
+    return legacyMethod37("stopRunFeedback", ...args);
   }
   function markPendingTaskFailed2(...args) {
-    return legacyMethod36("markPendingTaskFailed", ...args);
+    return legacyMethod37("markPendingTaskFailed", ...args);
   }
   function refreshRecentAssets2(...args) {
-    return legacyMethod36("refreshRecentAssets", ...args);
+    return legacyMethod37("refreshRecentAssets", ...args);
   }
   function referenceFileUploads2(...args) {
-    return legacyMethod36("referenceFileUploads", ...args);
+    return legacyMethod37("referenceFileUploads", ...args);
   }
   function storedReferenceFileInputs2(...args) {
-    return legacyMethod36("storedReferenceFileInputs", ...args);
+    return legacyMethod37("storedReferenceFileInputs", ...args);
   }
   function missingReferenceFileInputs2(...args) {
-    return legacyMethod36("missingReferenceFileInputs", ...args);
+    return legacyMethod37("missingReferenceFileInputs", ...args);
   }
   function renderPreview4(...args) {
-    return legacyMethod36("renderPreview", ...args);
+    return legacyMethod37("renderPreview", ...args);
+  }
+  function currentEditMask(...args) {
+    return legacyMethod37("currentEditMask", ...args);
+  }
+  function currentFocusedInpainting(...args) {
+    return legacyMethod37("currentFocusedInpainting", ...args);
   }
   function currentCanonicalParameters() {
     return currentGenerationSelection().parameters;
@@ -45822,6 +46654,8 @@ ${galleryText}`;
     const assets = referenceAssetInputs3();
     const fileUploads = referenceFileUploads2();
     const storedFiles = storedReferenceFileInputs2();
+    const mask = state24.mode === "edit" ? currentEditMask() : null;
+    const focused = state24.mode === "edit" ? currentFocusedInpainting() : null;
     const { authSource, requestedBackend } = selectedRoutingFields();
     const isApi = authSource === "api";
     const isCodex = authSource === "codex";
@@ -45842,7 +46676,9 @@ ${galleryText}`;
       gallery_image_ids: galleries.map((source) => source.id),
       reference_asset_ids: assets.map((source) => source.id),
       reference_files: fileUploads.map((source) => source.filename),
-      reference_file_ids: storedFiles.map((source) => source.id)
+      reference_file_ids: storedFiles.map((source) => source.id),
+      ...mask ? { mask: mask.name } : {},
+      ...focused ? { focused_inpainting: focused } : {}
     };
     const usesGptPromptProcessing = !state24.generationCatalog || state24.selectedModelId === "gpt-image-2";
     if (usesGptPromptProcessing) payload2.prompt_fidelity = currentPromptFidelity4();
@@ -45902,6 +46738,8 @@ ${galleryText}`;
     const assets = referenceAssetInputs3();
     const fileUploads = referenceFileUploads2();
     const storedFiles = storedReferenceFileInputs2();
+    const mask = state24.mode === "edit" ? currentEditMask() : null;
+    const focused = state24.mode === "edit" ? currentFocusedInpainting() : null;
     if (missingGalleryInputs2().length) {
       setStatus17(translate("status.missingGalleryReference"), "error");
       return;
@@ -45926,6 +46764,10 @@ ${galleryText}`;
       setStatus17(translate("status.editNeedsImage"), "error");
       return;
     }
+    if (focused && !mask) {
+      setStatus17(translate("inpainting.focusRequiresMask"), "error");
+      return;
+    }
     const customSizeError = els33.size?.value === "custom" ? customSizeValidationMessage2() : "";
     if (customSizeError) {
       updateCustomSize2();
@@ -45946,6 +46788,8 @@ ${galleryText}`;
     assets.forEach((source) => form.append("reference_asset_ids", source.id));
     fileUploads.forEach((source) => form.append("reference_files", source.file));
     storedFiles.forEach((source) => form.append("reference_file_ids", source.id));
+    if (mask) form.append("mask", mask);
+    if (focused) form.append("focused_inpainting", JSON.stringify(focused));
     if (state24.mode === "generate") {
       uploads.forEach((source) => form.append("reference_images", source.file));
     } else {
@@ -46006,32 +46850,32 @@ ${galleryText}`;
   var bridge31 = getLegacyBridge();
   var state25 = bridge31.state;
   var els34 = bridge31.els;
-  function legacyMethod37(name, ...args) {
+  function legacyMethod38(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
     }
     return method(...args);
   }
-  var renderTasks6 = () => legacyMethod37("renderTasks");
-  var syncTaskSearchHistoryResults = () => legacyMethod37("syncTaskSearchHistoryResults");
-  var setExpandedTaskGroupKey2 = (...args) => legacyMethod37("setExpandedTaskGroupKey", ...args);
-  var scrollExpandedTaskGroupToTop3 = (...args) => legacyMethod37("scrollExpandedTaskGroupToTop", ...args);
-  var captureTaskHistoryLayout4 = (...args) => legacyMethod37("captureTaskHistoryLayout", ...args);
-  var animateTaskHistoryLayout4 = (...args) => legacyMethod37("animateTaskHistoryLayout", ...args);
-  var archiveTask2 = (...args) => legacyMethod37("archiveTask", ...args);
-  var openTaskDeleteConfirm3 = (...args) => legacyMethod37("openTaskDeleteConfirm", ...args);
-  var toggleBatchMode2 = (...args) => legacyMethod37("toggleBatchMode", ...args);
-  var toggleBatchTaskSelection2 = (...args) => legacyMethod37("toggleBatchTaskSelection", ...args);
-  var handleBatchTaskShortcutSelection2 = (...args) => legacyMethod37("handleBatchTaskShortcutSelection", ...args);
-  var archiveSelectedTasks2 = (...args) => legacyMethod37("archiveSelectedTasks", ...args);
-  var selectActiveTasksForBatchCancel2 = (...args) => legacyMethod37("selectActiveTasksForBatchCancel", ...args);
-  var openBatchCancelConfirm2 = (...args) => legacyMethod37("openBatchCancelConfirm", ...args);
-  var openBatchDeleteConfirm2 = (...args) => legacyMethod37("openBatchDeleteConfirm", ...args);
-  var selectAllMatchingTasksInExpandedGroup2 = (...args) => legacyMethod37("selectAllMatchingTasksInExpandedGroup", ...args);
-  var handleTaskListPointerDown2 = (...args) => legacyMethod37("handleTaskListPointerDown", ...args);
-  var loadMoreSidebarTaskGroup = (...args) => legacyMethod37("loadMoreSidebarTaskGroup", ...args);
-  var closeArchiveModal2 = (...args) => legacyMethod37("closeArchiveModal", ...args);
+  var renderTasks6 = () => legacyMethod38("renderTasks");
+  var syncTaskSearchHistoryResults = () => legacyMethod38("syncTaskSearchHistoryResults");
+  var setExpandedTaskGroupKey2 = (...args) => legacyMethod38("setExpandedTaskGroupKey", ...args);
+  var scrollExpandedTaskGroupToTop3 = (...args) => legacyMethod38("scrollExpandedTaskGroupToTop", ...args);
+  var captureTaskHistoryLayout4 = (...args) => legacyMethod38("captureTaskHistoryLayout", ...args);
+  var animateTaskHistoryLayout4 = (...args) => legacyMethod38("animateTaskHistoryLayout", ...args);
+  var archiveTask2 = (...args) => legacyMethod38("archiveTask", ...args);
+  var openTaskDeleteConfirm3 = (...args) => legacyMethod38("openTaskDeleteConfirm", ...args);
+  var toggleBatchMode2 = (...args) => legacyMethod38("toggleBatchMode", ...args);
+  var toggleBatchTaskSelection2 = (...args) => legacyMethod38("toggleBatchTaskSelection", ...args);
+  var handleBatchTaskShortcutSelection2 = (...args) => legacyMethod38("handleBatchTaskShortcutSelection", ...args);
+  var archiveSelectedTasks2 = (...args) => legacyMethod38("archiveSelectedTasks", ...args);
+  var selectActiveTasksForBatchCancel2 = (...args) => legacyMethod38("selectActiveTasksForBatchCancel", ...args);
+  var openBatchCancelConfirm2 = (...args) => legacyMethod38("openBatchCancelConfirm", ...args);
+  var openBatchDeleteConfirm2 = (...args) => legacyMethod38("openBatchDeleteConfirm", ...args);
+  var selectAllMatchingTasksInExpandedGroup2 = (...args) => legacyMethod38("selectAllMatchingTasksInExpandedGroup", ...args);
+  var handleTaskListPointerDown2 = (...args) => legacyMethod38("handleTaskListPointerDown", ...args);
+  var loadMoreSidebarTaskGroup = (...args) => legacyMethod38("loadMoreSidebarTaskGroup", ...args);
+  var closeArchiveModal2 = (...args) => legacyMethod38("closeArchiveModal", ...args);
   var taskListControlsInitialized = false;
   var taskListControlEventsBound = false;
   function taskFilterControls() {
@@ -46163,7 +47007,7 @@ ${galleryText}`;
     if (!nextCard) return true;
     focusTaskNavigationCard(nextCard);
     if (!state25.batchMode) {
-      void legacyMethod37("selectTask", nextCard.dataset.taskId);
+      void legacyMethod38("selectTask", nextCard.dataset.taskId);
     }
     return true;
   }
@@ -46241,7 +47085,7 @@ ${galleryText}`;
       toggleBatchTaskSelection2(card.dataset.taskId);
       return;
     }
-    legacyMethod37("selectTask", card.dataset.taskId);
+    legacyMethod38("selectTask", card.dataset.taskId);
   }
   function handleTaskListKeydown(event) {
     if (isTaskListKeyboardInputTarget(event.target)) return;
@@ -46255,7 +47099,7 @@ ${galleryText}`;
     if (state25.batchMode) {
       toggleBatchTaskSelection2(card.dataset.taskId);
     } else {
-      legacyMethod37("selectTask", card.dataset.taskId);
+      legacyMethod38("selectTask", card.dataset.taskId);
     }
   }
   function initTaskListControlsFeature() {
@@ -46961,7 +47805,7 @@ ${galleryText}`;
   var taskContextMenuEventsBound = false;
   var taskContextMenuEl = null;
   var taskListMutationObserver = null;
-  function legacyMethod38(name, ...args) {
+  function legacyMethod39(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -46969,22 +47813,22 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml16(...args) {
-    return legacyMethod38("escapeHtml", ...args);
+    return legacyMethod39("escapeHtml", ...args);
   }
   function setStatus18(...args) {
-    return legacyMethod38("setStatus", ...args);
+    return legacyMethod39("setStatus", ...args);
   }
   function closePromptPopover6(...args) {
-    return legacyMethod38("closePromptPopover", ...args);
+    return legacyMethod39("closePromptPopover", ...args);
   }
   function selectTask(...args) {
-    return legacyMethod38("selectTask", ...args);
+    return legacyMethod39("selectTask", ...args);
   }
   function archiveTask3(...args) {
-    return legacyMethod38("archiveTask", ...args);
+    return legacyMethod39("archiveTask", ...args);
   }
   function openTaskDeleteConfirm4(...args) {
-    return legacyMethod38("openTaskDeleteConfirm", ...args);
+    return legacyMethod39("openTaskDeleteConfirm", ...args);
   }
   function bindTaskContextMenuEvents() {
     if (taskContextMenuEventsBound) return;
@@ -47727,7 +48571,7 @@ ${galleryText}`;
       "21:9": [3808, 1632]
     }
   };
-  function legacyMethod39(name, ...args) {
+  function legacyMethod40(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -47735,7 +48579,7 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml18(...args) {
-    return legacyMethod39("escapeHtml", ...args);
+    return legacyMethod40("escapeHtml", ...args);
   }
   function taskRatio2(task) {
     const dimensions2 = taskSizeDimensions(task);
@@ -48387,7 +49231,7 @@ ${galleryText}`;
   var els37 = bridge34.els;
   var previewGridEventsBound = false;
   var pendingPreviewRenderToken = 0;
-  function legacyMethod40(name, ...args) {
+  function legacyMethod41(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -48395,66 +49239,66 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml19(...args) {
-    return legacyMethod40("escapeHtml", ...args);
+    return legacyMethod41("escapeHtml", ...args);
   }
   function isTaskArchived4(...args) {
-    return legacyMethod40("isTaskArchived", ...args);
+    return legacyMethod41("isTaskArchived", ...args);
   }
   function updatePreviewElapsedDisplay2(...args) {
-    return legacyMethod40("updatePreviewElapsedDisplay", ...args);
+    return legacyMethod41("updatePreviewElapsedDisplay", ...args);
   }
   function closePromptPopover7(...args) {
-    return legacyMethod40("closePromptPopover", ...args);
+    return legacyMethod41("closePromptPopover", ...args);
   }
   function currentSize2(...args) {
-    return legacyMethod40("currentSize", ...args);
+    return legacyMethod41("currentSize", ...args);
   }
   function syncActiveLightboxUrls2(...args) {
-    return legacyMethod40("syncActiveLightboxUrls", ...args);
+    return legacyMethod41("syncActiveLightboxUrls", ...args);
   }
   function collectReferenceOutput2(...args) {
-    return legacyMethod40("collectReferenceOutput", ...args);
+    return legacyMethod41("collectReferenceOutput", ...args);
   }
   function openPromptPopover(...args) {
-    return legacyMethod40("openPromptPopover", ...args);
+    return legacyMethod41("openPromptPopover", ...args);
   }
   function retryFailedTask2(...args) {
-    return legacyMethod40("retryFailedTask", ...args);
+    return legacyMethod41("retryFailedTask", ...args);
   }
   function acceptTaskSuccesses2(...args) {
-    return legacyMethod40("acceptTaskSuccesses", ...args);
+    return legacyMethod41("acceptTaskSuccesses", ...args);
   }
   function openConfirmPopover7(...args) {
-    return legacyMethod40("openConfirmPopover", ...args);
+    return legacyMethod41("openConfirmPopover", ...args);
   }
   function setStatus20(...args) {
-    return legacyMethod40("setStatus", ...args);
+    return legacyMethod41("setStatus", ...args);
   }
   function updateTaskInState3(...args) {
-    return legacyMethod40("updateTaskInState", ...args);
+    return legacyMethod41("updateTaskInState", ...args);
   }
   function renderTasks7(...args) {
-    return legacyMethod40("renderTasks", ...args);
+    return legacyMethod41("renderTasks", ...args);
   }
   function taskApiProviderId3(...args) {
-    return legacyMethod40("taskApiProviderId", ...args);
+    return legacyMethod41("taskApiProviderId", ...args);
   }
   function taskApiProviderLabel3(...args) {
-    return legacyMethod40("taskApiProviderLabel", ...args);
+    return legacyMethod41("taskApiProviderLabel", ...args);
   }
-  var taskOutputUrls3 = (...args) => legacyMethod40("taskOutputUrls", ...args);
-  var taskSelectedOutputIndexes2 = (...args) => legacyMethod40("taskSelectedOutputIndexes", ...args);
-  var taskOutputSelected2 = (...args) => legacyMethod40("taskOutputSelected", ...args);
-  var positiveInt2 = (...args) => legacyMethod40("positiveInt", ...args);
-  var taskFailureMessage2 = (...args) => legacyMethod40("taskFailureMessage", ...args);
-  var canRetryFailedTask3 = (...args) => legacyMethod40("canRetryFailedTask", ...args);
-  var canAcceptTaskSuccesses3 = (...args) => legacyMethod40("canAcceptTaskSuccesses", ...args);
-  var taskRetryStateText4 = (...args) => legacyMethod40("taskRetryStateText", ...args);
-  var elapsedTimerSpan3 = (...args) => legacyMethod40("elapsedTimerSpan", ...args);
-  var taskGeneratedCount2 = (...args) => legacyMethod40("taskGeneratedCount", ...args);
-  var taskTotalCount2 = (...args) => legacyMethod40("taskTotalCount", ...args);
-  var taskOutputIndex2 = (...args) => legacyMethod40("taskOutputIndex", ...args);
-  var taskProgressStartValue4 = (...args) => legacyMethod40("taskProgressStartValue", ...args);
+  var taskOutputUrls3 = (...args) => legacyMethod41("taskOutputUrls", ...args);
+  var taskSelectedOutputIndexes2 = (...args) => legacyMethod41("taskSelectedOutputIndexes", ...args);
+  var taskOutputSelected2 = (...args) => legacyMethod41("taskOutputSelected", ...args);
+  var positiveInt2 = (...args) => legacyMethod41("positiveInt", ...args);
+  var taskFailureMessage2 = (...args) => legacyMethod41("taskFailureMessage", ...args);
+  var canRetryFailedTask3 = (...args) => legacyMethod41("canRetryFailedTask", ...args);
+  var canAcceptTaskSuccesses3 = (...args) => legacyMethod41("canAcceptTaskSuccesses", ...args);
+  var taskRetryStateText4 = (...args) => legacyMethod41("taskRetryStateText", ...args);
+  var elapsedTimerSpan3 = (...args) => legacyMethod41("elapsedTimerSpan", ...args);
+  var taskGeneratedCount2 = (...args) => legacyMethod41("taskGeneratedCount", ...args);
+  var taskTotalCount2 = (...args) => legacyMethod41("taskTotalCount", ...args);
+  var taskOutputIndex2 = (...args) => legacyMethod41("taskOutputIndex", ...args);
+  var taskProgressStartValue4 = (...args) => legacyMethod41("taskProgressStartValue", ...args);
   function taskRequestPreviewPayload(task) {
     if (!task?.request) return null;
     const request = { ...task.request };
@@ -49260,24 +50104,24 @@ ${galleryText}`;
   var bridge35 = getLegacyBridge();
   var state29 = bridge35.state;
   var els38 = bridge35.els;
-  function legacyMethod41(name, ...args) {
+  function legacyMethod42(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
     }
     return method(...args);
   }
-  var updateTaskInState4 = (...args) => legacyMethod41("updateTaskInState", ...args);
-  var cleanupSessionSelections2 = (...args) => legacyMethod41("cleanupSessionSelections", ...args);
-  var renderTasks8 = (...args) => legacyMethod41("renderTasks", ...args);
-  var renderArchiveButton4 = (...args) => legacyMethod41("renderArchiveButton", ...args);
-  var renderArchiveModal4 = (...args) => legacyMethod41("renderArchiveModal", ...args);
-  var renderPreview6 = (...args) => legacyMethod41("renderPreview", ...args);
-  var migrateLegacyArchivedTasks2 = (...args) => legacyMethod41("migrateLegacyArchivedTasks", ...args);
-  var revokeTaskUploadPreviewUrls3 = (...args) => legacyMethod41("revokeTaskUploadPreviewUrls", ...args);
-  var taskHasViewableUpdate2 = (...args) => legacyMethod41("taskHasViewableUpdate", ...args);
-  var markTaskViewed2 = (...args) => legacyMethod41("markTaskViewed", ...args);
-  var ensureSelectedTaskDetail = (...args) => legacyMethod41("ensureSelectedTaskDetail", ...args);
+  var updateTaskInState4 = (...args) => legacyMethod42("updateTaskInState", ...args);
+  var cleanupSessionSelections2 = (...args) => legacyMethod42("cleanupSessionSelections", ...args);
+  var renderTasks8 = (...args) => legacyMethod42("renderTasks", ...args);
+  var renderArchiveButton4 = (...args) => legacyMethod42("renderArchiveButton", ...args);
+  var renderArchiveModal4 = (...args) => legacyMethod42("renderArchiveModal", ...args);
+  var renderPreview6 = (...args) => legacyMethod42("renderPreview", ...args);
+  var migrateLegacyArchivedTasks2 = (...args) => legacyMethod42("migrateLegacyArchivedTasks", ...args);
+  var revokeTaskUploadPreviewUrls3 = (...args) => legacyMethod42("revokeTaskUploadPreviewUrls", ...args);
+  var taskHasViewableUpdate2 = (...args) => legacyMethod42("taskHasViewableUpdate", ...args);
+  var markTaskViewed2 = (...args) => legacyMethod42("markTaskViewed", ...args);
+  var ensureSelectedTaskDetail = (...args) => legacyMethod42("ensureSelectedTaskDetail", ...args);
   var TASK_SEARCH_HISTORY_LIMIT = 100;
   var TASK_SEARCH_HISTORY_DEBOUNCE_MS = 180;
   var TASK_SIDEBAR_GROUP_PAGE_SIZE2 = 50;
@@ -49543,7 +50387,7 @@ ${galleryText}`;
   var taskSelectionInitialized = false;
   var HISTORY_TASK_REUSE_HANDOFF_KEY = "codex-image-history-task-reuse-handoff";
   var selectedTaskDetailRequestSeq = 0;
-  function legacyMethod42(name, ...args) {
+  function legacyMethod43(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -49551,58 +50395,58 @@ ${galleryText}`;
     return method(...args);
   }
   function setStatus21(message, type) {
-    legacyMethod42("setStatus", message, type);
+    legacyMethod43("setStatus", message, type);
   }
   function closePromptPopover8() {
-    legacyMethod42("closePromptPopover");
+    legacyMethod43("closePromptPopover");
   }
   function markTaskViewed3(taskId) {
-    return legacyMethod42("markTaskViewed", taskId);
+    return legacyMethod43("markTaskViewed", taskId);
   }
   function applyTaskToForm2(task, options = {}) {
-    legacyMethod42("applyTaskToForm", task, options);
+    legacyMethod43("applyTaskToForm", task, options);
   }
   function updateTaskSelectionVisuals3(taskId) {
-    legacyMethod42("updateTaskSelectionVisuals", taskId);
+    legacyMethod43("updateTaskSelectionVisuals", taskId);
   }
   function renderPreview7(task) {
-    legacyMethod42("renderPreview", task);
+    legacyMethod43("renderPreview", task);
   }
   function taskFailureMessage3(task) {
-    return legacyMethod42("taskFailureMessage", task);
+    return legacyMethod43("taskFailureMessage", task);
   }
   function taskRequestPreviewPayload2(task) {
-    return legacyMethod42("taskRequestPreviewPayload", task);
+    return legacyMethod43("taskRequestPreviewPayload", task);
   }
   function revokeUploadPreviewUrls2(sources) {
-    legacyMethod42("revokeUploadPreviewUrls", sources);
+    legacyMethod43("revokeUploadPreviewUrls", sources);
   }
   function renderImageStrip6() {
-    legacyMethod42("renderImageStrip");
+    legacyMethod43("renderImageStrip");
   }
   function updateRequestPreview12() {
-    legacyMethod42("updateRequestPreview");
+    legacyMethod43("updateRequestPreview");
   }
   function taskInputUrls2(task) {
-    return legacyMethod42("taskInputUrls", task);
+    return legacyMethod43("taskInputUrls", task);
   }
   function uploadSource3(file) {
-    return legacyMethod42("uploadSource", file);
+    return legacyMethod43("uploadSource", file);
   }
   function gallerySource4(item) {
-    return legacyMethod42("gallerySource", item);
+    return legacyMethod43("gallerySource", item);
   }
   function assetSource2(item) {
-    return legacyMethod42("assetSource", item);
+    return legacyMethod43("assetSource", item);
   }
   function inspectTaskParameters(task) {
-    legacyMethod42("inspectTaskParameters", task);
+    legacyMethod43("inspectTaskParameters", task);
   }
   function clearTaskParameterInspection() {
-    legacyMethod42("clearTaskParameterInspection");
+    legacyMethod43("clearTaskParameterInspection");
   }
   function applyTaskToFormWithOutputLock(task) {
-    const outputSettingsLocked = Boolean(legacyMethod42("isOutputSettingsLocked"));
+    const outputSettingsLocked = Boolean(legacyMethod43("isOutputSettingsLocked"));
     const outputView = taskOutputSettingsView(task, String(state30.selectedModelId || ""), outputSettingsLocked);
     applyTaskToForm2(task, {
       preserveOutputSettings: outputView !== "editor",
@@ -49610,7 +50454,7 @@ ${galleryText}`;
     });
     if (outputView === "locked-summary") {
       clearTaskParameterInspection();
-      legacyMethod42("showTaskOutputSettings", task);
+      legacyMethod43("showTaskOutputSettings", task);
       return;
     }
     if (outputView === "parameter-inspector") {
@@ -49618,7 +50462,7 @@ ${galleryText}`;
       return;
     }
     clearTaskParameterInspection();
-    legacyMethod42("showLockedOutputSettings");
+    legacyMethod43("showLockedOutputSettings");
   }
   function selectedTaskInputRestoreCurrent(taskId, restoreSeq) {
     if (restoreSeq == null) return true;
@@ -49654,16 +50498,16 @@ ${galleryText}`;
   function isLegacyOutputInputUrl2(url) {
     return typeof url === "string" && /^\/outputs\/[^/]+\/inputs\//.test(url);
   }
-  function historyInputCandidateUrls(sourceUrl, fallbackUrl) {
+  function historyInputCandidateUrls(sourceUrl2, fallbackUrl) {
     const urls = [];
     const addUrl = (url) => {
       if (url && !urls.includes(url)) urls.push(url);
     };
-    if (isLegacyOutputInputUrl2(sourceUrl)) {
+    if (isLegacyOutputInputUrl2(sourceUrl2)) {
       addUrl(fallbackUrl);
-      addUrl(sourceUrl);
+      addUrl(sourceUrl2);
     } else {
-      addUrl(sourceUrl);
+      addUrl(sourceUrl2);
       addUrl(fallbackUrl);
     }
     return urls;
@@ -49702,7 +50546,7 @@ ${galleryText}`;
     const referenceFiles = Array.isArray(task?.reference_files) ? task.reference_files : [];
     if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return false;
     state30.referenceFiles = [];
-    legacyMethod42("renderReferenceFiles");
+    legacyMethod43("renderReferenceFiles");
     if (!referenceFiles.length) {
       updateRequestPreview12();
       return true;
@@ -49716,18 +50560,18 @@ ${galleryText}`;
       family: item?.family,
       missing: Boolean(item?.missing)
     })).filter((item) => item.id && ["pdf", "spreadsheet", "document", "text"].includes(item.family));
-    legacyMethod42("renderReferenceFiles");
+    legacyMethod43("renderReferenceFiles");
     updateRequestPreview12();
     return true;
   }
-  async function fetchHistoryInputBlob(candidateUrls, sourceUrl) {
+  async function fetchHistoryInputBlob(candidateUrls, sourceUrl2) {
     for (const url of candidateUrls) {
       const response = await fetch(url);
       if (response.ok) {
         return response.blob();
       }
     }
-    throw new Error(formatTranslation("status.historyInputLoadFailed", { url: candidateUrls[0] || sourceUrl }));
+    throw new Error(formatTranslation("status.historyInputLoadFailed", { url: candidateUrls[0] || sourceUrl2 }));
   }
   async function restoreTaskInputs(task, options = {}) {
     const taskId = options.taskId ?? task?.task_id;
@@ -49802,6 +50646,25 @@ ${galleryText}`;
     }
     return applyTaskInputRestoreSources([...files, ...gallerySources], taskId, restoreSeq);
   }
+  async function restoreTaskMask(task, options = {}) {
+    const taskId = options.taskId ?? task?.task_id;
+    const restoreSeq = options.restoreSeq;
+    if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return false;
+    legacyMethod43("clearEditMask", { silent: true });
+    const maskUrl = String(task?.mask_url || "");
+    if (!maskUrl) return true;
+    const response = await fetch(maskUrl);
+    if (!response.ok) throw new Error(translate("inpainting.maskDecodeFailed"));
+    const blob = await response.blob();
+    if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return false;
+    const filename = String(task?.mask_file || "history-mask.png");
+    const file = new File([blob], filename, { type: blob.type || "image/png" });
+    await legacyMethod43("setUploadedMask", file, {
+      focused: task?.focused_inpainting || null,
+      silent: true
+    });
+    return selectedTaskInputRestoreCurrent(taskId, restoreSeq);
+  }
   async function selectTask2(taskId) {
     closePromptPopover8();
     state30.selectedTaskId = taskId;
@@ -49835,6 +50698,15 @@ ${galleryText}`;
       state30.images = [];
       renderImageStrip6();
       setStatus21(error.message, "error");
+      return;
+    }
+    if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+    try {
+      await restoreTaskMask(task, { taskId, restoreSeq });
+    } catch (error) {
+      if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+      legacyMethod43("clearEditMask", { silent: true });
+      setStatus21(error.message || translate("inpainting.maskDecodeFailed"), "error");
       return;
     }
     if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
@@ -49873,6 +50745,15 @@ ${galleryText}`;
         return;
       }
       if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+      try {
+        await restoreTaskMask(task, { taskId, restoreSeq });
+      } catch (error) {
+        if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+        legacyMethod43("clearEditMask", { silent: true });
+        setStatus21(error.message || translate("inpainting.maskDecodeFailed"), "error");
+        return;
+      }
+      if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
       applySelectedTaskRequestPreview(task);
       renderSelectedTask(task, taskId);
       setStatus21(formatTranslation("status.reusedTask", { taskId }), "ok");
@@ -49908,7 +50789,7 @@ ${galleryText}`;
     optimizedPrompt: "",
     copyTimerId: null
   };
-  function legacyMethod43(name, ...args) {
+  function legacyMethod44(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -49916,52 +50797,52 @@ ${galleryText}`;
     return method(...args);
   }
   function escapeHtml20(value) {
-    return legacyMethod43("escapeHtml", value);
+    return legacyMethod44("escapeHtml", value);
   }
   function closeGalleryEditPopover4() {
-    legacyMethod43("closeGalleryEditPopover");
+    legacyMethod44("closeGalleryEditPopover");
   }
   function handlePromptDocumentClick2(event) {
-    legacyMethod43("handlePromptDocumentClick", event);
+    legacyMethod44("handlePromptDocumentClick", event);
   }
   function handleGalleryDocumentClick2(event) {
-    legacyMethod43("handleGalleryDocumentClick", event);
+    legacyMethod44("handleGalleryDocumentClick", event);
   }
   function closeCompressionPopover2() {
-    legacyMethod43("closeCompressionPopover");
+    legacyMethod44("closeCompressionPopover");
   }
   function handleImageEditorHistoryShortcut2(event) {
-    return legacyMethod43("handleImageEditorHistoryShortcut", event);
+    return legacyMethod44("handleImageEditorHistoryShortcut", event);
   }
   function hideMentionSuggest4() {
-    legacyMethod43("hideMentionSuggest");
+    legacyMethod44("hideMentionSuggest");
   }
   function hideColorSuggest5() {
-    legacyMethod43("hideColorSuggest");
+    legacyMethod44("hideColorSuggest");
   }
   function hidePromptSnippetSuggest4() {
-    legacyMethod43("hidePromptSnippetSuggest");
+    legacyMethod44("hidePromptSnippetSuggest");
   }
   function hidePromptSnippetSelectionButton4() {
-    legacyMethod43("hidePromptSnippetSelectionButton");
+    legacyMethod44("hidePromptSnippetSelectionButton");
   }
   function closePromptSnippetPopover4() {
-    legacyMethod43("closePromptSnippetPopover");
+    legacyMethod44("closePromptSnippetPopover");
   }
   function closeArchiveModal3() {
-    legacyMethod43("closeArchiveModal");
+    legacyMethod44("closeArchiveModal");
   }
   function closeImageEditor2() {
-    legacyMethod43("closeImageEditor");
+    legacyMethod44("closeImageEditor");
   }
   function closeGallery3() {
-    legacyMethod43("closeGallery");
+    legacyMethod44("closeGallery");
   }
   function closeApiSettingsModal2() {
-    legacyMethod43("closeApiSettingsModal");
+    legacyMethod44("closeApiSettingsModal");
   }
   function closePromptTemplateDrawer2() {
-    legacyMethod43("closePromptTemplateDrawer");
+    legacyMethod44("closePromptTemplateDrawer");
   }
   function bindOverlayPopoverEvents() {
     if (overlayPopoverEventsBound) return;
@@ -50391,7 +51272,7 @@ ${galleryText}`;
   var shellUiEventsBound = false;
   var sidebarResizeFrameId = null;
   var sidebarResizePendingWidth = null;
-  function legacyMethod44(name, ...args) {
+  function legacyMethod45(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy method " + name + " is not initialized");
@@ -50399,61 +51280,61 @@ ${galleryText}`;
     return method(...args);
   }
   function formatTaskStatus4(task) {
-    return legacyMethod44("formatTaskStatus", task);
+    return legacyMethod45("formatTaskStatus", task);
   }
   function closePromptPopover10() {
-    legacyMethod44("closePromptPopover");
+    legacyMethod45("closePromptPopover");
   }
   function closePromptSnippetPopover5() {
-    legacyMethod44("closePromptSnippetPopover");
+    legacyMethod45("closePromptSnippetPopover");
   }
   function closeArchiveModal4() {
-    legacyMethod44("closeArchiveModal");
+    legacyMethod45("closeArchiveModal");
   }
   function closeGallery4() {
-    legacyMethod44("closeGallery");
+    legacyMethod45("closeGallery");
   }
   function closeImageEditor3() {
-    legacyMethod44("closeImageEditor");
+    legacyMethod45("closeImageEditor");
   }
   function revokeUploadPreviewUrls3(sources) {
-    legacyMethod44("revokeUploadPreviewUrls", sources);
+    legacyMethod45("revokeUploadPreviewUrls", sources);
   }
   function finishBatchMarqueeSelection2() {
-    legacyMethod44("finishBatchMarqueeSelection");
+    legacyMethod45("finishBatchMarqueeSelection");
   }
   function setPromptText3(value) {
-    legacyMethod44("setPromptText", value);
+    legacyMethod45("setPromptText", value);
   }
   function setMode6(mode) {
-    legacyMethod44("setMode", mode);
+    legacyMethod45("setMode", mode);
   }
   function updateSizeFromPreset2() {
-    legacyMethod44("updateSizeFromPreset");
+    legacyMethod45("updateSizeFromPreset");
   }
   function updatePromptCount7() {
-    legacyMethod44("updatePromptCount");
+    legacyMethod45("updatePromptCount");
   }
   function updateQuantity3() {
-    legacyMethod44("updateQuantity");
+    legacyMethod45("updateQuantity");
   }
   function updateCompression3() {
-    legacyMethod44("updateCompression");
+    legacyMethod45("updateCompression");
   }
   function renderImageStrip7() {
-    legacyMethod44("renderImageStrip");
+    legacyMethod45("renderImageStrip");
   }
   function renderTasks9() {
-    legacyMethod44("renderTasks");
+    legacyMethod45("renderTasks");
   }
   function renderPreview8() {
-    legacyMethod44("renderPreview");
+    legacyMethod45("renderPreview");
   }
   function updateRequestPreview13() {
-    legacyMethod44("updateRequestPreview");
+    legacyMethod45("updateRequestPreview");
   }
   function clearTaskParameterInspection2() {
-    legacyMethod44("clearTaskParameterInspection");
+    legacyMethod45("clearTaskParameterInspection");
   }
   function handleShellLocaleChange() {
     if (!els41.statusText) return;
@@ -50667,7 +51548,7 @@ ${galleryText}`;
     els41.statusText.className = `status-text ${type || ""}`;
   }
   function resetForm() {
-    const outputSettingsLocked = Boolean(legacyMethod44("isOutputSettingsLocked"));
+    const outputSettingsLocked = Boolean(legacyMethod45("isOutputSettingsLocked"));
     closePromptPopover10();
     closePromptSnippetPopover5();
     closeArchiveModal4();
@@ -50678,7 +51559,7 @@ ${galleryText}`;
     state31.mode = "generate";
     revokeUploadPreviewUrls3(state31.images);
     state31.images = [];
-    legacyMethod44("clearReferenceFiles", { silent: true });
+    legacyMethod45("clearReferenceFiles", { silent: true });
     state31.batchMode = false;
     state31.batchSelectedTaskIds = [];
     state31.batchSelectionAnchorTaskId = null;
@@ -50710,7 +51591,7 @@ ${galleryText}`;
     renderTasks9();
     renderPreview8();
     updateRequestPreview13();
-    if (outputSettingsLocked) legacyMethod44("showLockedOutputSettings");
+    if (outputSettingsLocked) legacyMethod45("showLockedOutputSettings");
     setStatus22(translate("status.waiting"), "");
   }
   async function copyJson() {
@@ -50928,7 +51809,7 @@ ${galleryText}`;
     urls: [],
     index: 0
   };
-  function legacyMethod45(name, ...args) {
+  function legacyMethod46(name, ...args) {
     const method = getLegacyBridge().methods[name];
     if (typeof method !== "function") {
       throw new Error("Legacy bridge method " + name + " is not available");
@@ -51094,8 +51975,8 @@ ${galleryText}`;
   }
   async function addToInput(url) {
     try {
-      const file = await legacyMethod45("imageFileFromUrl", url, "preview-" + Date.now());
-      legacyMethod45("addImageFiles", [file]);
+      const file = await legacyMethod46("imageFileFromUrl", url, "preview-" + Date.now());
+      legacyMethod46("addImageFiles", [file]);
     } catch (error) {
       console.error("Failed to add image to input", error);
     }
@@ -51364,6 +52245,7 @@ ${galleryText}`;
   initReferenceFileInputsFeature();
   initInputSourcesFeature();
   initImageEditorFeature();
+  initInpaintingMaskFeature();
   initImageStripFeature();
   initGalleryCategoriesFeature();
   initRecentAssetsFeature();

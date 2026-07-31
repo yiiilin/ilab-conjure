@@ -7,7 +7,7 @@
     <title>iLab CONJURE</title>
     <link rel="icon" type="image/svg+xml" href="/static/brand/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <script src="/static/pwa.js?v=pwa-1" defer></script>
+    <script src="/static/pwa.js?v=pwa-2" defer></script>
     <script>
       (() => {
         const THEME_STORAGE_KEY = "codex-image-theme-preference";
@@ -121,7 +121,7 @@
         });
       })();
     </script>
-    <link rel="stylesheet" href="/static/styles.css?v=runtime-666" />
+    <link rel="stylesheet" href="/static/styles.css?v=runtime-667" />
   </head>
   <body>
     <div class="layout-container">
@@ -448,6 +448,34 @@
                       <div id="recentAssetList" class="recent-asset-list"></div>
                     </div>
                   </div>
+                  <section id="maskBlock" class="inpainting-mask-block hidden" aria-labelledby="maskBlockTitle">
+                    <div class="inpainting-mask-entry">
+                      <div class="inpainting-mask-entry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false"><path d="M4 7h16v10H4zM8 4v6M16 14v6M2 12h5M17 12h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                      <div class="inpainting-mask-summary">
+                        <strong id="maskBlockTitle" data-i18n="inpainting.compactTitle">局部修复</strong>
+                        <span id="maskEmpty" class="inpainting-mask-empty" data-i18n="inpainting.notSet">未设置蒙版</span>
+                        <div id="maskPreviewCard" class="inpainting-mask-preview-card hidden">
+                          <img id="maskPreview" alt="蒙版预览" data-i18n-attr="alt:inpainting.preview" />
+                          <span class="inpainting-mask-copy"><strong id="maskName"></strong><span id="maskMeta"></span></span>
+                        </div>
+                      </div>
+                      <div class="inpainting-mask-actions">
+                        <button id="maskDrawButton" class="primary-button text-sm" type="button" data-i18n="inpainting.start">开始绘制</button>
+                        <details id="maskMoreMenu" class="inpainting-mask-more">
+                          <summary class="ghost-button text-sm" data-i18n="inpainting.more">更多</summary>
+                          <div class="inpainting-mask-more-menu">
+                            <label class="inpainting-mask-menu-action inpainting-mask-upload">
+                              <input id="maskInput" type="file" accept="image/png,.png" />
+                              <span data-i18n="inpainting.upload">上传蒙版</span>
+                            </label>
+                            <button id="maskClearButton" class="inpainting-mask-menu-action danger hidden" type="button" data-i18n="action.clear">清除蒙版</button>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+                  </section>
                 </div>
 
                 <div class="image-gallery-column">
@@ -1267,6 +1295,53 @@
       </div>
     </div>
 
+    <div id="maskEditorModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="绘制局部修复蒙版" data-i18n-attr="aria-label:inpainting.editorTitle">
+      <div class="modal-panel mask-editor-panel">
+        <div class="modal-heading mask-editor-heading">
+          <div><h2 id="maskEditorTitle" data-i18n="inpainting.editorTitle">绘制局部修复蒙版</h2><p data-i18n="inpainting.editorHint">蓝色区域将被重绘；黄色虚线框用于聚焦放大</p></div>
+          <button id="maskEditorClose" class="ghost-button drawer-close-button" type="button" aria-label="关闭" data-i18n-attr="aria-label:action.close"><svg class="drawer-close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7L17 17M17 7L7 17" /></svg></button>
+        </div>
+        <div class="mask-editor-toolbar">
+          <div class="image-editor-tool-group">
+            <button class="ghost-button text-sm image-editor-tool active" type="button" data-mask-tool="brush" data-i18n="inpainting.brush">蒙版画笔</button>
+            <button class="ghost-button text-sm image-editor-tool" type="button" data-mask-tool="eraser" data-i18n="inpainting.eraser">蒙版橡皮</button>
+            <button class="ghost-button text-sm image-editor-tool" type="button" data-mask-tool="focus" data-i18n="inpainting.focusTool">聚焦框</button>
+          </div>
+          <label class="image-editor-stroke-field"><span data-i18n="imageEditor.stroke">粗细</span><input id="maskEditorBrushSize" type="range" min="4" max="256" step="2" value="48" /><output id="maskEditorBrushValue">48px</output></label>
+          <details id="maskEditorMoreTools" class="mask-editor-more-tools">
+            <summary class="ghost-button text-sm" data-i18n="inpainting.moreTools">更多工具</summary>
+            <div class="mask-editor-more-tools-menu">
+              <div class="image-editor-tool-group">
+                <button id="maskEditorUndo" class="ghost-button text-sm" type="button" data-i18n="imageEditor.undo">撤销</button>
+                <button id="maskEditorRedo" class="ghost-button text-sm" type="button" data-i18n="imageEditor.redo">重做</button>
+                <button id="maskEditorClear" class="ghost-button text-sm" type="button" data-i18n="action.clear">清空</button>
+                <button id="maskEditorInvert" class="ghost-button text-sm" type="button" data-i18n="inpainting.invert">反转</button>
+                <button id="maskEditorShow" class="ghost-button text-sm" type="button" data-i18n="inpainting.hideMask">隐藏蒙版</button>
+              </div>
+              <div class="image-editor-tool-group mask-editor-zoom-controls">
+                <button id="maskEditorZoomOut" class="ghost-button text-sm" type="button">−</button><output id="maskEditorZoom">100%</output><button id="maskEditorZoomIn" class="ghost-button text-sm" type="button">＋</button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="mask-editor-focus-row"><span id="maskEditorFocusStatus" data-i18n="inpainting.focusAuto">自动按蒙版</span><button id="maskEditorAutoFocus" class="ghost-button text-sm" type="button" data-i18n="inpainting.autoFocus">恢复自动选区</button></div>
+        <details id="maskEditorAdvanced" class="mask-editor-advanced">
+          <summary data-i18n="inpainting.advanced">高级设置</summary>
+          <div id="maskFocusedControls" class="focused-inpainting-controls">
+            <label class="focused-inpainting-toggle">
+              <input id="maskFocusedEnabled" type="checkbox" />
+              <span><strong data-i18n="inpainting.focused">聚焦修复</strong><small data-i18n="inpainting.focusedHint">裁切并放大小区域，生成后自动柔边回贴原图</small></span>
+            </label>
+            <label><span data-i18n="inpainting.context">上下文</span><input id="maskContext" type="range" min="0" max="1" step="0.05" value="0.35" /><output id="maskContextValue">35%</output></label>
+            <label><span data-i18n="inpainting.feather">羽化</span><input id="maskFeather" type="range" min="0" max="64" step="1" value="12" /><output id="maskFeatherValue">12px</output></label>
+            <div class="focused-inpainting-rect-row"><span id="maskFocusRectStatus" data-i18n="inpainting.focusAuto">自动按蒙版</span></div>
+          </div>
+        </details>
+        <div id="maskEditorCanvasWrap" class="mask-editor-canvas-wrap"><div id="maskEditorCanvasStack" class="mask-editor-canvas-stack"><canvas id="maskEditorCanvas" class="mask-editor-canvas"></canvas><canvas id="maskEditorOverlay" class="mask-editor-overlay" aria-hidden="true"></canvas></div></div>
+        <div class="image-editor-footer"><div id="maskEditorStatus" class="image-editor-status" aria-live="polite"></div><div class="image-editor-actions"><button id="maskEditorCancel" class="ghost-button text-sm" type="button" data-i18n="action.cancel">取消</button><button id="maskEditorSave" class="primary-button" type="button" data-i18n="inpainting.saveMask">保存蒙版</button></div></div>
+      </div>
+    </div>
+
     <div id="imageEditorModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="编辑输入图片" data-i18n-attr="aria-label:imageEditor.title">
       <div class="modal-panel image-editor-panel">
         <div class="modal-heading image-editor-heading">
@@ -1472,7 +1547,7 @@
     </div>
 
     <div id="taskNotificationToastRegion" class="task-notification-toast-region" aria-live="polite"></div>
-  <script src="/static/app.js?v=runtime-666"></script>
+  <script src="/static/app.js?v=runtime-667"></script>
     <script>
       (() => {
         document.querySelectorAll(".radio-group").forEach((group) => {

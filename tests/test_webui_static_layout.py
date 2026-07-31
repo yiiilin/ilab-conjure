@@ -562,8 +562,8 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         script = self._frontend_script_source()
         styles = Path("codex_image/webui/static/styles.css").read_text(encoding="utf-8")
 
-        self.assertIn('/static/app.js?v=runtime-666', html)
-        self.assertIn('/static/styles.css?v=runtime-666', html)
+        self.assertIn('/static/app.js?v=runtime-667', html)
+        self.assertIn('/static/styles.css?v=runtime-667', html)
         self.assertIn('id="recentAssetDock"', html)
         self.assertRegex(html, r'class="image-input-footer"[\s\S]*id="recentAssetDock"[\s\S]*id="recentAssetList"')
         self.assertRegex(html, r'id="recentAssetDock"[\s\S]*id="quickGalleryDock"[\s\S]*id="galleryManagePanel"')
@@ -1466,19 +1466,56 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         self.assertNotIn("来源选择", html)
         self.assertNotIn("最多支持 16 张图片", html)
         self.assertNotIn("最多支持多张参考图；编辑模式至少需要 1 张图片。", script)
-    def test_mask_input_is_removed_from_webui(self) -> None:
+    def test_mask_input_and_focused_inpainting_are_available_in_webui(self) -> None:
         html = Path("codex_image/webui/static/index.html").read_text(encoding="utf-8")
         script = self._frontend_script_source()
 
-        self.assertNotIn("maskBlock", html)
-        self.assertNotIn("maskInput", html)
-        self.assertNotIn("maskName", html)
-        self.assertNotIn(">Mask<", html)
-        self.assertNotIn("maskBlock", script)
-        self.assertNotIn("maskInput", script)
-        self.assertNotIn("maskName", script)
-        self.assertNotIn("setMask", script)
-        self.assertNotIn('form.append("mask"', script)
+        for element_id in (
+            "maskBlock", "maskInput", "maskName", "maskPreview", "maskDrawButton",
+            "maskMoreMenu", "maskEditorModal", "maskEditorMoreTools", "maskEditorAdvanced", "maskEditorCanvas",
+            "maskFocusedEnabled", "maskContext", "maskFeather",
+        ):
+            self.assertIn(f'id="{element_id}"', html)
+        self.assertIn('data-i18n="inpainting.start"', html)
+        self.assertIn('data-i18n="inpainting.more"', html)
+        self.assertIn('data-i18n="inpainting.moreTools"', html)
+        self.assertIn('data-i18n="inpainting.advanced"', html)
+        self.assertLess(html.index('id="maskEditorAdvanced"'), html.index('id="maskEditorCanvasWrap"'))
+        self.assertIn("function setUploadedMask", script)
+        self.assertIn("function validateUploadedMask", script)
+        self.assertIn("function openMaskEditor", script)
+        self.assertIn("function invertSelection", script)
+        self.assertIn("function focusedPayload", script)
+        self.assertIn('form.append("mask", mask)', script)
+        self.assertIn('form.append("focused_inpainting", JSON.stringify(focused))', script)
+
+    def test_inpainting_disclosures_and_image_panel_do_not_overlap_following_content(self) -> None:
+        styles = Path("codex_image/webui/static/styles.css").read_text(encoding="utf-8")
+
+        self.assertRegex(
+            styles,
+            r"\.inpainting-mask-more:not\(\[open\]\)\s*>\s*\.inpainting-mask-more-menu\s*\{[^}]*display:\s*none",
+        )
+        self.assertRegex(
+            styles,
+            r"\.mask-editor-more-tools:not\(\[open\]\)\s*>\s*\.mask-editor-more-tools-menu\s*\{[^}]*display:\s*none",
+        )
+        self.assertRegex(
+            styles,
+            r"\.mask-editor-advanced:not\(\[open\]\)\s*>\s*\.focused-inpainting-controls\s*\{[^}]*display:\s*none",
+        )
+        self.assertRegex(
+            styles,
+            r"\.controls-col\s+\.image-panel:has\(\.inpainting-mask-block:not\(\.hidden\)\)\s*\{[^}]*flex:\s*0\s+0\s+auto[^}]*min-height:\s*0",
+        )
+        compact = re.search(r"@container workspace \(max-width: 520px\)\s*\{([\s\S]*?)\n\}", styles)
+        self.assertIsNotNone(compact)
+        compact_styles = compact.group(1) if compact else ""
+        self.assertRegex(
+            compact_styles,
+            r"\.controls-col\s+\.image-panel\s*\{[^}]*flex:\s*0\s+0\s+auto[^}]*min-height:\s*0",
+        )
+
     def test_image_input_uses_quick_gallery_dock(self) -> None:
         html = Path("codex_image/webui/static/index.html").read_text(encoding="utf-8")
         script = self._frontend_script_source()
@@ -3488,8 +3525,8 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         script = self._frontend_script_source()
         styles = Path("codex_image/webui/static/styles.css").read_text(encoding="utf-8")
 
-        self.assertIn('/static/app.js?v=runtime-666', html)
-        self.assertIn('/static/styles.css?v=runtime-666', html)
+        self.assertIn('/static/app.js?v=runtime-667', html)
+        self.assertIn('/static/styles.css?v=runtime-667', html)
         self.assertIn('id="pasteClipboardButton"', html)
         self.assertIn('id="statusText"', html)
         self.assertRegex(
@@ -3675,7 +3712,7 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         self.assertIn("brushOverlayCanvas: null", script)
         self.assertIn('tool: "crop"', script)
         self.assertIn('canvasScope: "base"', script)
-        self.assertNotIn('tool: "brush"', script)
+        self.assertNotIn('tool: "brush"', image_editor_source)
         self.assertIn("hasInstructionMarks: false", script)
         self.assertIn("imageEditorModal: document.querySelector(\"#imageEditorModal\")", script)
         self.assertIn("imageEditorCanvas: document.querySelector(\"#imageEditorCanvas\")", script)
@@ -3725,7 +3762,7 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         self.assertIn("imageEditorState.hasInstructionMarks = Boolean(snapshot.hasInstructionMarks);", script)
         self.assertIn("imageEditorState.hasInstructionMarks = true;", script)
         self.assertIn('imageEditorState.tool = "crop";', script)
-        self.assertNotIn('imageEditorState.tool = "brush";', script)
+        self.assertNotIn('imageEditorState.tool = "brush";', image_editor_source)
         self.assertIn('configureImageEditorStroke(ctx, { lineCap: "butt", lineJoin: "miter" })', script)
         self.assertIn("function imageEditorArrowGeometry(start, end)", script)
         self.assertIn("const headWidth = Math.max(18, strokeWidth * 2.2);", script)
@@ -3940,8 +3977,8 @@ class WebUIStaticLayoutTests(WebUIStaticTestCase):
         ).read_text(encoding="utf-8")
         styles = Path("codex_image/webui/static/styles.css").read_text(encoding="utf-8")
 
-        self.assertIn("/static/app.js?v=runtime-666", html)
-        self.assertIn("/static/styles.css?v=runtime-666", html)
+        self.assertIn("/static/app.js?v=runtime-667", html)
+        self.assertIn("/static/styles.css?v=runtime-667", html)
         self.assertIn('"codex-image-theme-preference"', theme_source)
         self.assertIn('themePreference: "system"', script)
         self.assertIn('call(methods, "restoreThemePreference")', script)

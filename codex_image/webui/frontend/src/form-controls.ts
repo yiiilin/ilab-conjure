@@ -161,6 +161,7 @@ export function setMode(mode: any): void {
   bridge.methods.renderProviderSelection?.();
   restoreCurrentModelParameterDraft();
   bridge.methods.updateModeSpecificSettings?.();
+  bridge.methods.renderInpaintingControls?.();
   bridge.methods.updateRequestPreview?.();
 }
 

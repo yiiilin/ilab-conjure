@@ -45,7 +45,7 @@ class WebUIStaticTaskTests(WebUIStaticTestCase):
         self.assertIn('id="historyMonthList"', history_html)
         self.assertIn('id="historyTaskList"', history_html)
         self.assertIn('id="historyDetail"', history_html)
-        self.assertIn('/static/history.js?v=history-81', history_html)
+        self.assertIn('/static/history.js?v=history-82', history_html)
         self.assertIn('fetch("/api/task-history/summary")', history_source)
         self.assertIn('new URLSearchParams', history_source)
         self.assertIn('/api/task-history/tasks?', history_source)
@@ -1385,6 +1385,26 @@ console.log(JSON.stringify({{
             script.index("await restoreTaskInputs(task, { taskId, restoreSeq });"),
         )
         self.assertIn("if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq))", script)
+
+    def test_javascript_restores_history_task_mask_after_base_image(self) -> None:
+        selection_source = self._task_selection_source()
+        inpainting_source = Path("codex_image/webui/frontend/src/inpainting-mask.ts").read_text(encoding="utf-8")
+
+        self.assertIn("async function restoreTaskMask(task, options = {})", selection_source)
+        self.assertIn("const maskUrl = String(task?.mask_url || \"\")", selection_source)
+        self.assertIn('legacyMethod("clearEditMask", { silent: true })', selection_source)
+        self.assertIn('await legacyMethod("setUploadedMask", file, {', selection_source)
+        self.assertEqual(
+            selection_source.count("await restoreTaskMask(task, { taskId, restoreSeq });"),
+            2,
+        )
+        first_inputs = selection_source.index("await restoreTaskInputs(task, { taskId, restoreSeq });")
+        first_mask = selection_source.index("await restoreTaskMask(task, { taskId, restoreSeq });")
+        self.assertLess(first_inputs, first_mask)
+        self.assertIn("async function setUploadedMask(file: File, options:", inpainting_source)
+        self.assertIn("if (value === undefined) return fallback;", inpainting_source)
+        self.assertIn("setUploadedMask,", inpainting_source)
+
     def test_history_input_restore_falls_back_from_legacy_output_input_urls(self) -> None:
         selection_source = self._task_selection_source()
         derived_source = self._task_derived_source()

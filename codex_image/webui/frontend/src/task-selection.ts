@@ -257,6 +257,27 @@ async function restoreTaskInputs(task, options = {}) {
   return applyTaskInputRestoreSources([...files, ...gallerySources], taskId, restoreSeq);
 }
 
+async function restoreTaskMask(task, options = {}) {
+  const taskId = options.taskId ?? task?.task_id;
+  const restoreSeq = options.restoreSeq;
+  if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return false;
+  legacyMethod("clearEditMask", { silent: true });
+  const maskUrl = String(task?.mask_url || "");
+  if (!maskUrl) return true;
+
+  const response = await fetch(maskUrl);
+  if (!response.ok) throw new Error(translate("inpainting.maskDecodeFailed"));
+  const blob = await response.blob();
+  if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return false;
+  const filename = String(task?.mask_file || "history-mask.png");
+  const file = new File([blob], filename, { type: blob.type || "image/png" });
+  await legacyMethod("setUploadedMask", file, {
+    focused: task?.focused_inpainting || null,
+    silent: true,
+  });
+  return selectedTaskInputRestoreCurrent(taskId, restoreSeq);
+}
+
 async function selectTask(taskId) {
   closePromptPopover();
   state.selectedTaskId = taskId;
@@ -293,6 +314,15 @@ async function selectTask(taskId) {
     return;
   }
   if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+  try {
+    await restoreTaskMask(task, { taskId, restoreSeq });
+  } catch (error) {
+    if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+    legacyMethod("clearEditMask", { silent: true });
+    setStatus(error.message || translate("inpainting.maskDecodeFailed"), "error");
+    return;
+  }
+  if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
   applySelectedTaskRequestPreview(task);
   if (!["running", "cancelling"].includes(String(task.status || ""))) renderSelectedTask(task, taskId);
 }
@@ -326,6 +356,15 @@ async function restoreHistoryTaskReuseHandoff() {
       state.images = [];
       renderImageStrip();
       setStatus(error.message || translate("referenceCollector.addFailed"), "error");
+      return;
+    }
+    if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+    try {
+      await restoreTaskMask(task, { taskId, restoreSeq });
+    } catch (error) {
+      if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;
+      legacyMethod("clearEditMask", { silent: true });
+      setStatus(error.message || translate("inpainting.maskDecodeFailed"), "error");
       return;
     }
     if (!selectedTaskInputRestoreCurrent(taskId, restoreSeq)) return;

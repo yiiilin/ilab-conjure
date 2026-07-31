@@ -1,0 +1,481 @@
+.image-input-left:has(.inpainting-mask-block:not(.hidden)) {
+  height: auto;
+}
+
+.controls-col .image-panel:has(.inpainting-mask-block:not(.hidden)) {
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.inpainting-mask-block {
+  position: relative;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.inpainting-mask-entry {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+}
+
+.inpainting-mask-entry-icon {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 11%, var(--surface-soft));
+}
+
+.inpainting-mask-entry-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.inpainting-mask-summary {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: grid;
+  gap: 2px;
+}
+
+.inpainting-mask-summary > strong {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.inpainting-mask-empty,
+.inpainting-mask-copy span,
+.focused-inpainting-toggle small {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.inpainting-mask-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.inpainting-mask-preview-card {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inpainting-mask-preview-card img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  object-fit: contain;
+  border-radius: 6px;
+  background:
+    linear-gradient(45deg, #d8d8d8 25%, transparent 25%),
+    linear-gradient(-45deg, #d8d8d8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d8d8d8 75%),
+    linear-gradient(-45deg, transparent 75%, #d8d8d8 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.inpainting-mask-copy {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.inpainting-mask-copy strong,
+.inpainting-mask-copy span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inpainting-mask-copy strong {
+  max-width: 130px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.inpainting-mask-more {
+  position: relative;
+}
+
+.inpainting-mask-more > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inpainting-mask-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.inpainting-mask-more[open] > summary {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--line));
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+.inpainting-mask-more:not([open]) > .inpainting-mask-more-menu {
+  display: none;
+}
+
+.inpainting-mask-more-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 6px);
+  right: 0;
+  width: max-content;
+  min-width: 150px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+}
+
+.inpainting-mask-menu-action {
+  width: 100%;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--text-primary);
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.inpainting-mask-menu-action:hover {
+  background: var(--surface-soft);
+}
+
+.inpainting-mask-menu-action.danger {
+  color: var(--danger);
+}
+
+.inpainting-mask-upload {
+  position: relative;
+}
+
+.inpainting-mask-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mask-editor-panel {
+  width: min(96vw, 1440px);
+  max-width: none;
+  height: min(94vh, 960px);
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.mask-editor-heading {
+  margin-bottom: 0;
+}
+
+.mask-editor-heading p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.mask-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+
+.mask-editor-more-tools {
+  position: relative;
+  margin-left: auto;
+}
+
+.mask-editor-more-tools > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mask-editor-more-tools > summary::-webkit-details-marker {
+  display: none;
+}
+
+.mask-editor-more-tools[open] > summary {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--line));
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+.mask-editor-more-tools:not([open]) > .mask-editor-more-tools-menu {
+  display: none;
+}
+
+.mask-editor-more-tools[open] {
+  flex: 1 0 100%;
+  margin-left: 0;
+  display: grid;
+  justify-items: end;
+}
+
+.mask-editor-more-tools[open] > .mask-editor-more-tools-menu {
+  position: static;
+  width: 100%;
+  margin-top: 7px;
+}
+
+.mask-editor-more-tools-menu {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 7px);
+  right: 0;
+  width: min(520px, calc(100vw - 56px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+}
+
+.mask-editor-zoom-controls output {
+  min-width: 54px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.mask-editor-focus-row,
+.focused-inpainting-rect-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mask-editor-focus-row {
+  min-height: 34px;
+  padding: 0 4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.mask-editor-advanced {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+  overflow: hidden;
+}
+
+.mask-editor-advanced > summary {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mask-editor-advanced > summary::before {
+  content: "›";
+  margin-right: 7px;
+  font-size: 17px;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease;
+}
+
+.mask-editor-advanced[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.mask-editor-advanced:not([open]) > .focused-inpainting-controls {
+  display: none;
+}
+
+.focused-inpainting-controls {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.3fr) repeat(2, minmax(160px, 1fr));
+  gap: 10px;
+  align-items: center;
+  padding: 4px 10px 10px;
+  border-top: 1px solid var(--line);
+}
+
+.focused-inpainting-toggle,
+.focused-inpainting-controls > label:not(.focused-inpainting-toggle) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.focused-inpainting-toggle span {
+  display: grid;
+  gap: 2px;
+}
+
+.focused-inpainting-controls input[type="range"] {
+  min-width: 70px;
+  flex: 1 1 auto;
+}
+
+.focused-inpainting-controls output {
+  min-width: 42px;
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.focused-inpainting-rect-row {
+  grid-column: 1 / -1;
+  padding-top: 2px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.mask-editor-canvas-wrap {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background:
+    linear-gradient(45deg, color-mix(in srgb, var(--line) 55%, transparent) 25%, transparent 25%),
+    linear-gradient(-45deg, color-mix(in srgb, var(--line) 55%, transparent) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, color-mix(in srgb, var(--line) 55%, transparent) 75%),
+    linear-gradient(-45deg, transparent 75%, color-mix(in srgb, var(--line) 55%, transparent) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  overscroll-behavior: contain;
+}
+
+.mask-editor-canvas {
+  display: block;
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  border-radius: 6px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+}
+
+.mask-editor-canvas-stack {
+  position: relative;
+  flex: 0 0 auto;
+  margin: auto;
+  line-height: 0;
+}
+
+.mask-editor-overlay {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+@media (max-width: 760px) {
+  .inpainting-mask-entry {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .inpainting-mask-summary {
+    width: calc(100% - 39px);
+  }
+
+  .inpainting-mask-actions {
+    width: 100%;
+    padding-left: 39px;
+  }
+
+  .inpainting-mask-actions > #maskDrawButton {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .focused-inpainting-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .focused-inpainting-rect-row {
+    grid-column: auto;
+  }
+
+  .mask-editor-panel {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .mask-editor-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    overflow: visible;
+  }
+
+  .mask-editor-toolbar > .image-editor-tool-group,
+  .mask-editor-toolbar > .image-editor-stroke-field {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .mask-editor-toolbar > .image-editor-tool-group {
+    overflow-x: auto;
+  }
+
+  .mask-editor-more-tools {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .mask-editor-more-tools[open] {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .mask-editor-more-tools-menu {
+    width: min(300px, calc(100vw - 58px));
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mask-editor-more-tools-menu .image-editor-tool-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

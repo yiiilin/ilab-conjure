@@ -59,6 +59,39 @@ class WebUITaskTests(unittest.TestCase):
         image.save(buffer, format="PNG")
         return buffer.getvalue()
 
+    def test_task_detail_exposes_persisted_mask_url(self) -> None:
+        from codex_image.webui.app import create_app
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = create_app(output_root=root, auth_checker=lambda: True, auto_start_queue=False)
+            task = app.state.storage.create_task("edit")
+            mask_bytes = self._png_bytes((64, 96))
+            mask_path = app.state.storage.write_input(task.task_id, "history mask.png", mask_bytes, kind="mask")
+            app.state.storage.write_metadata(
+                task.task_id,
+                {
+                    "task_id": task.task_id,
+                    "created_at": "2026-07-31T01:00:00+00:00",
+                    "updated_at": "2026-07-31T01:00:00+00:00",
+                    "mode": "edit",
+                    "status": "completed",
+                    "input_files": [],
+                    "mask_file": mask_path.name,
+                },
+            )
+
+            client = TestClient(app)
+            detail = client.get(f"/api/tasks/{task.task_id}")
+            mask_url = detail.json()["task"]["mask_url"]
+            downloaded = client.get(mask_url)
+
+        self.assertEqual(detail.status_code, 200)
+        self.assertEqual(mask_url, f"/inputs/{mask_path.name}")
+        self.assertEqual(downloaded.status_code, 200)
+        self.assertEqual(downloaded.content, mask_bytes)
+        self.assertEqual(downloaded.headers["content-type"], "image/png")
+
     def test_task_history_api_returns_summary_and_cursor_pages(self) -> None:
         from codex_image.webui.app import create_app
         from codex_image.webui.storage import TaskStorage

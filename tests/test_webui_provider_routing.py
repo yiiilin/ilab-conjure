@@ -26,6 +26,16 @@ class WebUIProviderRoutingTests(unittest.TestCase):
         )
         return buffer.getvalue()
 
+    @staticmethod
+    def _mask_png_bytes() -> bytes:
+        from PIL import Image
+
+        buffer = io.BytesIO()
+        image = Image.new("RGBA", (2, 2), (0, 0, 0, 255))
+        image.putpixel((1, 1), (0, 0, 0, 0))
+        image.save(buffer, format="PNG")
+        return buffer.getvalue()
+
     def assert_no_secret_field(self, value) -> None:
         if isinstance(value, dict):
             self.assertNotIn("api_key", value)
@@ -729,7 +739,7 @@ class WebUIProviderRoutingTests(unittest.TestCase):
                 },
                 files={
                     "images": ("input.png", self._png_bytes(), "image/png"),
-                    "mask": ("mask.png", self._png_bytes(), "image/png"),
+                    "mask": ("mask.png", self._mask_png_bytes(), "image/png"),
                 },
             )
             asyncio.run(app.state.queue_manager.run_available_once())

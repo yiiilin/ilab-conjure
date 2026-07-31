@@ -846,6 +846,7 @@ def _write_queued_metadata(
     prompt_constraints: list[str] | None = None,
     requested_backend: str | None = None,
     max_attempts: int = 2,
+    focused_inpainting: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     file_references = _reference_files_for_metadata(reference_files)
     metadata = {
@@ -884,6 +885,8 @@ def _write_queued_metadata(
             execution_instructions or ""
         )
         metadata["prompt_locale"] = str(prompt_locale or "zh-CN")
+    if focused_inpainting and focused_inpainting.get("enabled"):
+        metadata["focused_inpainting"] = dict(focused_inpainting)
     _apply_api_provider_metadata(metadata, params)
     _apply_api_images_concurrency_metadata(metadata, params)
     if prompt_constraints:

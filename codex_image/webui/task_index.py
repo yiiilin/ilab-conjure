@@ -38,6 +38,7 @@ SUMMARY_KEYS = {
     "input_thumbnail_urls",
     "input_sources",
     "mask_file",
+    "focused_inpainting",
     "gallery_refs",
     "reference_assets",
     "reference_file_count",

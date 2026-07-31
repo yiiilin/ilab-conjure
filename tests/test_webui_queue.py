@@ -57,8 +57,11 @@ from tests.webui_helpers import (
 
 
 class WebUIQueueTests(unittest.TestCase):
-    def _png_bytes(self) -> bytes:
-        image = Image.new("RGB", (12, 8), (70, 120, 170))
+    @staticmethod
+    def _png_bytes(*, mask: bool = False) -> bytes:
+        image = Image.new("RGBA" if mask else "RGB", (32, 32), (0, 0, 0, 255) if mask else (80, 120, 160))
+        if mask:
+            image.putpixel((16, 16), (0, 0, 0, 0))
         buffer = BytesIO()
         image.save(buffer, format="PNG")
         return buffer.getvalue()
@@ -1234,7 +1237,7 @@ raise SystemExit(1)
                 data={"prompt": "edit queued", "size": "1024x1024", "quality": "low"},
                 files={
                     "images": ("input.png", self._png_bytes(), "image/png"),
-                    "mask": ("mask.png", self._png_bytes(), "image/png"),
+                    "mask": ("mask.png", self._png_bytes(mask=True), "image/png"),
                 },
             )
             task_id = created.json()["task"]["task_id"]

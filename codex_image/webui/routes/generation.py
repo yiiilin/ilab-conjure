@@ -42,6 +42,11 @@ from codex_image.webui.executor_inputs import (
     _reference_file_to_responses_input,
     _resolve_reference_files,
 )
+from codex_image.webui.focused_inpainting import (
+    FocusedInpaintingError,
+    parse_focused_inpainting,
+    validate_edit_mask_data_urls,
+)
 from codex_image.webui.prompt_ratio import (
     append_ratio_prompt_instruction,
     normalize_prompt_ratio,
@@ -473,6 +478,7 @@ def _persist_generation_submission(
     gallery_refs: list[dict[str, Any]],
     reference_assets: list[dict[str, Any]],
     file_references: list[dict[str, Any]],
+    focused_inpainting: dict[str, Any] | None,
 ) -> dict[str, Any]:
     h = ctx.route_helpers
     stored_request_payload = h["slim_request_payload"](
@@ -484,6 +490,8 @@ def _persist_generation_submission(
         mask_file=mask_file,
     )
     stored_request_payload["webui_requested_backend"] = requested_backend
+    if focused_inpainting and focused_inpainting.get("enabled"):
+        stored_request_payload["webui_focused_inpainting"] = dict(focused_inpainting)
     if effective_api_provider_id is not None:
         stored_request_payload["webui_api_provider_id"] = effective_api_provider_id
     if effective_api_provider_name:
@@ -514,6 +522,7 @@ def _persist_generation_submission(
         prompt_constraints=prepared.prompt_constraints,
         requested_backend=requested_backend,
         max_attempts=ctx.queue_manager.max_attempts if ctx.queue_manager is not None else 1,
+        focused_inpainting=focused_inpainting,
     )
     _enqueue_generation(
         ctx,
@@ -650,10 +659,18 @@ def _commit_reference_files(
 
 async def _prepare_raster_uploads(
     uploads: list[UploadFile],
+    *,
+    is_mask: bool = False,
 ) -> list[ValidatedRasterImage]:
     try:
         return await read_validated_raster_uploads(uploads)
     except InvalidRasterImage as exc:
+        if is_mask:
+            detail = FocusedInpaintingError(
+                "mask_format_invalid",
+                "Mask must be a valid PNG image.",
+            ).detail()
+            raise HTTPException(status_code=400, detail=detail) from exc
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
@@ -941,6 +958,7 @@ def register_generation_routes(app: FastAPI, ctx: WebUIContext) -> None:
             gallery_refs=gallery_refs,
             reference_assets=reference_assets,
             file_references=file_references,
+            focused_inpainting=None,
         )
 
     @app.post("/api/edit")
@@ -977,8 +995,21 @@ def register_generation_routes(app: FastAPI, ctx: WebUIContext) -> None:
         images: list[UploadFile] | None = File(None),
         mask: UploadFile | None = File(None),
         reference_files: list[UploadFile] | None = File(None),
+        focused_inpainting: str | None = Form(None),
     ) -> dict[str, Any]:
         explicit_form_fields = frozenset(str(key) for key in (await request.form()).keys())
+        try:
+            focused_config = parse_focused_inpainting(focused_inpainting)
+        except FocusedInpaintingError as exc:
+            raise HTTPException(status_code=400, detail=exc.detail()) from exc
+        if focused_config and focused_config.get("enabled") and mask is None:
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "focused_inpainting_requires_mask",
+                    "message": "Focused inpainting requires a valid mask.",
+                },
+            )
         auth_source = _request_auth_source(ctx, provider_id)
         if auth_source == "codex" and not ctx.route_helpers["codex_auth_checker"]():
             raise HTTPException(status_code=401, detail="Codex auth is not available")
@@ -1018,7 +1049,8 @@ def register_generation_routes(app: FastAPI, ctx: WebUIContext) -> None:
         )
         uploaded_images = await _prepare_raster_uploads(images or [])
         prepared_masks = await _prepare_raster_uploads(
-            [mask] if mask is not None else []
+            [mask] if mask is not None else [],
+            is_mask=True,
         )
         prepared_mask = prepared_masks[0] if prepared_masks else None
         predicted_uploaded_assets = [
@@ -1062,6 +1094,11 @@ def register_generation_routes(app: FastAPI, ctx: WebUIContext) -> None:
             if prepared_mask is not None
             else None
         )
+        if mask_data_url:
+            try:
+                validate_edit_mask_data_urls(all_image_data_urls[0], mask_data_url)
+            except FocusedInpaintingError as exc:
+                raise HTTPException(status_code=400, detail=exc.detail()) from exc
         effective_input_fidelity = input_fidelity if image_model_supports_input_fidelity(model) else None
         prepared_submission = _prepare_generation_submission(
             ctx,
@@ -1142,4 +1179,5 @@ def register_generation_routes(app: FastAPI, ctx: WebUIContext) -> None:
             gallery_refs=gallery_refs,
             reference_assets=reference_assets,
             file_references=file_references,
+            focused_inpainting=focused_config,
         )

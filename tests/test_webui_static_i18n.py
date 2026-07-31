@@ -565,7 +565,7 @@ class WebUIStaticI18nTests(WebUIStaticTestCase):
         en_entries = dictionary_entries("codex_image/webui/frontend/src/i18n/en.ts")
         vi_entries = dictionary_entries("codex_image/webui/frontend/src/i18n/vi.ts")
 
-        self.assertEqual(len(vi_entries), 1092)
+        self.assertEqual(len(vi_entries), 1137)
         self.assertEqual([key for key, _value in vi_entries], [key for key, _value in zh_entries])
         self.assertEqual([key for key, _value in vi_entries], [key for key, _value in en_entries])
 

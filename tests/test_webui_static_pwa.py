@@ -16,7 +16,7 @@ class WebUIPWATests(unittest.TestCase):
 
         manifest_link = '<link rel="manifest" href="/manifest.webmanifest" />'
         theme_meta = '<meta name="theme-color" content="#457B66" />'
-        pwa_script = '<script src="/static/pwa.js?v=pwa-1" defer></script>'
+        pwa_script = '<script src="/static/pwa.js?v=pwa-2" defer></script>'
 
         self.assertIn(manifest_link, index_html)
         self.assertIn(manifest_link, history_html)
@@ -29,7 +29,7 @@ class WebUIPWATests(unittest.TestCase):
         pwa_script_source = pwa_script_path.read_text(encoding="utf-8")
         self.assertIn('"serviceWorker" in navigator', pwa_script_source)
         self.assertIn("window.isSecureContext", pwa_script_source)
-        self.assertIn('navigator.serviceWorker.register("/service-worker.js", { scope: "/" })', pwa_script_source)
+        self.assertIn('navigator.serviceWorker.register("/service-worker.js", { scope: "/", updateViaCache: "none" })', pwa_script_source)
 
     def test_web_app_manifest_uses_rabbit_brand_identity_and_installable_metadata(self) -> None:
         manifest_path = Path("codex_image/webui/static/manifest.webmanifest")
@@ -86,15 +86,15 @@ class WebUIPWATests(unittest.TestCase):
         self.assertTrue(worker_path.exists())
         source = worker_path.read_text(encoding="utf-8")
 
-        self.assertIn('const CACHE_NAME = "ilab-conjure-shell-v136";', source)
+        self.assertIn('const CACHE_NAME = "ilab-conjure-shell-v137";', source)
         self.assertIn('"/"', source)
         self.assertIn('"/history"', source)
         self.assertIn('"/manifest.webmanifest"', source)
-        self.assertIn('"/static/app.js?v=runtime-666"', source)
-        self.assertIn('"/static/history.js?v=history-81"', source)
-        self.assertIn('"/static/styles.css?v=runtime-666"', source)
+        self.assertIn('"/static/app.js?v=runtime-667"', source)
+        self.assertIn('"/static/history.js?v=history-82"', source)
+        self.assertIn('"/static/styles.css?v=runtime-667"', source)
         self.assertIn("request.mode === \"navigate\"", source)
-        self.assertIn("caches.match(request).then", source)
+        self.assertIn("fetch(request).then", source)
         self.assertIn("catch(() => caches.match(request, { ignoreSearch: true }))", source)
         self.assertNotIn('"/api/', source)
         self.assertNotIn('"/events', source)

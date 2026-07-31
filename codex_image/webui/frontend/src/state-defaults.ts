@@ -35,6 +35,7 @@ export function createDefaultState(): WebUIState {
   return {
   mode: "generate",
   images: [],
+  editMask: null,
   referenceFiles: [],
   tasks: [],
   taskSidebarGroupCounts: {},

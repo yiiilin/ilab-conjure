@@ -17,6 +17,7 @@ function clearImages() {
   const state = getState();
   legacyMethod("revokeUploadPreviewUrls", state.images);
   state.images = [];
+  legacyMethod("clearEditMask", { silent: true });
   legacyMethod("clearReferenceFiles", { silent: true });
   legacyMethod("syncPromptGalleryMentionsFromInputs");
   legacyMethod("setMode", "generate");
@@ -98,6 +99,7 @@ function renderImageStrip() {
   if (!hasImages) {
     thumbItems.innerHTML = "";
     legacyMethod("updateCustomRatioReferenceButtonState");
+    legacyMethod("renderInpaintingControls");
     return;
   }
 
@@ -179,6 +181,7 @@ function renderImageStrip() {
     thumbItems.append(wrapper);
   });
   legacyMethod("updateCustomRatioReferenceButtonState");
+  legacyMethod("renderInpaintingControls");
 }
 
 function bindImageStripEvents() {

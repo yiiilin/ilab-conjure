@@ -1078,4 +1078,9 @@ button:disabled {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto;
   }
+
+  .controls-col .image-panel {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
 }

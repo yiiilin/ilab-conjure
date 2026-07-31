@@ -64,6 +64,8 @@ function referenceFileUploads(...args: any[]) { return legacyMethod("referenceFi
 function storedReferenceFileInputs(...args: any[]) { return legacyMethod("storedReferenceFileInputs", ...args); }
 function missingReferenceFileInputs(...args: any[]) { return legacyMethod("missingReferenceFileInputs", ...args); }
 function renderPreview(...args: any[]) { return legacyMethod("renderPreview", ...args); }
+function currentEditMask(...args: any[]) { return legacyMethod("currentEditMask", ...args); }
+function currentFocusedInpainting(...args: any[]) { return legacyMethod("currentFocusedInpainting", ...args); }
 
 export function currentCanonicalParameters(): Record<string, unknown> {
   return currentGenerationSelection().parameters;
@@ -183,6 +185,8 @@ function buildPreviewRequest() {
   const assets = referenceAssetInputs();
   const fileUploads = referenceFileUploads();
   const storedFiles = storedReferenceFileInputs();
+  const mask = state.mode === "edit" ? currentEditMask() : null;
+  const focused = state.mode === "edit" ? currentFocusedInpainting() : null;
   const { authSource, requestedBackend } = selectedRoutingFields();
   const isApi = authSource === "api";
   const isCodex = authSource === "codex";
@@ -204,6 +208,8 @@ function buildPreviewRequest() {
     reference_asset_ids: assets.map((source: any) => source.id),
     reference_files: fileUploads.map((source: any) => source.filename),
     reference_file_ids: storedFiles.map((source: any) => source.id),
+    ...(mask ? { mask: mask.name } : {}),
+    ...(focused ? { focused_inpainting: focused } : {}),
   };
   const usesGptPromptProcessing = !state.generationCatalog || state.selectedModelId === "gpt-image-2";
   if (usesGptPromptProcessing) payload.prompt_fidelity = currentPromptFidelity();
@@ -266,6 +272,8 @@ async function runTask() {
   const assets = referenceAssetInputs();
   const fileUploads = referenceFileUploads();
   const storedFiles = storedReferenceFileInputs();
+  const mask = state.mode === "edit" ? currentEditMask() : null;
+  const focused = state.mode === "edit" ? currentFocusedInpainting() : null;
   if (missingGalleryInputs().length) {
     setStatus(translate("status.missingGalleryReference"), "error");
     return;
@@ -290,6 +298,10 @@ async function runTask() {
     setStatus(translate("status.editNeedsImage"), "error");
     return;
   }
+  if (focused && !mask) {
+    setStatus(translate("inpainting.focusRequiresMask"), "error");
+    return;
+  }
   const customSizeError = els.size?.value === "custom" ? customSizeValidationMessage() : "";
   if (customSizeError) {
     updateCustomSize();
@@ -311,6 +323,8 @@ async function runTask() {
   assets.forEach((source: any) => form.append("reference_asset_ids", source.id));
   fileUploads.forEach((source: any) => form.append("reference_files", source.file));
   storedFiles.forEach((source: any) => form.append("reference_file_ids", source.id));
+  if (mask) form.append("mask", mask);
+  if (focused) form.append("focused_inpainting", JSON.stringify(focused));
 
   if (state.mode === "generate") {
     uploads.forEach((source: any) => form.append("reference_images", source.file));

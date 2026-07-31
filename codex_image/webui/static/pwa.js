@@ -3,7 +3,7 @@
   if (!window.isSecureContext) return;
 
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js", { scope: "/" }).catch(() => {
+    navigator.serviceWorker.register("/service-worker.js", { scope: "/", updateViaCache: "none" }).catch(() => {
       // PWA support is opportunistic; the WebUI must still work as a normal page.
     });
   });

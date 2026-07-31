@@ -59,6 +59,15 @@ class WebUIGenerationTests(unittest.TestCase):
         image.save(buffer, format="PNG")
         return buffer.getvalue()
 
+    def _mask_png_bytes(self, size: tuple[int, int] = (400, 640)) -> bytes:
+        image = Image.new("RGBA", size, (0, 0, 0, 255))
+        for x in range(size[0] // 3, max(size[0] // 3 + 1, size[0] * 2 // 3)):
+            for y in range(size[1] // 3, max(size[1] // 3 + 1, size[1] * 2 // 3)):
+                image.putpixel((x, y), (0, 0, 0, 0))
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        return buffer.getvalue()
+
     def test_ratio_prompt_instruction_matches_every_supported_interface_language(self) -> None:
         from codex_image.webui.prompt_ratio import ratio_prompt_instruction
 
@@ -335,7 +344,7 @@ class WebUIGenerationTests(unittest.TestCase):
                 data={"prompt": "edit reference", "size": "1024x1024", "codex_mode": "responses"},
                 files={
                     "images": ("input.png", self._png_bytes(), "image/png"),
-                    "mask": ("mask.png", self._png_bytes(), "image/png"),
+                    "mask": ("mask.png", self._mask_png_bytes(), "image/png"),
                 },
             )
             task_id = response.json()["task"]["task_id"]
@@ -775,7 +784,7 @@ class WebUIGenerationTests(unittest.TestCase):
                 },
                 files={
                     "images": ("input.png", self._png_bytes(), "image/png"),
-                    "mask": ("mask.png", self._png_bytes(), "image/png"),
+                    "mask": ("mask.png", self._mask_png_bytes(), "image/png"),
                 },
             )
             body = response.json()

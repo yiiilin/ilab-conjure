@@ -44,6 +44,7 @@ from .executor import (
     _task_cancel_requested,
 )
 from .execution_plan_client import ExecutionPlanImageClient
+from .focused_inpainting import FocusedInpaintingImageClient
 from .executor_inputs import _is_reference_file_missing_error
 from .executor_inputs import (
     _file_to_data_url,
@@ -84,6 +85,13 @@ class QueueExecutionContract:
     client: Any
     backend: str
     reference_file_capability_key: CapabilityKey
+
+
+def _focused_inpainting_client(client: Any, metadata: dict[str, Any] | None) -> Any:
+    config = metadata.get("focused_inpainting") if isinstance(metadata, dict) else None
+    if isinstance(config, dict) and config.get("enabled"):
+        return FocusedInpaintingImageClient(client, config)
+    return client
 
 
 def _queue_channel_by_id(app_instance: FastAPI, channel_id: str) -> QueueChannel | None:
@@ -604,7 +612,7 @@ def _queue_execution_contract(
         return QueueExecutionContract(
             client=ExecutionPlanImageClient(
                 snapshot_plan,
-                client,
+                _focused_inpainting_client(client, metadata),
                 registry=None if client_factory_overridden else registry,
             ),
             backend=backend,
@@ -633,7 +641,7 @@ def _queue_execution_contract(
             )
         )
         return QueueExecutionContract(
-            client=client,
+            client=_focused_inpainting_client(client, metadata),
             backend=backend,
             reference_file_capability_key=reference_file_capability_key_for_resolved_backend(
                 requested_backend=backend,
@@ -650,7 +658,7 @@ def _queue_execution_contract(
         client_class = CodexImageClient if codex_mode == "responses" else CodexImagesImageClient
         client = client_class(load_auth_state(), transport=transport)
     return QueueExecutionContract(
-        client=client,
+        client=_focused_inpainting_client(client, metadata),
         backend=backend,
         reference_file_capability_key=reference_file_capability_key_for_resolved_backend(
             requested_backend=backend,

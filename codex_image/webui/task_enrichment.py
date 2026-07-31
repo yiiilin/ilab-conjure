@@ -14,6 +14,11 @@ def _input_urls(task_id: str, input_files: list[str]) -> list[str]:
     return [f"/inputs/{quote(filename, safe='')}" for filename in input_files]
 
 
+def _mask_url(mask_file: Any) -> str:
+    filename = str(mask_file or "").strip()
+    return f"/inputs/{quote(filename, safe='')}" if filename else ""
+
+
 def _input_thumbnail_route_url(task_id: str, input_index: int) -> str:
     return f"/api/tasks/{quote(task_id, safe='')}/inputs/{input_index}/thumbnail"
 
@@ -376,6 +381,12 @@ def _with_file_urls(
         input_names = [str(filename) for filename in input_files]
         enriched["input_urls"] = _input_urls(task_id, input_names)
         enriched["input_thumbnail_urls"] = _input_thumbnail_urls(task_id, input_names)
+
+    mask_url = _mask_url(metadata.get("mask_file"))
+    if mask_url:
+        enriched["mask_url"] = mask_url
+    else:
+        enriched.pop("mask_url", None)
 
     raw_gallery_refs = metadata.get("gallery_refs")
     if (not isinstance(raw_gallery_refs, list) or not raw_gallery_refs) and gallery_storage is not None:
