@@ -17,6 +17,7 @@ build/
 .dist/
 dist/
 
+data/
 input/
 inputs/
 output/
