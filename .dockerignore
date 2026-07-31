@@ -2,6 +2,7 @@
 .github
 .hermes
 .env
+.netrc
 __pycache__
 *.pyc
 *.pyo
@@ -9,7 +10,11 @@ __pycache__
 .venv
 node_modules
 data
+downloads
+input
+inputs
 output
+outputs
 assets
 launcher
 packaging

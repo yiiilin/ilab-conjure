@@ -346,6 +346,25 @@ overwrites the visible prompt text. Templates are not injected as hidden prompts
 
 Use `--help` for all CLI options.
 
+### WebUI operations CLI and Hermes Skill
+
+The repository also includes a generic WebUI API operations CLI and an
+installable Hermes Skill:
+
+```bash
+python3 skills/ilab-conjure-operations/scripts/ilab_conjure_ops.py \
+  --base-url http://127.0.0.1:8787 --no-auth health
+```
+
+It can inspect health, Providers, queues, and tasks; download outputs; and,
+after explicit confirmation, submit or manage jobs. The Skill lives in
+`skills/ilab-conjure-operations/` with installation and safety instructions.
+
+The public repository stores no deployment URL, username, password, API key,
+private Provider mapping, task history, or generated media. Supply remote URLs
+and authentication through CLI options, environment variables, or a `~/.netrc`
+file outside the repository.
+
 ## Development
 
 ```bash

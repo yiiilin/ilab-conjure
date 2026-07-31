@@ -14,10 +14,12 @@ node_modules/
 .eggs/
 *.egg-info/
 build/
+.netrc
 .dist/
 dist/
 
 data/
+downloads/
 input/
 inputs/
 output/

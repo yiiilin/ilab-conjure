@@ -271,6 +271,21 @@ chip 支持查看完整内容、展开为正文、编辑和复用。
 
 更多参数请使用 `--help`。
 
+### WebUI 运维 CLI 与 Hermes Skill
+
+仓库还提供通用的 WebUI API 运维 CLI 和可安装的 Hermes Skill：
+
+```bash
+python3 skills/ilab-conjure-operations/scripts/ilab_conjure_ops.py \
+  --base-url http://127.0.0.1:8787 --no-auth health
+```
+
+它支持查看健康状态、Provider、队列和任务，下载输出，以及在显式确认后提交或管理任务。
+Skill 位于 `skills/ilab-conjure-operations/`，包含安装与安全使用说明。
+
+公开仓库不保存部署地址、用户名、密码、API Key、Provider 私有映射、任务记录或生成图片。
+远程地址和认证应通过命令行参数、环境变量或仓库外的 `~/.netrc` 提供。
+
 ## 开发
 
 ```bash

@@ -28,6 +28,7 @@
     "scripts/check-release-contracts.py",
     "scripts/migrate-webui-source-data.py",
     "scripts/run-webui-provider-fixture.py",
+    "skills",
     "tests",
     "tsconfig.webui.json"
   ],
