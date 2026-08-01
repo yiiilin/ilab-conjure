@@ -160,6 +160,29 @@
   border-color: transparent;
 }
 
+/* skeleton shimmer for task-switch loading */
+.preview-card.is-loading-fresh {
+  background: var(--surface-soft);
+  border-color: transparent;
+}
+
+.preview-card.is-loading-fresh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--surface) 66%, transparent) 35%,
+    color-mix(in srgb, var(--surface) 66%, transparent) 65%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: preview-shimmer 1.6s ease-in-out infinite;
+}
+
 .preview-card.is-selected {
   border-color: var(--primary);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 55%, transparent);
@@ -1136,4 +1159,9 @@ body.lightbox-open {
   border-radius: inherit;
   background: linear-gradient(90deg, transparent, var(--primary), transparent);
   animation: waiting-bar 1.4s ease-in-out infinite;
+}
+
+@keyframes preview-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

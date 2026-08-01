@@ -13,6 +13,7 @@ services:
     environment:
       TZ: Asia/Hong_Kong
       HOME: /home/app
+      ILAB_ALLOWED_HOSTS: "${ILAB_ALLOWED_HOSTS:-img.yiln.de}"
     volumes:
       - ./data:/app/output
     read_only: true

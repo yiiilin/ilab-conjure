@@ -3,6 +3,7 @@ from __future__ import annotations
 from io import BytesIO
 from pathlib import Path
 import asyncio
+import os
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -225,6 +226,54 @@ class WebUISecurityTests(unittest.TestCase):
         self.assertEqual(same_origin.status_code, 200)
         self.assertEqual(local_script.status_code, 200)
         self.assertEqual(localhost.status_code, 200)
+
+    def test_webui_allows_explicitly_configured_proxy_hosts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = self._create_app(root)
+
+            rejected = TestClient(app).get(
+                "/api/health",
+                headers={"Host": "img.example.com"},
+            )
+
+        self.assertEqual(rejected.status_code, 400)
+
+        with patch.dict(os.environ, {"ILAB_ALLOWED_HOSTS": "img.example.com, Other.DOMAIN"}):
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                app = self._create_app(root)
+                allowed = TestClient(app).get(
+                    "/api/health",
+                    headers={"Host": "img.example.com"},
+                )
+                allowed_caps = TestClient(app).get(
+                    "/api/health",
+                    headers={"Host": "OTHER.DOMAIN"},
+                )
+                still_rejected = TestClient(app).get(
+                    "/api/health",
+                    headers={"Host": "img.other.example"},
+                )
+                remote_proxy_client = TestClient(
+                    app,
+                    base_url="http://127.0.0.1",
+                    client=("198.51.100.20", 4242),
+                ).get(
+                    "/api/health",
+                    headers={"Host": "img.example.com"},
+                )
+                remote_loopback_host = TestClient(
+                    app,
+                    base_url="http://127.0.0.1",
+                    client=("198.51.100.20", 4242),
+                ).get("/api/health")
+
+        self.assertEqual(allowed.status_code, 200)
+        self.assertEqual(allowed_caps.status_code, 200)
+        self.assertEqual(still_rejected.status_code, 400)
+        self.assertEqual(remote_proxy_client.status_code, 200)
+        self.assertEqual(remote_loopback_host.status_code, 403)
 
     def test_webui_adds_browser_security_headers_and_disables_api_docs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

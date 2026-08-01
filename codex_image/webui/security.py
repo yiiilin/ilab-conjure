@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ipaddress
+import os
 from typing import Final
 from urllib.parse import urlsplit
 
@@ -98,6 +99,22 @@ def _client_is_loopback(scope: Scope) -> bool:
     return hostname == "testclient" or _is_loopback_name(hostname)
 
 
+def _allowed_hostnames() -> frozenset[str]:
+    """Extra hostnames permitted by ILAB_ALLOWED_HOSTS (comma separated).
+
+    Loopback names are always allowed; this env var is intended for
+    reverse-proxy deployments where the upstream Host header is a public
+    domain (e.g. img.yiln.de).
+    """
+    raw = os.environ.get("ILAB_ALLOWED_HOSTS", "")
+    names: set[str] = set()
+    for part in raw.split(","):
+        name = part.strip().lower().rstrip(".")
+        if name:
+            names.add(name)
+    return frozenset(names)
+
+
 def _host_is_allowed(scope: Scope, host_header: str) -> bool:
     parsed = _parse_authority(host_header)
     if parsed is None:
@@ -107,7 +124,22 @@ def _host_is_allowed(scope: Scope, host_header: str) -> bool:
     client_hostname = str(client[0] or "").strip().lower() if client else ""
     if hostname == "testserver":
         return client_hostname == "testclient"
-    return _is_loopback_name(hostname)
+    if _is_loopback_name(hostname):
+        return True
+    return hostname in _allowed_hostnames()
+
+
+def _client_is_allowed(scope: Scope, host_header: str) -> bool:
+    """Loopback clients are always allowed; requests addressed to an
+    explicitly whitelisted proxy host may arrive from any client IP
+    (the reverse proxy is trusted once its Host header passes)."""
+    if _client_is_loopback(scope):
+        return True
+    parsed = _parse_authority(host_header)
+    if parsed is None:
+        return False
+    hostname, _ = parsed
+    return hostname in _allowed_hostnames()
 
 
 def _effective_port(scheme: str, explicit_port: int | None) -> int | None:
@@ -178,7 +210,7 @@ class LocalWebUISecurityMiddleware:
         rejection: tuple[int, str] | None = None
         if not _host_is_allowed(scope, host_header):
             rejection = (400, "Invalid local WebUI host")
-        elif not _client_is_loopback(scope):
+        elif not _client_is_allowed(scope, host_header):
             rejection = (403, "WebUI access is limited to this device")
         elif scope["type"] == "http" and str(scope.get("method") or "").upper() not in _SAFE_METHODS:
             fetch_site = headers.get("sec-fetch-site", "").strip().lower()

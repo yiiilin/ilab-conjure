@@ -49468,7 +49468,8 @@ ${galleryText}`;
     const totalCount = hasStatusCard ? taskTotalCount2(task) : outputUrls.length;
     const itemCount = outputUrls.length + (hasStatusCard ? 1 : 0);
     const previousOutputCount = currentPreviewOutputCardCount();
-    const preservePreviousImages = previousOutputCount === outputUrls.length;
+    const taskChanged = String(state28.previewTask?.task_id || "") !== String(task?.task_id || "");
+    const preservePreviousImages = !taskChanged && previousOutputCount === outputUrls.length;
     const shouldDeferLayoutSwitch = !preservePreviousImages && outputUrls.length > 0;
     if (shouldDeferLayoutSwitch) {
       scheduleDeferredPreviewRender(task, { running, failure, waiting, outputUrls, totalCount, itemCount });
@@ -49630,6 +49631,7 @@ ${galleryText}`;
     }
     if (!preservePreviousImage) {
       clearPreviewImageBeforeLoad(visibleImage);
+      card.classList.add("is-loading-fresh");
     }
     card.classList.add("is-loading-next");
     void preloadPreviewImage(url).then((loaded) => {
@@ -49647,6 +49649,7 @@ ${galleryText}`;
     visibleImage.dataset.lightboxUrl = url;
     delete card.dataset.previewPendingUrl;
     card.classList.remove("is-loading-next");
+    card.classList.remove("is-loading-fresh");
     if (visibleImage.complete) window.requestAnimationFrame(syncPreviewImageOrientation);
   }
   function clearPreviewImageBeforeLoad(visibleImage) {
@@ -49658,6 +49661,7 @@ ${galleryText}`;
     if (!card.isConnected || card.dataset.previewImageToken !== token) return;
     delete card.dataset.previewPendingUrl;
     card.classList.remove("is-loading-next");
+    card.classList.remove("is-loading-fresh");
   }
   async function preloadPreviewImage(url) {
     const image = document.createElement("img");

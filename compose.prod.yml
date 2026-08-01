@@ -1,0 +1,7 @@
+# Production override: pull prebuilt image from GHCR instead of building locally.
+# Usage: docker compose -f compose.yaml -f compose.prod.yml up -d
+services:
+  app:
+    build: !reset null
+    image: ghcr.io/yiiilin/ilab-conjure:main
+    pull_policy: always

@@ -239,7 +239,8 @@ function renderOutputPreview(task: any, { running = false, failure = false, wait
   const totalCount = hasStatusCard ? taskTotalCount(task) : outputUrls.length;
   const itemCount = outputUrls.length + (hasStatusCard ? 1 : 0);
   const previousOutputCount = currentPreviewOutputCardCount();
-  const preservePreviousImages = previousOutputCount === outputUrls.length;
+  const taskChanged = String(state.previewTask?.task_id || "") !== String(task?.task_id || "");
+  const preservePreviousImages = !taskChanged && previousOutputCount === outputUrls.length;
   const shouldDeferLayoutSwitch = !preservePreviousImages && outputUrls.length > 0;
   if (shouldDeferLayoutSwitch) {
     scheduleDeferredPreviewRender(task, { running, failure, waiting, outputUrls, totalCount, itemCount });
@@ -410,6 +411,7 @@ function updatePreviewImage(card: HTMLElement, url: string, { preservePreviousIm
   }
   if (!preservePreviousImage) {
     clearPreviewImageBeforeLoad(visibleImage);
+    card.classList.add("is-loading-fresh");
   }
   card.classList.add("is-loading-next");
   void preloadPreviewImage(url).then((loaded) => {
@@ -428,6 +430,7 @@ function commitPreviewImageUrl(card: HTMLElement, visibleImage: HTMLImageElement
   visibleImage.dataset.lightboxUrl = url;
   delete card.dataset.previewPendingUrl;
   card.classList.remove("is-loading-next");
+  card.classList.remove("is-loading-fresh");
   if (visibleImage.complete) window.requestAnimationFrame(syncPreviewImageOrientation);
 }
 
@@ -441,6 +444,7 @@ function cancelPreviewImagePending(card: HTMLElement, token: string) {
   if (!card.isConnected || card.dataset.previewImageToken !== token) return;
   delete card.dataset.previewPendingUrl;
   card.classList.remove("is-loading-next");
+  card.classList.remove("is-loading-fresh");
 }
 
 async function preloadPreviewImage(url: string) {
