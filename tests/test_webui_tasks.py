@@ -764,7 +764,9 @@ class WebUITaskTests(unittest.TestCase):
     def test_sidebar_thumbnail_route_uses_cached_256px_webp(self) -> None:
         from codex_image.webui.app import create_app
 
-        task_id = "20260726010203-abcdef01"
+        task_time = datetime.now().astimezone()
+        task_id = f"{task_time:%Y%m%d%H%M%S}-abcdef01"
+        timestamp = task_time.isoformat()
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             output_file = output_name(task_id, 1)
@@ -776,8 +778,8 @@ class WebUITaskTests(unittest.TestCase):
                 json.dumps(
                     {
                         "task_id": task_id,
-                        "created_at": "2026-07-26T01:02:03+08:00",
-                        "updated_at": "2026-07-26T01:03:03+08:00",
+                        "created_at": timestamp,
+                        "updated_at": timestamp,
                         "status": "completed",
                         "generated_count": 1,
                         "total_count": 1,
@@ -795,7 +797,7 @@ class WebUITaskTests(unittest.TestCase):
             sidebar = client.get("/api/tasks/sidebar", params={"limit": 50}).json()
             thumbnail_url = sidebar["tasks"][0]["thumbnail_urls"][0]
             thumbnail_response = client.get(thumbnail_url)
-            thumbnail_path = root / "thumbnails" / "2026-07-26" / f"{task_id}-image-1-sidebar.webp"
+            thumbnail_path = root / "thumbnails" / f"{task_time:%Y-%m-%d}" / f"{task_id}-image-1-sidebar.webp"
             with Image.open(thumbnail_path) as thumbnail:
                 thumbnail_size = thumbnail.size
                 thumbnail_format = thumbnail.format
